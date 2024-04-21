@@ -47,16 +47,52 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="AgregarNuevoSocio.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="AgregarNuevoSocio.Designer.cs">
+      <DependentUpon>AgregarNuevoSocio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditarInformacionSocio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditarInformacionSocio.Designer.cs">
+      <DependentUpon>EditarInformacionSocio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InformacionSocio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InformacionSocio.Designer.cs">
+      <DependentUpon>InformacionSocio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Inicio.Designer.cs">
+      <DependentUpon>Inicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NavBar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NavBar.Designer.cs">
+      <DependentUpon>NavBar.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="AgregarNuevoSocio.resx">
+      <DependentUpon>AgregarNuevoSocio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditarInformacionSocio.resx">
+      <DependentUpon>EditarInformacionSocio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InformacionSocio.resx">
+      <DependentUpon>InformacionSocio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inicio.resx">
+      <DependentUpon>Inicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NavBar.resx">
+      <DependentUpon>NavBar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -66,6 +102,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -79,6 +116,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pngwing.com.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
