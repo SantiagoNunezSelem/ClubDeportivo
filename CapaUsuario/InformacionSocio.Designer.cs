@@ -35,7 +35,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.buscarDni = new System.Windows.Forms.Button();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.InputBuscarDni = new System.Windows.Forms.MaskedTextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.labelNombre = new System.Windows.Forms.Label();
@@ -116,31 +116,31 @@
             this.buscarDni.Text = "Buscar";
             this.buscarDni.UseVisualStyleBackColor = true;
             // 
-            // maskedTextBox1
+            // InputBuscarDni
             // 
-            this.maskedTextBox1.AccessibleDescription = "";
-            this.maskedTextBox1.AccessibleName = "";
-            this.maskedTextBox1.AllowPromptAsInput = false;
-            this.maskedTextBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.maskedTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.maskedTextBox1.CausesValidation = false;
-            this.maskedTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.maskedTextBox1.ForeColor = System.Drawing.Color.Black;
-            this.maskedTextBox1.Location = new System.Drawing.Point(136, 122);
-            this.maskedTextBox1.Mask = "99999999";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.RejectInputOnFirstFailure = true;
-            this.maskedTextBox1.ResetOnPrompt = false;
-            this.maskedTextBox1.ResetOnSpace = false;
-            this.maskedTextBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.maskedTextBox1.ShortcutsEnabled = false;
-            this.maskedTextBox1.Size = new System.Drawing.Size(100, 16);
-            this.maskedTextBox1.SkipLiterals = false;
-            this.maskedTextBox1.TabIndex = 25;
-            this.maskedTextBox1.Tag = "";
-            this.maskedTextBox1.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals;
-            this.maskedTextBox1.ValidatingType = typeof(int);
-            this.maskedTextBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.maskedTextBox1_MouseClick);
+            this.InputBuscarDni.AccessibleDescription = "";
+            this.InputBuscarDni.AccessibleName = "";
+            this.InputBuscarDni.AllowPromptAsInput = false;
+            this.InputBuscarDni.BackColor = System.Drawing.SystemColors.Control;
+            this.InputBuscarDni.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.InputBuscarDni.CausesValidation = false;
+            this.InputBuscarDni.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.InputBuscarDni.ForeColor = System.Drawing.Color.Black;
+            this.InputBuscarDni.Location = new System.Drawing.Point(136, 122);
+            this.InputBuscarDni.Mask = "99999999";
+            this.InputBuscarDni.Name = "InputBuscarDni";
+            this.InputBuscarDni.RejectInputOnFirstFailure = true;
+            this.InputBuscarDni.ResetOnPrompt = false;
+            this.InputBuscarDni.ResetOnSpace = false;
+            this.InputBuscarDni.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.InputBuscarDni.ShortcutsEnabled = false;
+            this.InputBuscarDni.Size = new System.Drawing.Size(100, 16);
+            this.InputBuscarDni.SkipLiterals = false;
+            this.InputBuscarDni.TabIndex = 25;
+            this.InputBuscarDni.Tag = "";
+            this.InputBuscarDni.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals;
+            this.InputBuscarDni.ValidatingType = typeof(int);
+            this.InputBuscarDni.MouseClick += new System.Windows.Forms.MouseEventHandler(this.InputBuscarDni_MouseClick);
             // 
             // label7
             // 
@@ -235,7 +235,7 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.buscarDni);
             this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.maskedTextBox1);
+            this.Controls.Add(this.InputBuscarDni);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -249,7 +249,7 @@
             this.Controls.SetChildIndex(this.label4, 0);
             this.Controls.SetChildIndex(this.label5, 0);
             this.Controls.SetChildIndex(this.label6, 0);
-            this.Controls.SetChildIndex(this.maskedTextBox1, 0);
+            this.Controls.SetChildIndex(this.InputBuscarDni, 0);
             this.Controls.SetChildIndex(this.pictureBox2, 0);
             this.Controls.SetChildIndex(this.buscarDni, 0);
             this.Controls.SetChildIndex(this.label8, 0);
@@ -275,7 +275,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buscarDni;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.MaskedTextBox InputBuscarDni;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label labelNombre;

@@ -59,6 +59,37 @@
     <Compile Include="EditarInformacionSocio.Designer.cs">
       <DependentUpon>EditarInformacionSocio.cs</DependentUpon>
     </Compile>
+    <Compile Include="DarBajaSocio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DarBajaSocio.Designer.cs">
+      <DependentUpon>DarBajaSocio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InformacionActividadDeportiva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InformacionActividadDeportiva.Designer.cs">
+      <DependentUpon>InformacionActividadDeportiva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PagosInformacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PagosInformacion.Designer.cs">
+      <DependentUpon>PagosInformacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PagoActividadDeportiva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PagoActividadDeportiva.Designer.cs">
+      <DependentUpon>PagoActividadDeportiva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PagoCuotaSocial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include=".Designer.cs">
+      <DependentUpon>PagoCuotaSocial.cs</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="InformacionSocio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,8 +113,14 @@
     <EmbeddedResource Include="AgregarNuevoSocio.resx">
       <DependentUpon>AgregarNuevoSocio.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DarBajaSocio.resx">
+      <DependentUpon>DarBajaSocio.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditarInformacionSocio.resx">
       <DependentUpon>EditarInformacionSocio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InformacionActividadDeportiva.resx">
+      <DependentUpon>InformacionActividadDeportiva.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InformacionSocio.resx">
       <DependentUpon>InformacionSocio.cs</DependentUpon>
@@ -93,6 +130,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NavBar.resx">
       <DependentUpon>NavBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PagoActividadDeportiva.resx">
+      <DependentUpon>PagoActividadDeportiva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PagoCuotaSocial.resx">
+      <DependentUpon>PagoCuotaSocial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PagosInformacion.resx">
+      <DependentUpon>PagosInformacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

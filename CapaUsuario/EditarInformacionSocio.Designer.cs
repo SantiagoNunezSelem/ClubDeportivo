@@ -48,7 +48,7 @@
             this.inputNombre = new System.Windows.Forms.MaskedTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.InputBuscarDni = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -329,30 +329,31 @@
             this.pictureBox2.TabIndex = 28;
             this.pictureBox2.TabStop = false;
             // 
-            // maskedTextBox1
+            // InputBuscarDni
             // 
-            this.maskedTextBox1.AccessibleDescription = "";
-            this.maskedTextBox1.AccessibleName = "";
-            this.maskedTextBox1.AllowPromptAsInput = false;
-            this.maskedTextBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.maskedTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.maskedTextBox1.CausesValidation = false;
-            this.maskedTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.maskedTextBox1.ForeColor = System.Drawing.Color.Black;
-            this.maskedTextBox1.Location = new System.Drawing.Point(134, 130);
-            this.maskedTextBox1.Mask = "99999999";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.RejectInputOnFirstFailure = true;
-            this.maskedTextBox1.ResetOnPrompt = false;
-            this.maskedTextBox1.ResetOnSpace = false;
-            this.maskedTextBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.maskedTextBox1.ShortcutsEnabled = false;
-            this.maskedTextBox1.Size = new System.Drawing.Size(100, 16);
-            this.maskedTextBox1.SkipLiterals = false;
-            this.maskedTextBox1.TabIndex = 27;
-            this.maskedTextBox1.Tag = "";
-            this.maskedTextBox1.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals;
-            this.maskedTextBox1.ValidatingType = typeof(int);
+            this.InputBuscarDni.AccessibleDescription = "";
+            this.InputBuscarDni.AccessibleName = "";
+            this.InputBuscarDni.AllowPromptAsInput = false;
+            this.InputBuscarDni.BackColor = System.Drawing.SystemColors.Control;
+            this.InputBuscarDni.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.InputBuscarDni.CausesValidation = false;
+            this.InputBuscarDni.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.InputBuscarDni.ForeColor = System.Drawing.Color.Black;
+            this.InputBuscarDni.Location = new System.Drawing.Point(134, 130);
+            this.InputBuscarDni.Mask = "99999999";
+            this.InputBuscarDni.Name = "InputBuscarDni";
+            this.InputBuscarDni.RejectInputOnFirstFailure = true;
+            this.InputBuscarDni.ResetOnPrompt = false;
+            this.InputBuscarDni.ResetOnSpace = false;
+            this.InputBuscarDni.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.InputBuscarDni.ShortcutsEnabled = false;
+            this.InputBuscarDni.Size = new System.Drawing.Size(100, 16);
+            this.InputBuscarDni.SkipLiterals = false;
+            this.InputBuscarDni.TabIndex = 27;
+            this.InputBuscarDni.Tag = "";
+            this.InputBuscarDni.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals;
+            this.InputBuscarDni.ValidatingType = typeof(int);
+            this.InputBuscarDni.MouseClick += new System.Windows.Forms.MouseEventHandler(this.InputBuscarDni_MouseClick);
             // 
             // label1
             // 
@@ -388,11 +389,11 @@
             this.Controls.Add(this.inputNombre);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.maskedTextBox1);
+            this.Controls.Add(this.InputBuscarDni);
             this.Controls.Add(this.label1);
             this.Name = "EditarInformacionSocio";
             this.Controls.SetChildIndex(this.label1, 0);
-            this.Controls.SetChildIndex(this.maskedTextBox1, 0);
+            this.Controls.SetChildIndex(this.InputBuscarDni, 0);
             this.Controls.SetChildIndex(this.pictureBox2, 0);
             this.Controls.SetChildIndex(this.label2, 0);
             this.Controls.SetChildIndex(this.inputNombre, 0);
@@ -446,7 +447,7 @@
         private System.Windows.Forms.MaskedTextBox inputNombre;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.MaskedTextBox InputBuscarDni;
         private System.Windows.Forms.Label label1;
     }
 }

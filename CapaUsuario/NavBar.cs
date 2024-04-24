@@ -46,5 +46,40 @@ namespace CapaUsuario
             editarInformacionSocio.Show();
             this.Hide();
         }
+
+        private void darDeBajaSocioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DarBajaSocio darBajaSocio = new DarBajaSocio();
+            darBajaSocio.Show();
+            this.Hide();
+        }
+
+        private void pagoDeCuoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PagoCuotaSocial pagoCuotaSocial = new PagoCuotaSocial();
+            pagoCuotaSocial.Show();
+            this.Hide();
+        }
+
+        private void pagoDeActividadDeportivaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PagoActividadDeportiva pagoActividadDeportiva = new PagoActividadDeportiva();
+            pagoActividadDeportiva.Show();
+            this.Hide();
+        }
+
+        private void informaciónPagosDeSocioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PagosInformacion pagosInformacion = new PagosInformacion();
+            pagosInformacion.Show();
+            this.Hide();
+        }
+
+        private void informaciónDeActividadDeportivaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InformacionActividadDeportiva infoACtividadDeportiva = new InformacionActividadDeportiva();
+            infoACtividadDeportiva.Show();
+            this.Hide();
+        }
     }
 }

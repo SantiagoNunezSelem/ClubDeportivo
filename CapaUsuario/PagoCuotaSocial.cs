@@ -8,17 +8,17 @@ using System.Windows.Forms;
 
 namespace CapaUsuario
 {
-    public partial class InformacionSocio : CapaUsuario.NavBar
+    public partial class PagoCuotaSocial : CapaUsuario.NavBar
     {
-        public InformacionSocio()
+        public PagoCuotaSocial()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
-        private void InputBuscarDni_MouseClick(object sender, MouseEventArgs e)
+        private void inputCantMeses_MouseClick(object sender, MouseEventArgs e)
         {
-            InputBuscarDni.Select(0, 0);
+            inputCantMeses.Select(0, 0);
         }
     }
 }

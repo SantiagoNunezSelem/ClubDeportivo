@@ -36,15 +36,12 @@
             this.darDeBajaSocioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pagosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registrarPagoDeSocioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.informaciónPagosDeSocioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.actividadesDeportivasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.agregarActividadDeportivaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.informaciónDeActividadDeportivaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editarActividadDeportivaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.eliminarActividadDeportivaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button1 = new System.Windows.Forms.Button();
             this.pagoDeCuoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pagoDeActividadDeportivaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.informaciónPagosDeSocioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.actividadesDeportivasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.informaciónDeActividadDeportivaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,6 +94,7 @@
             this.darDeBajaSocioToolStripMenuItem.Name = "darDeBajaSocioToolStripMenuItem";
             this.darDeBajaSocioToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
             this.darDeBajaSocioToolStripMenuItem.Text = "Dar de baja Socio";
+            this.darDeBajaSocioToolStripMenuItem.Click += new System.EventHandler(this.darDeBajaSocioToolStripMenuItem_Click);
             // 
             // pagosToolStripMenuItem
             // 
@@ -116,46 +114,41 @@
             this.registrarPagoDeSocioToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.registrarPagoDeSocioToolStripMenuItem.Text = "Registrar Pago de Socio";
             // 
+            // pagoDeCuoToolStripMenuItem
+            // 
+            this.pagoDeCuoToolStripMenuItem.Name = "pagoDeCuoToolStripMenuItem";
+            this.pagoDeCuoToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
+            this.pagoDeCuoToolStripMenuItem.Text = "Pago de Cuota Social";
+            this.pagoDeCuoToolStripMenuItem.Click += new System.EventHandler(this.pagoDeCuoToolStripMenuItem_Click);
+            // 
+            // pagoDeActividadDeportivaToolStripMenuItem
+            // 
+            this.pagoDeActividadDeportivaToolStripMenuItem.Name = "pagoDeActividadDeportivaToolStripMenuItem";
+            this.pagoDeActividadDeportivaToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
+            this.pagoDeActividadDeportivaToolStripMenuItem.Text = "Pago de Actividad Deportiva";
+            this.pagoDeActividadDeportivaToolStripMenuItem.Click += new System.EventHandler(this.pagoDeActividadDeportivaToolStripMenuItem_Click);
+            // 
             // informaciónPagosDeSocioToolStripMenuItem
             // 
             this.informaciónPagosDeSocioToolStripMenuItem.Name = "informaciónPagosDeSocioToolStripMenuItem";
             this.informaciónPagosDeSocioToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.informaciónPagosDeSocioToolStripMenuItem.Text = "Información Pagos de Socio";
+            this.informaciónPagosDeSocioToolStripMenuItem.Click += new System.EventHandler(this.informaciónPagosDeSocioToolStripMenuItem_Click);
             // 
             // actividadesDeportivasToolStripMenuItem
             // 
             this.actividadesDeportivasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.agregarActividadDeportivaToolStripMenuItem,
-            this.informaciónDeActividadDeportivaToolStripMenuItem,
-            this.editarActividadDeportivaToolStripMenuItem,
-            this.eliminarActividadDeportivaToolStripMenuItem});
+            this.informaciónDeActividadDeportivaToolStripMenuItem});
             this.actividadesDeportivasToolStripMenuItem.Name = "actividadesDeportivasToolStripMenuItem";
             this.actividadesDeportivasToolStripMenuItem.Size = new System.Drawing.Size(139, 20);
             this.actividadesDeportivasToolStripMenuItem.Text = "Actividades Deportivas";
-            // 
-            // agregarActividadDeportivaToolStripMenuItem
-            // 
-            this.agregarActividadDeportivaToolStripMenuItem.Name = "agregarActividadDeportivaToolStripMenuItem";
-            this.agregarActividadDeportivaToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
-            this.agregarActividadDeportivaToolStripMenuItem.Text = "Agregar Actividad Deportiva";
             // 
             // informaciónDeActividadDeportivaToolStripMenuItem
             // 
             this.informaciónDeActividadDeportivaToolStripMenuItem.Name = "informaciónDeActividadDeportivaToolStripMenuItem";
             this.informaciónDeActividadDeportivaToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
             this.informaciónDeActividadDeportivaToolStripMenuItem.Text = "Información de Actividad Deportiva";
-            // 
-            // editarActividadDeportivaToolStripMenuItem
-            // 
-            this.editarActividadDeportivaToolStripMenuItem.Name = "editarActividadDeportivaToolStripMenuItem";
-            this.editarActividadDeportivaToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
-            this.editarActividadDeportivaToolStripMenuItem.Text = "Editar Actividad Deportiva";
-            // 
-            // eliminarActividadDeportivaToolStripMenuItem
-            // 
-            this.eliminarActividadDeportivaToolStripMenuItem.Name = "eliminarActividadDeportivaToolStripMenuItem";
-            this.eliminarActividadDeportivaToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
-            this.eliminarActividadDeportivaToolStripMenuItem.Text = "Eliminar Actividad Deportiva";
+            this.informaciónDeActividadDeportivaToolStripMenuItem.Click += new System.EventHandler(this.informaciónDeActividadDeportivaToolStripMenuItem_Click);
             // 
             // button1
             // 
@@ -166,18 +159,6 @@
             this.button1.Text = "<-";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // pagoDeCuoToolStripMenuItem
-            // 
-            this.pagoDeCuoToolStripMenuItem.Name = "pagoDeCuoToolStripMenuItem";
-            this.pagoDeCuoToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
-            this.pagoDeCuoToolStripMenuItem.Text = "Pago de Cuota Social";
-            // 
-            // pagoDeActividadDeportivaToolStripMenuItem
-            // 
-            this.pagoDeActividadDeportivaToolStripMenuItem.Name = "pagoDeActividadDeportivaToolStripMenuItem";
-            this.pagoDeActividadDeportivaToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
-            this.pagoDeActividadDeportivaToolStripMenuItem.Text = "Pago de Actividad Deportiva";
             // 
             // NavBar
             // 
@@ -208,10 +189,7 @@
         private System.Windows.Forms.ToolStripMenuItem registrarPagoDeSocioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem informaciónPagosDeSocioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem actividadesDeportivasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem agregarActividadDeportivaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem informaciónDeActividadDeportivaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editarActividadDeportivaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem eliminarActividadDeportivaToolStripMenuItem;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripMenuItem pagoDeCuoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pagoDeActividadDeportivaToolStripMenuItem;

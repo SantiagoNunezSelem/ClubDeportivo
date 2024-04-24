@@ -8,17 +8,12 @@ using System.Windows.Forms;
 
 namespace CapaUsuario
 {
-    public partial class EditarInformacionSocio : CapaUsuario.NavBar
+    public partial class DarBajaSocio : CapaUsuario.NavBar
     {
-        public EditarInformacionSocio()
+        public DarBajaSocio()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
-        }
-
-        private void BotonBuscarDni_MouseClick(object sender, MouseEventArgs e)
-        {
-            InputBuscarDni.Select(0, 0);
         }
 
         private void InputBuscarDni_MouseClick(object sender, MouseEventArgs e)
