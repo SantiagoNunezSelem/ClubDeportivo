@@ -166,5 +166,11 @@
   <ItemGroup>
     <None Include="Resources\pngwing.com.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClubDeportivo\CapaNegocio.csproj">
+      <Project>{645b5a4c-d66f-4be4-bf3f-ca8673e4f1c7}</Project>
+      <Name>CapaNegocio</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
