@@ -68,7 +68,6 @@
             this.label1.Size = new System.Drawing.Size(187, 20);
             this.label1.TabIndex = 1;
             this.label1.Text = "Agregar un nuevo Socio";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // maskedTextBox1
             // 
@@ -105,7 +104,6 @@
             this.label2.Size = new System.Drawing.Size(35, 17);
             this.label2.TabIndex = 7;
             this.label2.Text = "DNI:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
@@ -116,7 +114,6 @@
             this.label3.Size = new System.Drawing.Size(62, 17);
             this.label3.TabIndex = 10;
             this.label3.Text = "Nombre:";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // inputNombre
             // 
@@ -151,7 +148,6 @@
             this.label4.Size = new System.Drawing.Size(62, 17);
             this.label4.TabIndex = 13;
             this.label4.Text = "Apellido:";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // inputApellido
             // 
@@ -186,7 +182,6 @@
             this.label5.Size = new System.Drawing.Size(82, 17);
             this.label5.TabIndex = 16;
             this.label5.Text = "Nacimiento:";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // inputFechaNacimiento
             // 
@@ -223,7 +218,6 @@
             this.label6.Size = new System.Drawing.Size(67, 17);
             this.label6.TabIndex = 17;
             this.label6.Text = "Fecha de";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label7
             // 
@@ -234,7 +228,6 @@
             this.label7.Size = new System.Drawing.Size(46, 17);
             this.label7.TabIndex = 23;
             this.label7.Text = "Email:";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // inputEmail
             // 
@@ -269,7 +262,6 @@
             this.label8.Size = new System.Drawing.Size(68, 17);
             this.label8.TabIndex = 20;
             this.label8.Text = "Teléfono:";
-            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // inputTelefono
             // 
@@ -313,6 +305,7 @@
             this.registrarUsuario.TabIndex = 25;
             this.registrarUsuario.Text = "Registrar";
             this.registrarUsuario.UseVisualStyleBackColor = true;
+            this.registrarUsuario.MouseClick += new System.Windows.Forms.MouseEventHandler(this.registrarUsuario_MouseClick);
             // 
             // pictureBox5
             // 
@@ -403,7 +396,6 @@
             this.Controls.Add(this.maskedTextBox1);
             this.Controls.Add(this.label1);
             this.Name = "AgregarNuevoSocio";
-            this.Load += new System.EventHandler(this.AgregarNuevoSocio_Load);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.maskedTextBox1, 0);
             this.Controls.SetChildIndex(this.pictureBox2, 0);
