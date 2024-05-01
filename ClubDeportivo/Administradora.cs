@@ -27,7 +27,7 @@ namespace CapaNegocio
 
         public Socio buscarSocio(string dni)
         {
-            Socio socioEncontrado = socios.Find(socio => socio.getDni() == dni);
+            Socio socioEncontrado = socios.Find(socio => socio.Dni == dni);
             return socioEncontrado;
         }
 
@@ -40,7 +40,7 @@ namespace CapaNegocio
         {
             foreach(Socio socio in socios)
             {
-                string dni = socio.getDni();
+                string dni = socio.Dni;
                 Console.WriteLine("El nombre del socio es: " + dni);
             }
         }

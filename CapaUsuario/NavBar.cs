@@ -42,14 +42,10 @@ namespace CapaUsuario
             }
         }
 
-        public bool existeSocio(string dni)
+        public Socio existeSocio(string dni)
         {
             Socio socio = adm.buscarSocio(dni);
-            if(socio != null)
-            {
-                return true;
-            }
-            return false;
+            return socio;
         }
 
         private void button1_Click(object sender, EventArgs e)
