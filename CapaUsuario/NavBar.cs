@@ -3,8 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
@@ -15,11 +17,10 @@ namespace CapaUsuario
 {
     public partial class NavBar : Form
     {
-        private Administradora adm;
+        private Administradora adm = Administradora.ObtenerInstancia();
         public NavBar()
         {
             InitializeComponent();
-            adm = new Administradora();
         }
 
         private void agregarUnNuevoSocioToolStripMenuItem_Click(object sender, EventArgs e)
@@ -38,8 +39,17 @@ namespace CapaUsuario
             if(socio != null ) 
             {
                 adm.agregarSocio(socio);
-                adm.mostrarSocios();
             }
+        }
+
+        public bool existeSocio(string dni)
+        {
+            Socio socio = adm.buscarSocio(dni);
+            if(socio != null)
+            {
+                return true;
+            }
+            return false;
         }
 
         private void button1_Click(object sender, EventArgs e)

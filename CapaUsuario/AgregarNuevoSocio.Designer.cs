@@ -296,6 +296,7 @@
             this.buscarDni.TabIndex = 24;
             this.buscarDni.Text = "Buscar";
             this.buscarDni.UseVisualStyleBackColor = true;
+            this.buscarDni.MouseClick += new System.Windows.Forms.MouseEventHandler(this.buscarDni_MouseClick);
             // 
             // registrarUsuario
             // 
