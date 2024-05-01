@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaNegocio;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,16 +15,31 @@ namespace CapaUsuario
 {
     public partial class NavBar : Form
     {
+        private Administradora adm;
         public NavBar()
         {
             InitializeComponent();
+            adm = new Administradora();
         }
 
         private void agregarUnNuevoSocioToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AgregarNuevoSocio agregarNuevoSocio = new AgregarNuevoSocio();
-            agregarNuevoSocio.Show();
+            AgregarNuevoSocio agregarSocio = new AgregarNuevoSocio();
+            this.agregarSocio(agregarSocio);
+        }
+
+        private void agregarSocio(AgregarNuevoSocio agregarSocio)
+        {
             this.Hide();
+            agregarSocio.ShowDialog();
+            this.Show();
+
+            Socio socio = agregarSocio.getSocio();
+            if(socio != null ) 
+            {
+                adm.agregarSocio(socio);
+                adm.mostrarSocios();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
