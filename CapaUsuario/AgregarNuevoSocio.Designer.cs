@@ -30,7 +30,7 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.inputDni = new System.Windows.Forms.MaskedTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.inputNombre = new System.Windows.Forms.MaskedTextBox();
@@ -69,31 +69,31 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Agregar un nuevo Socio";
             // 
-            // maskedTextBox1
+            // inputDni
             // 
-            this.maskedTextBox1.AccessibleDescription = "";
-            this.maskedTextBox1.AccessibleName = "";
-            this.maskedTextBox1.AllowPromptAsInput = false;
-            this.maskedTextBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.maskedTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.maskedTextBox1.CausesValidation = false;
-            this.maskedTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.maskedTextBox1.ForeColor = System.Drawing.Color.Black;
-            this.maskedTextBox1.Location = new System.Drawing.Point(122, 112);
-            this.maskedTextBox1.Mask = "99999999";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.RejectInputOnFirstFailure = true;
-            this.maskedTextBox1.ResetOnPrompt = false;
-            this.maskedTextBox1.ResetOnSpace = false;
-            this.maskedTextBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.maskedTextBox1.ShortcutsEnabled = false;
-            this.maskedTextBox1.Size = new System.Drawing.Size(100, 16);
-            this.maskedTextBox1.SkipLiterals = false;
-            this.maskedTextBox1.TabIndex = 5;
-            this.maskedTextBox1.Tag = "";
-            this.maskedTextBox1.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals;
-            this.maskedTextBox1.ValidatingType = typeof(int);
-            this.maskedTextBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MaskedTextBox1_MouseClick);
+            this.inputDni.AccessibleDescription = "";
+            this.inputDni.AccessibleName = "";
+            this.inputDni.AllowPromptAsInput = false;
+            this.inputDni.BackColor = System.Drawing.SystemColors.Control;
+            this.inputDni.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.inputDni.CausesValidation = false;
+            this.inputDni.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.inputDni.ForeColor = System.Drawing.Color.Black;
+            this.inputDni.Location = new System.Drawing.Point(122, 112);
+            this.inputDni.Mask = "99999999";
+            this.inputDni.Name = "inputDni";
+            this.inputDni.RejectInputOnFirstFailure = true;
+            this.inputDni.ResetOnPrompt = false;
+            this.inputDni.ResetOnSpace = false;
+            this.inputDni.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.inputDni.ShortcutsEnabled = false;
+            this.inputDni.Size = new System.Drawing.Size(100, 16);
+            this.inputDni.SkipLiterals = false;
+            this.inputDni.TabIndex = 5;
+            this.inputDni.Tag = "";
+            this.inputDni.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals;
+            this.inputDni.ValidatingType = typeof(int);
+            this.inputDni.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MaskedTextBox1_MouseClick);
             // 
             // label2
             // 
@@ -393,11 +393,11 @@
             this.Controls.Add(this.inputNombre);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.maskedTextBox1);
+            this.Controls.Add(this.inputDni);
             this.Controls.Add(this.label1);
             this.Name = "AgregarNuevoSocio";
             this.Controls.SetChildIndex(this.label1, 0);
-            this.Controls.SetChildIndex(this.maskedTextBox1, 0);
+            this.Controls.SetChildIndex(this.inputDni, 0);
             this.Controls.SetChildIndex(this.pictureBox2, 0);
             this.Controls.SetChildIndex(this.label2, 0);
             this.Controls.SetChildIndex(this.inputNombre, 0);
@@ -434,7 +434,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.MaskedTextBox inputDni;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox1;
