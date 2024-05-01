@@ -68,5 +68,10 @@ namespace CapaNegocio
             get { return fechaNacimiento; }
             set { fechaNacimiento = value; }
         }
+
+        public string getDni()
+        {
+            return this.dni;
+        }
     }
 }
