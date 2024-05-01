@@ -26,12 +26,17 @@ namespace CapaNegocio
 
         public bool esDni(string dni)
         {
-            return dni == this.dni;
+            return dni.Equals(this.dni);
         }
 
         public string getNombre()
         {
             return this.nombre;
+        }
+
+        public string getDni()
+        {
+            return this.dni;
         }
     }
 }

@@ -9,15 +9,25 @@ namespace CapaNegocio
     
     public class Administradora
     {
+        private static Administradora instancia;
         private List<Socio> socios;
-        public Administradora()
+        private Administradora()
         {
             socios = new List<Socio>();
         }
 
+        public static Administradora ObtenerInstancia()
+        {
+            if (instancia == null)
+            {
+                instancia = new Administradora();
+            }
+            return instancia;
+        }
+
         public Socio buscarSocio(string dni)
         {
-            Socio socioEncontrado = socios.Find(socio => socio.esDni(dni));
+            Socio socioEncontrado = socios.Find(socio => socio.getDni() == dni);
             return socioEncontrado;
         }
 
@@ -30,8 +40,8 @@ namespace CapaNegocio
         {
             foreach(Socio socio in socios)
             {
-                string nom = socio.getNombre();
-                Console.WriteLine("El nombre del socio es: " + nom);
+                string dni = socio.getDni();
+                Console.WriteLine("El nombre del socio es: " + dni);
             }
         }
     }
