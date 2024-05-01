@@ -115,6 +115,7 @@
             this.buscarDni.TabIndex = 27;
             this.buscarDni.Text = "Buscar";
             this.buscarDni.UseVisualStyleBackColor = true;
+            this.buscarDni.MouseClick += new System.Windows.Forms.MouseEventHandler(this.buscarDni_MouseClick);
             // 
             // InputBuscarDni
             // 
@@ -168,9 +169,8 @@
             this.labelNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
             this.labelNombre.Location = new System.Drawing.Point(147, 181);
             this.labelNombre.Name = "labelNombre";
-            this.labelNombre.Size = new System.Drawing.Size(108, 17);
+            this.labelNombre.Size = new System.Drawing.Size(0, 17);
             this.labelNombre.TabIndex = 30;
-            this.labelNombre.Text = "Info del Nombre";
             // 
             // labelApellido
             // 
@@ -178,19 +178,17 @@
             this.labelApellido.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
             this.labelApellido.Location = new System.Drawing.Point(147, 251);
             this.labelApellido.Name = "labelApellido";
-            this.labelApellido.Size = new System.Drawing.Size(108, 17);
+            this.labelApellido.Size = new System.Drawing.Size(0, 17);
             this.labelApellido.TabIndex = 31;
-            this.labelApellido.Text = "Info del Apellido";
             // 
             // labelFechaNacimiento
             // 
             this.labelFechaNacimiento.AutoSize = true;
             this.labelFechaNacimiento.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.labelFechaNacimiento.Location = new System.Drawing.Point(147, 329);
+            this.labelFechaNacimiento.Location = new System.Drawing.Point(133, 319);
             this.labelFechaNacimiento.Name = "labelFechaNacimiento";
-            this.labelFechaNacimiento.Size = new System.Drawing.Size(148, 17);
+            this.labelFechaNacimiento.Size = new System.Drawing.Size(0, 17);
             this.labelFechaNacimiento.TabIndex = 32;
-            this.labelFechaNacimiento.Text = "Info Fecha Nacimiento";
             // 
             // labelTelefono
             // 

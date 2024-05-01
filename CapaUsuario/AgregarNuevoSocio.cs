@@ -53,15 +53,17 @@ namespace CapaUsuario
         private void registrarUsuario_MouseClick(object sender, MouseEventArgs e)
         {
             string dni = inputDni.Text;
+            Socio buscarSocio = base.existeSocio(dni);
 
-            if (!base.existeSocio(dni))
+            if (buscarSocio == null)
             {
                 string nombre = inputNombre.Text;
                 string apellido = inputApellido.Text;
                 string email = inputEmail.Text;
+                string telefono = inputTelefono.Text;
                 DateTime fechaNacimiento = DateTime.Parse(inputFechaNacimiento.Text);
 
-                this.socio = new Socio(dni, nombre, apellido, email, fechaNacimiento);
+                this.socio = new Socio(dni, nombre, apellido, email, telefono, fechaNacimiento);
 
                 this.Close();
             }
@@ -79,7 +81,8 @@ namespace CapaUsuario
         private void buscarDni_MouseClick(object sender, MouseEventArgs e)
         {
             string dniBuscar = inputDni.Text;
-            if (base.existeSocio(dniBuscar))
+            Socio buscarSocio = base.existeSocio(dniBuscar);
+            if (buscarSocio != null)
             {
                 MessageBox.Show("El socio ya está registrado", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

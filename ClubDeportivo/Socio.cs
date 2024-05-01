@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,14 +15,17 @@ namespace CapaNegocio
         private string nombre;
         private string apellido;
         private string email;
+        private string telefono;
         private DateTime fechaNacimiento;
 
-        public Socio(string dni, string nombre, string apellido, string email, DateTime fechaNacimiento)
+        public Socio(string dni, string nombre, string apellido, string email, string telefono, DateTime fechaNacimiento)
         {
-            this.dni = dni;
-            this.nombre = nombre;
-            this.apellido = apellido;
-            this.fechaNacimiento = fechaNacimiento;
+            Dni = dni;
+            Nombre = nombre;
+            Apellido = apellido;
+            Email = email;
+            Telefono = telefono;
+            FechaNacimiento = fechaNacimiento;
         }
 
         public bool esDni(string dni)
@@ -29,9 +33,40 @@ namespace CapaNegocio
             return dni.Equals(this.dni);
         }
 
-        public string getNombre()
+        public string Dni
         {
-            return this.nombre;
+            get { return dni; }
+            set { dni = value; }
+        }
+
+        public string Nombre
+        {
+            get { return nombre; }
+            set { nombre = value; }
+        }
+
+        public string Apellido
+        {
+            get { return apellido; }
+            set { apellido = value; }
+        }
+
+        public string Email
+        {
+            get { return email; }
+            set { email = value; }
+        }
+
+        public string Telefono
+        {
+            get { return telefono; }
+            set { telefono = value; }
+        }
+
+        public DateTime FechaNacimiento
+        {
+            get { return fechaNacimiento; }
+            set { fechaNacimiento = value; }
         }
 
         public string getDni()
