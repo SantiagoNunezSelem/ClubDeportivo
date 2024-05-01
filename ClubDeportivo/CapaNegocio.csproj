@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{645B5A4C-D66F-4BE4-BF3F-CA8673E4F1C7}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>ClubDeportivo</RootNamespace>
-    <AssemblyName>ClubDeportivo</AssemblyName>
+    <RootNamespace>CapaNegocio</RootNamespace>
+    <AssemblyName>CapaNegocio</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -47,7 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Administradora.cs" />
-    <Compile Include="SocioGeneral.cs" />
+    <Compile Include="Socio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
