@@ -196,9 +196,8 @@
             this.labelTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
             this.labelTelefono.Location = new System.Drawing.Point(507, 181);
             this.labelTelefono.Name = "labelTelefono";
-            this.labelTelefono.Size = new System.Drawing.Size(114, 17);
+            this.labelTelefono.Size = new System.Drawing.Size(0, 17);
             this.labelTelefono.TabIndex = 33;
-            this.labelTelefono.Text = "Info del Telefono";
             // 
             // labelEmail
             // 
@@ -206,9 +205,8 @@
             this.labelEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
             this.labelEmail.Location = new System.Drawing.Point(507, 242);
             this.labelEmail.Name = "labelEmail";
-            this.labelEmail.Size = new System.Drawing.Size(92, 17);
+            this.labelEmail.Size = new System.Drawing.Size(0, 17);
             this.labelEmail.TabIndex = 34;
-            this.labelEmail.Text = "Info del Email";
             // 
             // pictureBox2
             // 
