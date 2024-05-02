@@ -42,6 +42,11 @@ namespace CapaUsuario
             }
         }
 
+        public void eliminarSocio(string dni)
+        {
+            adm.eliminarSocio(dni);
+        }
+
         public Socio existeSocio(string dni)
         {
             Socio socio = adm.buscarSocio(dni);
@@ -71,9 +76,10 @@ namespace CapaUsuario
 
         private void darDeBajaSocioToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DarBajaSocio darBajaSocio = new DarBajaSocio();
-            darBajaSocio.Show();
+            Form1 darBajaSocio = new Form1();
             this.Hide();
+            darBajaSocio.ShowDialog();
+            this.Show();
         }
 
         private void pagoDeCuoToolStripMenuItem_Click(object sender, EventArgs e)

@@ -37,6 +37,12 @@ namespace CapaNegocio
             socios.Add(socio);
         }
 
+        public void eliminarSocio(string dni)
+        {
+            Socio socioEliminar = buscarSocio(dni);
+            socios.Remove(socioEliminar);
+        }
+
         public void mostrarSocios()
         {
             foreach(Socio socio in socios)

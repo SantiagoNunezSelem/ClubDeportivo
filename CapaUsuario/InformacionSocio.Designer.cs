@@ -273,7 +273,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buscarDni;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.MaskedTextBox InputBuscarDni;
+        protected System.Windows.Forms.MaskedTextBox InputBuscarDni;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label labelNombre;
