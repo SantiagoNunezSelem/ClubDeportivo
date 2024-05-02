@@ -65,12 +65,6 @@
     <Compile Include="DarBajaSocio.Designer.cs">
       <DependentUpon>DarBajaSocio.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="InformacionActividadDeportiva.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,14 +113,11 @@
     <EmbeddedResource Include="AgregarNuevoSocio.resx">
       <DependentUpon>AgregarNuevoSocio.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DarBajaSocio.resx">
-      <DependentUpon>DarBajaSocio.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="EditarInformacionSocio.resx">
       <DependentUpon>EditarInformacionSocio.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="DarBajaSocio.resx">
+      <DependentUpon>DarBajaSocio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InformacionActividadDeportiva.resx">
       <DependentUpon>InformacionActividadDeportiva.cs</DependentUpon>

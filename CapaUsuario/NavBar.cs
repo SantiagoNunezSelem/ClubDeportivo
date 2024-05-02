@@ -76,7 +76,7 @@ namespace CapaUsuario
 
         private void darDeBajaSocioToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form1 darBajaSocio = new Form1();
+            DarBajaSocio darBajaSocio = new DarBajaSocio();
             this.Hide();
             darBajaSocio.ShowDialog();
             this.Show();
