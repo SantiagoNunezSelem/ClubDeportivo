@@ -113,11 +113,11 @@
     <EmbeddedResource Include="AgregarNuevoSocio.resx">
       <DependentUpon>AgregarNuevoSocio.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DarBajaSocio.resx">
-      <DependentUpon>DarBajaSocio.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="EditarInformacionSocio.resx">
       <DependentUpon>EditarInformacionSocio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DarBajaSocio.resx">
+      <DependentUpon>DarBajaSocio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InformacionActividadDeportiva.resx">
       <DependentUpon>InformacionActividadDeportiva.cs</DependentUpon>
