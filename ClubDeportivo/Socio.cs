@@ -11,7 +11,7 @@ namespace CapaNegocio
 {
     public class Socio
     {
-        private string dni;
+        private string dni; //HOLA 
         private string nombre;
         private string apellido;
         private string email;
