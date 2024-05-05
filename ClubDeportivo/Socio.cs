@@ -11,12 +11,13 @@ namespace CapaNegocio
 {
     public class Socio
     {
-        private string dni; //HOLA 
+        private string dni;  
         private string nombre;
         private string apellido;
         private string email;
         private string telefono;
         private DateTime fechaNacimiento;
+        private List<ActividadDeportiva> listaActividadesDeportivas;
 
         public Socio(string dni, string nombre, string apellido, string email, string telefono, DateTime fechaNacimiento)
         {
@@ -26,6 +27,7 @@ namespace CapaNegocio
             Email = email;
             Telefono = telefono;
             FechaNacimiento = fechaNacimiento;
+            listaActividadesDeportivas = new List<ActividadDeportiva>();
         }
 
         public bool esDni(string dni)
@@ -69,9 +71,10 @@ namespace CapaNegocio
             set { fechaNacimiento = value; }
         }
 
-        public string getDni()
-        {
-            return this.dni;
+        public List<ActividadDeportiva> ListaActividadDeportiva
+         {
+            get { return listaActividadesDeportivas; }
+            set { listaActividadesDeportivas.Add(value); }
         }
     }
 }
