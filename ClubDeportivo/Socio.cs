@@ -17,6 +17,8 @@ namespace CapaNegocio
         private string email;
         private string telefono;
         private DateTime fechaNacimiento;
+        private List<PagoCuotaSocial> pagosCuotaSocial;
+        private List<PagoActividadDeportiva> pagosActividadDeportiva;
 
         public Socio(string dni, string nombre, string apellido, string email, string telefono, DateTime fechaNacimiento)
         {
@@ -26,6 +28,8 @@ namespace CapaNegocio
             Email = email;
             Telefono = telefono;
             FechaNacimiento = fechaNacimiento;
+            pagosCuotaSocial = new List<PagoCuotaSocial>();
+            pagosActividadDeportiva = new List<PagoActividadDeportiva>();
         }
 
         public bool esDni(string dni)
@@ -67,11 +71,6 @@ namespace CapaNegocio
         {
             get { return fechaNacimiento; }
             set { fechaNacimiento = value; }
-        }
-
-        public string getDni()
-        {
-            return this.dni;
         }
     }
 }
