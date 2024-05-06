@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CapaNegocio
 {
-    internal class Pago
+    public class Pago
     {
         protected Socio socio;
         protected decimal pagoFinal;
