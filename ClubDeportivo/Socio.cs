@@ -32,9 +32,33 @@ namespace CapaNegocio
             pagosActividadDeportiva = new List<PagoActividadDeportiva>();
         }
 
-        public bool esDni(string dni)
+        public bool cuotaSocialActiva()
         {
-            return dni.Equals(this.dni);
+            //Revisa el ultimo pago de cuota social y retorna si está activo
+            if (pagosCuotaSocial.Count > 0)
+            {
+                PagoCuotaSocial ultimoPagoCuotaSocial = pagosCuotaSocial[pagosCuotaSocial.Count - 1];
+            }
+            return false; //luego hacerlo, por ahora nunca tiene membresia activa
+        }
+
+        public void agregarActividadAsociadaCuotaSocial()
+        {
+            if (pagosCuotaSocial.Count > 0)
+            {
+                PagoCuotaSocial ultimoPagoCuotaSocial = pagosCuotaSocial[pagosCuotaSocial.Count - 1];
+                ultimoPagoCuotaSocial.agregarActividadAsociada();
+            }
+        }
+
+        public void agregarPagoActividadDeportiva(PagoActividadDeportiva pagoActividad)
+        {
+            pagosActividadDeportiva.Add(pagoActividad);
+
+            if (this.cuotaSocialActiva())
+            {
+                this.agregarActividadAsociadaCuotaSocial();
+            }
         }
 
         public string Dni
