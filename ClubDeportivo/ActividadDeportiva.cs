@@ -26,6 +26,11 @@ namespace CapaNegocio
             alumnosInscriptos = new List<Socio>();
         }
 
+        public int getVacantes()
+        {
+            return (cantAlumnosMax - alumnosInscriptos.Count);
+        }
+
         public string Nombre
         {
             get { return nombreActividad; }
@@ -36,6 +41,12 @@ namespace CapaNegocio
         {
             get { return precioMes; }
             set { this.precioMes = value; }
+        }
+
+        public string Horario
+        {
+            get { return horario; }
+            set { this.horario = value; }
         }
     }
 }
