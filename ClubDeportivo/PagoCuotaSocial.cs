@@ -9,8 +9,8 @@ namespace CapaNegocio
 {
     public class PagoCuotaSocial : Pago
     {
-        private decimal PRECIOMENSUAL;
-        private int MAXACTIVIDADESGRATUITAS;
+        private static decimal PrecioMensualData = 30000;
+        private static int MaxActividadesGratuitas = 5;
         private int cantActividadesDeCuotaSocial; //Cant actividades registradas cuando la cuota social esta activa
         private int cantMeses;
         
@@ -18,10 +18,18 @@ namespace CapaNegocio
         public PagoCuotaSocial(Socio socio, decimal pagoFinal, DateTime fechaPago, int cantMeses)
             : base(socio, pagoFinal, fechaPago)
         {
-            this.PRECIOMENSUAL = 5000;
-            this.MAXACTIVIDADESGRATUITAS = 5;
             this.cantActividadesDeCuotaSocial = 0;
             this.cantMeses = cantMeses;
+        }
+
+        public void agregarActividadAsociada()
+        {
+            this.cantActividadesDeCuotaSocial++;
+        }
+
+        public static decimal PrecioMensual
+        {
+            get { return PrecioMensualData; }
         }
     }
 }
