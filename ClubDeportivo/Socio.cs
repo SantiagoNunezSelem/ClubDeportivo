@@ -17,6 +17,8 @@ namespace CapaNegocio
         private string email;
         private string telefono;
         private DateTime fechaNacimiento;
+        private List<PagoCuotaSocial> pagosCuotaSocial;
+        private List<PagoActividadDeportiva> pagosActividadDeportiva;
 
         public Socio(string dni, string nombre, string apellido, string email, string telefono, DateTime fechaNacimiento)
         {
@@ -26,11 +28,37 @@ namespace CapaNegocio
             Email = email;
             Telefono = telefono;
             FechaNacimiento = fechaNacimiento;
+            pagosCuotaSocial = new List<PagoCuotaSocial>();
+            pagosActividadDeportiva = new List<PagoActividadDeportiva>();
         }
 
-        public bool esDni(string dni)
+        public bool cuotaSocialActiva()
         {
-            return dni.Equals(this.dni);
+            //Revisa el ultimo pago de cuota social y retorna si está activo
+            if (pagosCuotaSocial.Count > 0)
+            {
+                PagoCuotaSocial ultimoPagoCuotaSocial = pagosCuotaSocial[pagosCuotaSocial.Count - 1];
+            }
+            return false; //luego hacerlo, por ahora nunca tiene membresia activa
+        }
+
+        public void agregarActividadAsociadaCuotaSocial()
+        {
+            if (pagosCuotaSocial.Count > 0)
+            {
+                PagoCuotaSocial ultimoPagoCuotaSocial = pagosCuotaSocial[pagosCuotaSocial.Count - 1];
+                ultimoPagoCuotaSocial.agregarActividadAsociada();
+            }
+        }
+
+        public void agregarPagoActividadDeportiva(PagoActividadDeportiva pagoActividad)
+        {
+            pagosActividadDeportiva.Add(pagoActividad);
+
+            if (this.cuotaSocialActiva())
+            {
+                this.agregarActividadAsociadaCuotaSocial();
+            }
         }
 
         public string Dni
@@ -67,11 +95,6 @@ namespace CapaNegocio
         {
             get { return fechaNacimiento; }
             set { fechaNacimiento = value; }
-        }
-
-        public string getDni()
-        {
-            return this.dni;
         }
     }
 }

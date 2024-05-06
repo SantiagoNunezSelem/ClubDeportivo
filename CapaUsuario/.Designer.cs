@@ -40,11 +40,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.inputPrecioMes = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.inputCantMeses = new System.Windows.Forms.MaskedTextBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.inputPrecioFinal = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -190,15 +190,14 @@
             this.pictureBox4.TabIndex = 49;
             this.pictureBox4.TabStop = false;
             // 
-            // label6
+            // inputPrecioMes
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.label6.Location = new System.Drawing.Point(532, 106);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(48, 17);
-            this.label6.TabIndex = 51;
-            this.label6.Text = "$5000";
+            this.inputPrecioMes.AutoSize = true;
+            this.inputPrecioMes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.inputPrecioMes.Location = new System.Drawing.Point(532, 106);
+            this.inputPrecioMes.Name = "inputPrecioMes";
+            this.inputPrecioMes.Size = new System.Drawing.Size(0, 17);
+            this.inputPrecioMes.TabIndex = 51;
             // 
             // label8
             // 
@@ -244,16 +243,16 @@
             this.inputCantMeses.Tag = "";
             this.inputCantMeses.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals;
             this.inputCantMeses.MouseClick += new System.Windows.Forms.MouseEventHandler(this.inputCantMeses_MouseClick);
+            this.inputCantMeses.TextChanged += new System.EventHandler(this.inputCantMeses_TextChanged);
             // 
-            // label7
+            // inputPrecioFinal
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.label7.Location = new System.Drawing.Point(525, 249);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(56, 17);
-            this.label7.TabIndex = 58;
-            this.label7.Text = "$50000";
+            this.inputPrecioFinal.AutoSize = true;
+            this.inputPrecioFinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.inputPrecioFinal.Location = new System.Drawing.Point(525, 249);
+            this.inputPrecioFinal.Name = "inputPrecioFinal";
+            this.inputPrecioFinal.Size = new System.Drawing.Size(0, 17);
+            this.inputPrecioFinal.TabIndex = 58;
             // 
             // label9
             // 
@@ -301,13 +300,13 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.inputPrecioFinal);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.pictureBox6);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.inputCantMeses);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.inputPrecioMes);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.guardarPagoCuotaSocial);
@@ -333,13 +332,13 @@
             this.Controls.SetChildIndex(this.guardarPagoCuotaSocial, 0);
             this.Controls.SetChildIndex(this.pictureBox4, 0);
             this.Controls.SetChildIndex(this.label5, 0);
-            this.Controls.SetChildIndex(this.label6, 0);
+            this.Controls.SetChildIndex(this.inputPrecioMes, 0);
             this.Controls.SetChildIndex(this.label8, 0);
             this.Controls.SetChildIndex(this.inputCantMeses, 0);
             this.Controls.SetChildIndex(this.pictureBox5, 0);
             this.Controls.SetChildIndex(this.pictureBox6, 0);
             this.Controls.SetChildIndex(this.label9, 0);
-            this.Controls.SetChildIndex(this.label7, 0);
+            this.Controls.SetChildIndex(this.inputPrecioFinal, 0);
             this.Controls.SetChildIndex(this.label10, 0);
             this.Controls.SetChildIndex(this.label11, 0);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -367,11 +366,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label inputPrecioMes;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.MaskedTextBox inputCantMeses;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label inputPrecioFinal;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.Label label10;

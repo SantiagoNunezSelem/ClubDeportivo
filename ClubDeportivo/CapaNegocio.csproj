@@ -46,7 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActividadDeportiva.cs" />
     <Compile Include="Administradora.cs" />
+    <Compile Include="PagoActividadDeportiva.cs" />
+    <Compile Include="PagoCuotaSocial.cs" />
+    <Compile Include="Pago.cs" />
     <Compile Include="Socio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

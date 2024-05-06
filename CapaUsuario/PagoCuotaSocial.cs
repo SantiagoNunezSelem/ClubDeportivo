@@ -20,5 +20,24 @@ namespace CapaUsuario
         {
             inputCantMeses.Select(0, 0);
         }
+
+        private void inputCantMeses_TextChanged(object sender, EventArgs e)
+        {
+            int cantMeses;
+            if (!int.TryParse(inputCantMeses.Text, out cantMeses))
+            {
+                cantMeses = 0;
+            }
+
+            if (cantMeses > 0)
+            {
+                decimal precioMes = PagoCuotaSocial.PrecioMensual; //No puedo obtener el valor ;(  (lo demas deveria funcionar)
+                inputPrecioFinal.Text = "$" + (cantMeses * precioMes).ToString();
+            }
+            else
+            {
+                inputPrecioFinal.Text = "";
+            }
+        }
     }
 }
