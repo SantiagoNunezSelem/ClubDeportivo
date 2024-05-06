@@ -58,6 +58,11 @@ namespace CapaUsuario
             return adm.buscarActividadDeportiva(nombre);
         }
 
+        public void agregarPagoActividadDeportiva(PagoActividadDeportiva pagoActividad)
+        {
+            adm.agregarPagoActividadDeportiva(pagoActividad);
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             Inicio inicio = new Inicio();
@@ -96,9 +101,10 @@ namespace CapaUsuario
 
         private void pagoDeActividadDeportivaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PagoActividadDeportiva pagoActividadDeportiva = new PagoActividadDeportiva();
-            pagoActividadDeportiva.Show();
+            PagoActividadDeportivaForm pagoActividadDeportiva = new PagoActividadDeportivaForm();
             this.Hide();
+            pagoActividadDeportiva.ShowDialog();
+            this.Show();
         }
 
         private void informaciónPagosDeSocioToolStripMenuItem_Click(object sender, EventArgs e)
