@@ -11,9 +11,11 @@ namespace CapaNegocio
     {
         private static Administradora instancia;
         private List<Socio> socios;
+        private List<Pago> pagos;
         private Administradora()
         {
             socios = new List<Socio>();
+            pagos = new List<Pago>();
         }
 
         public static Administradora ObtenerInstancia()
