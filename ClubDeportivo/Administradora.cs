@@ -61,6 +61,14 @@ namespace CapaNegocio
             return ad;
         }
 
+        public void agregarPagoActividadDeportiva(PagoActividadDeportiva pagoActividad)
+        {
+            pagos.Add(pagoActividad);
+
+            //Registrar el pago de la actividad a su lista de pagos
+            pagoActividad.Socio.agregarPagoActividadDeportiva(pagoActividad);
+        }
+
         public void mostrarSocios()
         {
             foreach(Socio socio in socios)
