@@ -53,6 +53,11 @@ namespace CapaUsuario
             return socio;
         }
 
+        public ActividadDeportiva buscarActividadDeportiva(string nombre)
+        {
+            return adm.buscarActividadDeportiva(nombre);
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             Inicio inicio = new Inicio();
