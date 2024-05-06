@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CapaNegocio
 {
-    internal class PagoCuotaSocial : Pago
+    public class PagoCuotaSocial : Pago
     {
         private decimal PRECIOMENSUAL;
         private int MAXACTIVIDADESGRATUITAS;
