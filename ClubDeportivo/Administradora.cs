@@ -12,10 +12,20 @@ namespace CapaNegocio
         private static Administradora instancia;
         private List<Socio> socios;
         private List<Pago> pagos;
+        private List<ActividadDeportiva> actividadesDeportivas;
         private Administradora()
         {
             socios = new List<Socio>();
             pagos = new List<Pago>();
+            actividadesDeportivas = new List<ActividadDeportiva>();
+
+            //Solo por ahora para poder tener actividades deportivas las creo aca
+            ActividadDeportiva natacion = new ActividadDeportiva("Natacion", "Pedro", "Lunes y Martes", 10, 20000);
+            ActividadDeportiva voley = new ActividadDeportiva("Voley", "Maria", "Miercoles y Viernes", 8, 16000);
+            ActividadDeportiva futbol = new ActividadDeportiva("Futbol", "Juan", "Domingos", 20, 18000);
+            actividadesDeportivas.Add(natacion);
+            actividadesDeportivas.Add(voley);
+            actividadesDeportivas.Add(futbol);
         }
 
         public static Administradora ObtenerInstancia()
@@ -43,6 +53,12 @@ namespace CapaNegocio
         {
             Socio socioEliminar = buscarSocio(dni);
             socios.Remove(socioEliminar);
+        }
+
+        public ActividadDeportiva buscarActividadDeportiva(string nombre)
+        {
+            ActividadDeportiva ad = actividadesDeportivas.Find(actividad => actividad.Nombre == nombre);
+            return ad;
         }
 
         public void mostrarSocios()
