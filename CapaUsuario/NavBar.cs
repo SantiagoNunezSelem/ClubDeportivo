@@ -63,6 +63,11 @@ namespace CapaUsuario
             adm.agregarPagoActividadDeportiva(pagoActividad);
         }
 
+        public decimal getPrecioMesCuotaSocial()
+        {
+            return adm.getPrecioMesCuotaSocial();
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             Inicio inicio = new Inicio();
