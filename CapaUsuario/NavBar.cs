@@ -68,6 +68,11 @@ namespace CapaUsuario
             return adm.getPrecioMesCuotaSocial();
         }
 
+        public void agregarPagoCuotaSocial(PagoCuotaSocial pagoCS)
+        {
+            adm.agregarPagoCuotaSocial(pagoCS);
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             Inicio inicio = new Inicio();
@@ -99,9 +104,10 @@ namespace CapaUsuario
 
         private void pagoDeCuoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PagoCuotaSocial pagoCuotaSocial = new PagoCuotaSocial();
-            pagoCuotaSocial.Show();
+            PagoCuotaSocialForm pagoCuotaSocial = new PagoCuotaSocialForm();
             this.Hide();
+            pagoCuotaSocial.ShowDialog();
+            this.Show();
         }
 
         private void pagoDeActividadDeportivaToolStripMenuItem_Click(object sender, EventArgs e)

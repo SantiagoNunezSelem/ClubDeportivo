@@ -61,6 +61,11 @@ namespace CapaNegocio
             }
         }
 
+        public void agregarPagoCuotaSocial(PagoCuotaSocial pagoCS)
+        {
+            pagosCuotaSocial.Add(pagoCS);
+        }
+
         public string Dni
         {
             get { return dni; }

@@ -77,8 +77,10 @@ namespace CapaUsuario
                     decimal precioFinal = cantMeses * getPrecioMesCuotaSocial();
                     DateTime fechaPago = DateTime.Now;
 
-                    
-                     PagoCuotaSocial pcs = new PagoCuotaSocial(socio, precioFinal, fechaPago, cantMeses);
+                     PagoCuotaSocial pagoCS = new PagoCuotaSocial(socio, precioFinal, fechaPago, cantMeses);
+                    base.agregarPagoCuotaSocial(pagoCS);
+
+                    this.Close();
                 }
                 else
                 {

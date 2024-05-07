@@ -83,11 +83,11 @@
     <Compile Include="PagoActividadDeportivaForm.Designer.cs">
       <DependentUpon>PagoActividadDeportivaForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PagoCuotaSocial.cs">
+    <Compile Include="PagoCuotaSocialForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include=".Designer.cs">
-      <DependentUpon>PagoCuotaSocial.cs</DependentUpon>
+      <DependentUpon>PagoCuotaSocialForm.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="InformacionSocio.cs">
@@ -134,8 +134,8 @@
     <EmbeddedResource Include="PagoActividadDeportivaForm.resx">
       <DependentUpon>PagoActividadDeportivaForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PagoCuotaSocial.resx">
-      <DependentUpon>PagoCuotaSocial.cs</DependentUpon>
+    <EmbeddedResource Include="PagoCuotaSocialForm.resx">
+      <DependentUpon>PagoCuotaSocialForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PagosInformacion.resx">
       <DependentUpon>PagosInformacion.cs</DependentUpon>

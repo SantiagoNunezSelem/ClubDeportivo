@@ -83,5 +83,13 @@ namespace CapaNegocio
         {
             return PagoCuotaSocial.PrecioMensual;
         }
+
+        public void agregarPagoCuotaSocial(PagoCuotaSocial pagoCS)
+        {
+            pagos.Add(pagoCS);
+
+            //Registrar el pago de la cuota social a su lista de pagos
+            pagoCS.Socio.agregarPagoCuotaSocial(pagoCS);
+        }
     }
 }
