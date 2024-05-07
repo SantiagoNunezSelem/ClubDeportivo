@@ -88,12 +88,3 @@ namespace CapaUsuario
         }
     }
 }
-
-/*
- Para Pago de Cuota Social Formulario
-
- private void inputCantMeses_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
- */
