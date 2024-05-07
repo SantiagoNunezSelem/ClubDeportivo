@@ -1,6 +1,6 @@
 ﻿namespace CapaUsuario
 {
-    partial class PagoCuotaSocial
+    partial class PagoCuotaSocialForm
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -36,7 +36,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.inputDniBuscar = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
@@ -47,8 +47,8 @@
             this.inputPrecioFinal = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
+            this.labelNombre = new System.Windows.Forms.Label();
+            this.labelApellido = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -65,6 +65,7 @@
             this.guardarPagoCuotaSocial.TabIndex = 47;
             this.guardarPagoCuotaSocial.Text = "Guardar";
             this.guardarPagoCuotaSocial.UseVisualStyleBackColor = true;
+            this.guardarPagoCuotaSocial.MouseClick += new System.Windows.Forms.MouseEventHandler(this.guardarPagoCuotaSocial_MouseClick);
             // 
             // buscarDni
             // 
@@ -74,6 +75,7 @@
             this.buscarDni.TabIndex = 46;
             this.buscarDni.Text = "Buscar";
             this.buscarDni.UseVisualStyleBackColor = true;
+            this.buscarDni.MouseClick += new System.Windows.Forms.MouseEventHandler(this.buscarDni_MouseClick);
             // 
             // label4
             // 
@@ -135,30 +137,30 @@
             this.pictureBox2.TabIndex = 28;
             this.pictureBox2.TabStop = false;
             // 
-            // maskedTextBox1
+            // inputDniBuscar
             // 
-            this.maskedTextBox1.AccessibleDescription = "";
-            this.maskedTextBox1.AccessibleName = "";
-            this.maskedTextBox1.AllowPromptAsInput = false;
-            this.maskedTextBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.maskedTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.maskedTextBox1.CausesValidation = false;
-            this.maskedTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.maskedTextBox1.ForeColor = System.Drawing.Color.Black;
-            this.maskedTextBox1.Location = new System.Drawing.Point(120, 109);
-            this.maskedTextBox1.Mask = "99999999";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.RejectInputOnFirstFailure = true;
-            this.maskedTextBox1.ResetOnPrompt = false;
-            this.maskedTextBox1.ResetOnSpace = false;
-            this.maskedTextBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.maskedTextBox1.ShortcutsEnabled = false;
-            this.maskedTextBox1.Size = new System.Drawing.Size(100, 16);
-            this.maskedTextBox1.SkipLiterals = false;
-            this.maskedTextBox1.TabIndex = 27;
-            this.maskedTextBox1.Tag = "";
-            this.maskedTextBox1.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals;
-            this.maskedTextBox1.ValidatingType = typeof(int);
+            this.inputDniBuscar.AccessibleDescription = "";
+            this.inputDniBuscar.AccessibleName = "";
+            this.inputDniBuscar.AllowPromptAsInput = false;
+            this.inputDniBuscar.BackColor = System.Drawing.SystemColors.Control;
+            this.inputDniBuscar.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.inputDniBuscar.CausesValidation = false;
+            this.inputDniBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.inputDniBuscar.ForeColor = System.Drawing.Color.Black;
+            this.inputDniBuscar.Location = new System.Drawing.Point(120, 109);
+            this.inputDniBuscar.Mask = "99999999";
+            this.inputDniBuscar.Name = "inputDniBuscar";
+            this.inputDniBuscar.RejectInputOnFirstFailure = true;
+            this.inputDniBuscar.ResetOnPrompt = false;
+            this.inputDniBuscar.ResetOnSpace = false;
+            this.inputDniBuscar.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.inputDniBuscar.ShortcutsEnabled = false;
+            this.inputDniBuscar.Size = new System.Drawing.Size(100, 16);
+            this.inputDniBuscar.SkipLiterals = false;
+            this.inputDniBuscar.TabIndex = 27;
+            this.inputDniBuscar.Tag = "";
+            this.inputDniBuscar.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals;
+            this.inputDniBuscar.ValidatingType = typeof(int);
             // 
             // label1
             // 
@@ -274,32 +276,30 @@
             this.pictureBox6.TabIndex = 56;
             this.pictureBox6.TabStop = false;
             // 
-            // label10
+            // labelNombre
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.label10.Location = new System.Drawing.Point(117, 179);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(120, 17);
-            this.label10.TabIndex = 59;
-            this.label10.Text = "Nombre del Socio";
+            this.labelNombre.AutoSize = true;
+            this.labelNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.labelNombre.Location = new System.Drawing.Point(117, 179);
+            this.labelNombre.Name = "labelNombre";
+            this.labelNombre.Size = new System.Drawing.Size(0, 17);
+            this.labelNombre.TabIndex = 59;
             // 
-            // label11
+            // labelApellido
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.label11.Location = new System.Drawing.Point(117, 249);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(120, 17);
-            this.label11.TabIndex = 60;
-            this.label11.Text = "Apellido del Socio";
+            this.labelApellido.AutoSize = true;
+            this.labelApellido.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.labelApellido.Location = new System.Drawing.Point(117, 249);
+            this.labelApellido.Name = "labelApellido";
+            this.labelApellido.Size = new System.Drawing.Size(0, 17);
+            this.labelApellido.TabIndex = 60;
             // 
             // PagoCuotaSocial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.label10);
+            this.Controls.Add(this.labelApellido);
+            this.Controls.Add(this.labelNombre);
             this.Controls.Add(this.inputPrecioFinal);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.pictureBox6);
@@ -317,11 +317,12 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.maskedTextBox1);
+            this.Controls.Add(this.inputDniBuscar);
             this.Controls.Add(this.label1);
             this.Name = "PagoCuotaSocial";
+            this.Load += new System.EventHandler(this.PagoCuotaSocial_Load);
             this.Controls.SetChildIndex(this.label1, 0);
-            this.Controls.SetChildIndex(this.maskedTextBox1, 0);
+            this.Controls.SetChildIndex(this.inputDniBuscar, 0);
             this.Controls.SetChildIndex(this.pictureBox2, 0);
             this.Controls.SetChildIndex(this.label2, 0);
             this.Controls.SetChildIndex(this.pictureBox1, 0);
@@ -339,8 +340,8 @@
             this.Controls.SetChildIndex(this.pictureBox6, 0);
             this.Controls.SetChildIndex(this.label9, 0);
             this.Controls.SetChildIndex(this.inputPrecioFinal, 0);
-            this.Controls.SetChildIndex(this.label10, 0);
-            this.Controls.SetChildIndex(this.label11, 0);
+            this.Controls.SetChildIndex(this.labelNombre, 0);
+            this.Controls.SetChildIndex(this.labelApellido, 0);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -362,7 +363,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.MaskedTextBox inputDniBuscar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pictureBox4;
@@ -373,7 +374,7 @@
         private System.Windows.Forms.Label inputPrecioFinal;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label labelNombre;
+        private System.Windows.Forms.Label labelApellido;
     }
 }
