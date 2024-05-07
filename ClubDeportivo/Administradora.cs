@@ -78,5 +78,10 @@ namespace CapaNegocio
                 Console.WriteLine("El nombre del socio es: " + dni);
             }
         }
+
+        public decimal getPrecioMesCuotaSocial()
+        {
+            return PagoCuotaSocial.PrecioMensual;
+        }
     }
 }
