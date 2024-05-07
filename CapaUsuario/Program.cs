@@ -16,7 +16,7 @@ namespace CapaUsuario
         static void Main()
         {
 
-            /// PRUEBA
+            /// PRUEBA 2
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Inicio());
