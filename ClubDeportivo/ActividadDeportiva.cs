@@ -31,6 +31,11 @@ namespace CapaNegocio
             return (cantAlumnosMax - alumnosInscriptos.Count);
         }
 
+        public void agregarAlumno(Socio socio)
+        {
+            this.alumnosInscriptos.Add(socio);
+        }
+
         public string Nombre
         {
             get { return nombreActividad; }
