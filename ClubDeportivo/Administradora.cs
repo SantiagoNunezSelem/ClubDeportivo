@@ -65,18 +65,14 @@ namespace CapaNegocio
         {
             pagos.Add(pagoActividad);
 
+            Socio socioDeActividad = pagoActividad.Socio;
+            ActividadDeportiva actividadDep = pagoActividad.ActividadDeportivaInfo;
+
             //Registrar el pago de la actividad a su lista de pagos
-            pagoActividad.Socio.agregarPagoActividadDeportiva(pagoActividad);
-        }
+            socioDeActividad.agregarPagoActividadDeportiva(pagoActividad);
 
-        public void mostrarSocios()
-        {
-            foreach(Socio socio in socios)
-            {
-                string dni = socio.Dni;
-
-                Console.WriteLine("El nombre del socio es: " + dni);
-            }
+            //Agregar el Socio a la actividad deportiva
+            actividadDep.agregarAlumno(socioDeActividad);
         }
 
         public decimal getPrecioMesCuotaSocial()

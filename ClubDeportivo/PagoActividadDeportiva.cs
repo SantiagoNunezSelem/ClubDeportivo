@@ -15,5 +15,16 @@ namespace CapaNegocio
         {
             this.actividadDeportiva = actividadDeportiva;
         }
+
+        public ActividadDeportiva ActividadDeportivaInfo
+        {
+            get { return actividadDeportiva; }
+        }
+
+        //Definir el formato con el que se muestra dentro de un listBox
+        public override string ToString()
+        {
+            return $" Fecha: {fechaPago.ToShortDateString()} , Nombre: {actividadDeportiva.Nombre} , Pago: {pagoFinal}";
+        }
     }
 }

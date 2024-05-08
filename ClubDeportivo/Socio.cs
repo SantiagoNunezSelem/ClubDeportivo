@@ -31,38 +31,90 @@ namespace CapaNegocio
             pagosActividadDeportiva = new List<PagoActividadDeportiva>();
         }
 
-        public bool cuotaSocialActiva()
+        public PagoCuotaSocial buscarCuotaSocialActualActiva()
         {
-            //Revisa el ultimo pago de cuota social y retorna si está activo
+            //1)Revisa el ultimo pago de cuota social y retorna si está activo
+            //2)Como se pueden pagar varios meses de una vez, tenemos que recorrer el array
+            //  del final al inicio hasta que alguna mes no este activo y retornar el anterior (el que esta activo)
+            //3)En caso de que ningun pago membresía siga activo, retornamos null
+
             if (pagosCuotaSocial.Count > 0)
             {
-                PagoCuotaSocial ultimoPagoCuotaSocial = pagosCuotaSocial[pagosCuotaSocial.Count - 1];
+                int i = pagosCuotaSocial.Count - 1;
+
+                PagoCuotaSocial buscarPagoCuotaSocial = null;
+                PagoCuotaSocial pagoCuotaSocialActiva = null;
+                
+                while (i >= 0)
+                {
+                    buscarPagoCuotaSocial = pagosCuotaSocial[i];
+                    if (buscarPagoCuotaSocial.estaActiva())
+                    {
+                        pagoCuotaSocialActiva = buscarPagoCuotaSocial; //Guardo la ultima cuotaSocial que encontré activa
+                        i--;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                if(i == 0)
+                {
+                    return buscarPagoCuotaSocial; //El primer pago realizado de la Cuota Social está activo
+                }
+
+                if (i != pagosCuotaSocial.Count)
+                {
+                    return pagoCuotaSocialActiva;
+                }
             }
-            return false; //luego hacerlo, por ahora nunca tiene membresia activa
+            return null;
+        }
+
+        public bool tieneCuotaSocialActiva()
+        {
+            if (pagosCuotaSocial.Count > 0)
+            {
+                PagoCuotaSocial ultimoPagoCuotaSocial = pagosCuotaSocial[pagosCuotaSocial.Count - 1]; //no reviso cual es la ultima activa, no hace falta. Miro unicamente la ultima que pagó y me fijo si esta activa
+                return ultimoPagoCuotaSocial.estaActiva();
+            }
+            return false;
         }
 
         public void agregarActividadAsociadaCuotaSocial()
         {
-            if (pagosCuotaSocial.Count > 0)
+            //Debo agregarla a la cuota social activa de este mes
+            PagoCuotaSocial pagoCS = this.buscarCuotaSocialActualActiva();
+
+            if (pagoCS != null)
             {
-                PagoCuotaSocial ultimoPagoCuotaSocial = pagosCuotaSocial[pagosCuotaSocial.Count - 1];
-                ultimoPagoCuotaSocial.agregarActividadAsociada();
+                pagoCS.agregarActividadAsociada();
             }
         }
 
         public void agregarPagoActividadDeportiva(PagoActividadDeportiva pagoActividad)
         {
-            pagosActividadDeportiva.Add(pagoActividad);
+            pagosActividadDeportiva.Add(pagoActividad); //Se guarda en el array general
 
-            if (this.cuotaSocialActiva())
+            if (this.tieneCuotaSocialActiva())
             {
-                this.agregarActividadAsociadaCuotaSocial();
+                this.agregarActividadAsociadaCuotaSocial(); //Si tiene cuota social activa se agrega +1 a la cantidad de actividades deportivas asociada a dicha cuota social
             }
         }
 
         public void agregarPagoCuotaSocial(PagoCuotaSocial pagoCS)
         {
             pagosCuotaSocial.Add(pagoCS);
+        }
+
+        public List<PagoCuotaSocial> getPagosCuotaSocial()
+        {
+            return pagosCuotaSocial;
+        }
+
+        public List<PagoActividadDeportiva> getPagosActividadDeportiva()
+        {
+            return pagosActividadDeportiva;
         }
 
         public string Dni
