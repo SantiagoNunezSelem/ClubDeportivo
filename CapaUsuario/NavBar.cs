@@ -29,7 +29,7 @@ namespace CapaUsuario
             this.agregarSocio(agregarSocio);
         }
 
-        private void agregarSocio(AgregarNuevoSocio agregarSocio)
+        public void agregarSocio(AgregarNuevoSocio agregarSocio)
         {
             this.Hide();
             agregarSocio.ShowDialog();
@@ -47,8 +47,7 @@ namespace CapaUsuario
             adm.eliminarSocio(dni);
         }
 
-        public Socio existeSocio(string dni)
-        {
+        public Socio existeSocio(string dni){
             Socio socio = adm.buscarSocio(dni);
             return socio;
         }
@@ -90,8 +89,9 @@ namespace CapaUsuario
         private void editarInformaciónSocioToolStripMenuItem_Click(object sender, EventArgs e)
         {
             EditarInformacionSocio editarInformacionSocio = new EditarInformacionSocio();
-            editarInformacionSocio.Show();
             this.Hide();
+            editarInformacionSocio.ShowDialog();
+            this.Show();
         }
 
         private void darDeBajaSocioToolStripMenuItem_Click(object sender, EventArgs e)

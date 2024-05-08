@@ -9,8 +9,7 @@ using System.Threading.Tasks;
 
 namespace CapaNegocio
 {
-    public class Socio
-    {
+    public class Socio {
         private string dni;
         private string nombre;
         private string apellido;

@@ -62,10 +62,9 @@ namespace CapaUsuario
                 string email = inputEmail.Text;
                 string telefono = inputTelefono.Text;
                 DateTime fechaNacimiento = DateTime.Parse(inputFechaNacimiento.Text);
-
                 this.socio = new Socio(dni, nombre, apellido, email, telefono, fechaNacimiento);
-
-                this.Close();
+                
+                Close();
             }
             else
             {
