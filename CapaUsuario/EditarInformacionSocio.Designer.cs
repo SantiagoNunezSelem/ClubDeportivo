@@ -233,7 +233,7 @@
             this.inputFechaNacimiento.Tag = "";
             this.inputFechaNacimiento.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals;
             this.inputFechaNacimiento.ValidatingType = typeof(System.DateTime);
-            this.inputFechaNacimiento.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.inputFechaNacimiento_MaskInputRejected);
+            
             // 
             // label4
             // 
