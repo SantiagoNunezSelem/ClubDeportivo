@@ -57,6 +57,11 @@ namespace CapaUsuario
             return adm.buscarActividadDeportiva(nombre);
         }
 
+        public decimal getPrecioActividadDeportiva(Socio socio, ActividadDeportiva actDep)
+        {
+            return adm.getPrecioActividadDeportiva(socio, actDep);
+        }
+
         public void agregarPagoActividadDeportiva(PagoActividadDeportiva pagoActividad)
         {
             adm.agregarPagoActividadDeportiva(pagoActividad);

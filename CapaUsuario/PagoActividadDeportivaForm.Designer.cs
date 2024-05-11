@@ -52,6 +52,9 @@
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.selecActividadDeportiva = new System.Windows.Forms.ComboBox();
             this.inputCantVacantes = new System.Windows.Forms.Label();
+            this.inputPrecioFinal = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -59,6 +62,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.SuspendLayout();
             // 
             // inputApellido
@@ -118,6 +122,7 @@
             this.inputPrecioMes.Size = new System.Drawing.Size(49, 17);
             this.inputPrecioMes.TabIndex = 73;
             this.inputPrecioMes.Text = "         -";
+            this.inputPrecioMes.Click += new System.EventHandler(this.inputPrecioMes_Click);
             // 
             // label5
             // 
@@ -128,10 +133,11 @@
             this.label5.Size = new System.Drawing.Size(107, 17);
             this.label5.TabIndex = 72;
             this.label5.Text = "Precio por Mes:";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // guardarPagoActividadDeportiva
             // 
-            this.guardarPagoActividadDeportiva.Location = new System.Drawing.Point(518, 321);
+            this.guardarPagoActividadDeportiva.Location = new System.Drawing.Point(518, 373);
             this.guardarPagoActividadDeportiva.Name = "guardarPagoActividadDeportiva";
             this.guardarPagoActividadDeportiva.Size = new System.Drawing.Size(96, 23);
             this.guardarPagoActividadDeportiva.TabIndex = 70;
@@ -243,6 +249,7 @@
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox4.TabIndex = 71;
             this.pictureBox4.TabStop = false;
+            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
             // 
             // pictureBox3
             // 
@@ -317,10 +324,43 @@
             this.inputCantVacantes.TabIndex = 85;
             this.inputCantVacantes.Text = "         -";
             // 
-            // PagoActividadDeportiva
+            // inputPrecioFinal
+            // 
+            this.inputPrecioFinal.AutoSize = true;
+            this.inputPrecioFinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.inputPrecioFinal.Location = new System.Drawing.Point(523, 324);
+            this.inputPrecioFinal.Name = "inputPrecioFinal";
+            this.inputPrecioFinal.Size = new System.Drawing.Size(49, 17);
+            this.inputPrecioFinal.TabIndex = 87;
+            this.inputPrecioFinal.Text = "         -";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.label7.Location = new System.Drawing.Point(426, 324);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(86, 17);
+            this.label7.TabIndex = 86;
+            this.label7.Text = "Precio Final:";
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.Image = global::CapaUsuario.Properties.Resources.pngwing_com;
+            this.pictureBox8.Location = new System.Drawing.Point(518, 344);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(96, 11);
+            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox8.TabIndex = 88;
+            this.pictureBox8.TabStop = false;
+            // 
+            // PagoActividadDeportivaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.pictureBox8);
+            this.Controls.Add(this.inputPrecioFinal);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.inputCantVacantes);
             this.Controls.Add(this.selecActividadDeportiva);
             this.Controls.Add(this.label13);
@@ -345,7 +385,8 @@
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.inputDniBuscar);
             this.Controls.Add(this.label1);
-            this.Name = "PagoActividadDeportiva";
+            this.Name = "PagoActividadDeportivaForm";
+            this.Load += new System.EventHandler(this.PagoActividadDeportivaForm_Load);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.inputDniBuscar, 0);
             this.Controls.SetChildIndex(this.pictureBox2, 0);
@@ -370,6 +411,9 @@
             this.Controls.SetChildIndex(this.label13, 0);
             this.Controls.SetChildIndex(this.selecActividadDeportiva, 0);
             this.Controls.SetChildIndex(this.inputCantVacantes, 0);
+            this.Controls.SetChildIndex(this.label7, 0);
+            this.Controls.SetChildIndex(this.inputPrecioFinal, 0);
+            this.Controls.SetChildIndex(this.pictureBox8, 0);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
@@ -377,6 +421,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -408,5 +453,8 @@
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.ComboBox selecActividadDeportiva;
         private System.Windows.Forms.Label inputCantVacantes;
+        private System.Windows.Forms.Label inputPrecioFinal;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.PictureBox pictureBox8;
     }
 }

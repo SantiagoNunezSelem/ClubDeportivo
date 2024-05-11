@@ -45,7 +45,7 @@ namespace CapaUsuario
                 {
                     if(actividadSeleccionada.getVacantes() > 0)
                     {
-                        decimal pagoFinal = actividadSeleccionada.PrecioMes;
+                        decimal pagoFinal = base.getPrecioActividadDeportiva(buscarSocio, actividadSeleccionada);
                         DateTime fecha = DateTime.Now;
                         PagoActividadDeportiva pagoActividad = new PagoActividadDeportiva(buscarSocio, pagoFinal, fecha, actividadSeleccionada);
                         base.agregarPagoActividadDeportiva(pagoActividad);
@@ -75,9 +75,18 @@ namespace CapaUsuario
 
             if (actividadSeleccionada != null)
             {
-                inputPrecioMes.Text = "$" + actividadSeleccionada.PrecioMes.ToString();
+                inputPrecioMes.Text = "$" + actividadSeleccionada.PrecioMes.ToString(); //Precio del mes sin ningun descuento de Cuota Social
                 inputCantVacantes.Text = actividadSeleccionada.getVacantes().ToString();
                 inputHorarios.Text = actividadSeleccionada.Horario;
+
+                string dni = inputDniBuscar.Text;
+                Socio buscarSocio = base.existeSocio(dni);
+
+                if (buscarSocio != null)
+                {
+                    decimal precioFinal = base.getPrecioActividadDeportiva(buscarSocio, actividadSeleccionada);
+                    inputPrecioFinal.Text = precioFinal.ToString();
+                }
             }
             else
             {
@@ -85,6 +94,26 @@ namespace CapaUsuario
                 inputCantVacantes.Text = "         -         ";
                 inputHorarios.Text = "         -         ";
             }
+        }
+
+        private void PagoActividadDeportivaForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void inputPrecioMes_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

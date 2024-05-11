@@ -34,6 +34,11 @@ namespace CapaNegocio
             get { return PrecioMensualData; }
         }
 
+        public int getCantActividadesDeCuotaSocial()
+        {
+            return cantActividadesDeCuotaSocial;
+        }
+
         //Definir el formato con el que se muestra dentro de un listBox
         public override string ToString()
         {

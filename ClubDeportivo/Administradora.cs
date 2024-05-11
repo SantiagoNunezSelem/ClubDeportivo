@@ -68,7 +68,7 @@ namespace CapaNegocio
             Socio socioDeActividad = pagoActividad.Socio;
             ActividadDeportiva actividadDep = pagoActividad.ActividadDeportivaInfo;
 
-            //Registrar el pago de la actividad a su lista de pagos
+            //Registrar el pago de la actividad a la lista de pagos del socio
             socioDeActividad.agregarPagoActividadDeportiva(pagoActividad);
 
             //Agregar el Socio a la actividad deportiva
@@ -87,5 +87,30 @@ namespace CapaNegocio
             //Registrar el pago de la cuota social a su lista de pagos
             pagoCS.Socio.agregarPagoCuotaSocial(pagoCS);
         }
+
+        public decimal getPrecioActividadDeportiva(Socio socio, ActividadDeportiva actDep)
+        {
+            PagoCuotaSocial pagoCuotaSocial = socio.buscarCuotaSocialActualActiva();
+            if(pagoCuotaSocial != null)
+            {
+                //Tiene una cuota social activa:
+                //1) Si tiene registrado menos de 5 actividades -> precioActividad = 0
+                //2) Si tiene 5 o mas -> precioActividad = precioActividad - 50%
+                int cantActividades = pagoCuotaSocial.getCantActividadesDeCuotaSocial();
+                if(cantActividades < 5)
+                {
+                    return 0; //El precio es $0
+                }
+                else
+                {
+                    return actDep.PrecioMes * 0.5m; //50 off del precio
+                }
+            }
+            else
+            {
+                return actDep.PrecioMes; //Precio sin descuento
+            }
+        }
+
     }
 }
