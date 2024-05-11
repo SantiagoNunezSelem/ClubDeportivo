@@ -47,7 +47,7 @@ namespace CapaUsuario
             }
         }
 
-            private void saveNewSocio_MouseClick(object sender, MouseEventArgs e) {
+        private void saveNewSocio_MouseClick(object sender, MouseEventArgs e) {
             string dni = this.InputBuscarDni.Text;
             Socio socio = base.existeSocio(dni);
 
