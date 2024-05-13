@@ -34,6 +34,7 @@ namespace CapaUsuario
             }
         }
 
+
         private void guardarPagoActividadDeportiva_MouseClick(object sender, MouseEventArgs e)
         {
             string dni = inputDniBuscar.Text;
@@ -43,7 +44,14 @@ namespace CapaUsuario
             {
                 if (actividadSeleccionada != null)
                 {
-                    if(actividadSeleccionada.getVacantes() > 0)
+                    // Verifica si el socio tiene la actividad deportiva seleccionada activa
+                    if (buscarSocio.tieneActividadDeportivaActiva(actividadSeleccionada))
+                    {
+                        MessageBox.Show("El socio ya está inscripto en esta actividad deportiva", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return; // Sale del método porque el socio ya está inscrito en la actividad deportiva
+                    }
+
+                    if (actividadSeleccionada.getVacantes() > 0)
                     {
                         decimal pagoFinal = base.getPrecioActividadDeportiva(buscarSocio, actividadSeleccionada);
                         DateTime fecha = DateTime.Now;

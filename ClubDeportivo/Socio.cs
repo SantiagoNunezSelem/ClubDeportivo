@@ -94,6 +94,14 @@ namespace CapaNegocio
 
         public void agregarPagoActividadDeportiva(PagoActividadDeportiva pagoActividad)
         {
+            // Verifica si el socio tiene la actividad deportiva específica activa antes de agregar un nuevo pago
+            if (this.tieneActividadDeportivaActiva(pagoActividad.ActividadDeportivaInfo))
+            {
+                // Si ya tiene la actividad deportiva específica activa, no agrega el nuevo pago y sale del método
+                return;
+            }
+
+            // Si no tiene la actividad deportiva específica activa, agrega el nuevo pago a la lista
             pagosActividadDeportiva.Add(pagoActividad); //Se guarda en el array general
 
             if (this.tieneCuotaSocialActiva())
@@ -101,6 +109,8 @@ namespace CapaNegocio
                 this.agregarActividadAsociadaCuotaSocial(); //Si tiene cuota social activa se agrega +1 a la cantidad de actividades deportivas asociada a dicha cuota social
             }
         }
+
+
 
         public void agregarPagoCuotaSocial(PagoCuotaSocial pagoCS)
         {
@@ -116,6 +126,20 @@ namespace CapaNegocio
         {
             return pagosActividadDeportiva;
         }
+
+
+        public bool tieneActividadDeportivaActiva(ActividadDeportiva actividad)
+        {
+            foreach (var pago in pagosActividadDeportiva)
+            {
+                if (pago.estaActiva() && pago.ActividadDeportivaInfo.Equals(actividad))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
 
         public string Dni
         {
