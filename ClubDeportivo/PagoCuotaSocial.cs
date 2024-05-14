@@ -12,14 +12,11 @@ namespace CapaNegocio
         private static decimal PrecioMensualData = 30000;
         private static int MaxActividadesGratuitas = 5;
         private int cantActividadesDeCuotaSocial; //Cant actividades registradas cuando la cuota social esta activa
-        private DateTime fechaInicio; //Fecha de inicio de la ultima cuota social activa
-        private int cantidadCuotasPagas;
         
-        public PagoCuotaSocial(Socio socio, decimal pagoFinal, DateTime fechaPago, DateTime fechaInicio, int cantidadCuotasPagas)
+        public PagoCuotaSocial(Socio socio, decimal pagoFinal, DateTime fechaPago)
             : base(socio, pagoFinal, fechaPago)
         {
             this.cantActividadesDeCuotaSocial = 0;
-            this.cantidadCuotasPagas = cantidadCuotasPagas;
         }
 
         public void agregarActividadAsociada()
@@ -56,22 +53,5 @@ namespace CapaNegocio
             }
             return $" Fecha: {fechaPago.ToShortDateString()} , Pago: {pagoFinal} , Estado: {estado}";
         }
-
-        public DateTime getFechaInicio()
-        {
-            return fechaInicio;
-        }
-
-        public void setFechaInicio(DateTime fe)
-        {
-            fechaInicio=fe;
-        }
-
-        public int CantCuotasPagas
-        {
-            get { return cantidadCuotasPagas; }
-            set { this.cantidadCuotasPagas = value; }
-        }
-
     }
 }

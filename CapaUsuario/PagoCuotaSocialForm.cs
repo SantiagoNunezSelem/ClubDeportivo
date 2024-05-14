@@ -75,14 +75,12 @@ namespace CapaUsuario
                 if (cantMeses > 0)
                 {
                     decimal precioMes = getPrecioMesCuotaSocial();
-                    /// DateTime fechaPago = DateTime.Now;
-                    DateTime fechaPago = new DateTime (2024,05,01);
-                    DateTime fechaInicio =  DateTime.Now;
+                    DateTime fechaPago = DateTime.Now;
                     
                     //Se crea un objeto PagoCuotaSocial por cada mes que haya pagado
                     for(int i=0; i < cantMeses; i++)
                     {
-                        PagoCuotaSocial pagoCS = new PagoCuotaSocial(socio, precioMes, fechaPago.AddMonths(i), fechaInicio, cantMeses);
+                        PagoCuotaSocial pagoCS = new PagoCuotaSocial(socio, precioMes, fechaPago.AddMonths(i));
                         base.agregarPagoCuotaSocial(pagoCS);
                     }
 
