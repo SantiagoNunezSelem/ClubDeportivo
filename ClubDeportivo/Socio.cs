@@ -110,10 +110,25 @@ namespace CapaNegocio
             }
         }
 
-
-
+        //REVISAR QUE FECHA ESTA MOSTRANDO LA INTERFAZ Y POR QUE PISA LOS PAGOS (cada vez que pagas vuelve al primer pago)
         public void agregarPagoCuotaSocial(PagoCuotaSocial pagoCS)
         {
+            // Verifica si el socio tiene una cuota social activa
+            if (tieneCuotaSocialActiva())
+            {
+                PagoCuotaSocial ultimaCuotaSocial = buscarCuotaSocialActualActiva(); // Verifica si tiene el socio tiene una cuota social activa
+                // La fecha de inicio del nuevo pago será la fecha de inicio de la última cuota social activa + 1 mes
+                DateTime fechaInicioAnterior = ultimaCuotaSocial.getFechaInicio().AddMonths(1); ;
+
+                if (DateTime.Today > ultimaCuotaSocial.getFechaInicio())
+                {
+                    fechaInicioAnterior = fechaInicioAnterior.AddMonths(1);
+                }
+                //pagoCS.setFechaInicio(fechaInicioAnterior);
+                //fechaInicioAnterior.AddMonths(pagoCS.CantCuotasPagas+1);
+                pagoCS.setFechaInicio(fechaInicioAnterior);
+            }
+            // Agrega el nuevo pago de cuota social a la lista
             pagosCuotaSocial.Add(pagoCS);
         }
 
