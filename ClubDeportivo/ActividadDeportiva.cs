@@ -36,6 +36,7 @@ namespace CapaNegocio
             this.alumnosInscriptos.Add(socio);
         }
 
+
         public string Nombre
         {
             get { return nombreActividad; }

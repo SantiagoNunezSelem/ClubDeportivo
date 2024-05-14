@@ -21,6 +21,11 @@ namespace CapaNegocio
             get { return actividadDeportiva; }
         }
 
+        public bool estaActiva()
+        {
+            return (DateTime.Today <= this.fechaPago.AddMonths(1));
+        }
+
         //Definir el formato con el que se muestra dentro de un listBox
         public override string ToString()
         {
