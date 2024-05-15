@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace CapaNegocio
 {
+    [Serializable]
     public class PagoCuotaSocial : Pago
     {
         private static decimal PrecioMensualData = 30000;

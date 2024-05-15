@@ -17,5 +17,13 @@ namespace CapaUsuario
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
         }
+
+        private void button2_Click(object sender, EventArgs e) {
+            if (base.guardar()) {
+                MessageBox.Show("Guardado con éxito", "ALERTA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            } else { 
+                MessageBox.Show("NO GUARDADO", "ALERTA",MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

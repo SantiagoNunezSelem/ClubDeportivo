@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace CapaNegocio
 {
+    [Serializable]
     public class Socio {
         private string dni;
         private string nombre;

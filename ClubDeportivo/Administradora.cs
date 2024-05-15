@@ -1,3 +1,4 @@
+using CapaDatos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace CapaNegocio
 {
-    
+    [Serializable]
+
     public class Administradora
     {
         private static Administradora instancia;
@@ -28,12 +30,15 @@ namespace CapaNegocio
             actividadesDeportivas.Add(futbol);
         }
 
-        public static Administradora ObtenerInstancia()
-        {
-            if (instancia == null)
-            {
+        public static Administradora ObtenerInstancia() {
+            Administradora instanciaRecuperada = (Administradora) Datos.Recuperar();
+
+            if(instanciaRecuperada != null)
+                instancia = instanciaRecuperada;
+            else if (instancia == null) {
                 instancia = new Administradora();
             }
+
             return instancia;
         }
 
@@ -112,5 +117,9 @@ namespace CapaNegocio
             }
         }
 
+
+        public bool guardar() {
+            return Datos.Guardar(this);
+        }
     }
 }

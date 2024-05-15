@@ -136,5 +136,9 @@ namespace CapaUsuario
             infoACtividadDeportiva.Show();
             this.Hide();
         }
+
+        public bool guardar() {
+            return adm.guardar();
+        }
     }
 }

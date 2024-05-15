@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaNegocio", "ClubDeportiv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaUsuario", "CapaUsuario\CapaUsuario.csproj", "{3C772EE1-552A-451D-A152-D6369AD700D0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaDatos", "CapaDatos\CapaDatos.csproj", "{5B971B79-8414-4F64-9267-6908E5A345BD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{3C772EE1-552A-451D-A152-D6369AD700D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C772EE1-552A-451D-A152-D6369AD700D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C772EE1-552A-451D-A152-D6369AD700D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B971B79-8414-4F64-9267-6908E5A345BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B971B79-8414-4F64-9267-6908E5A345BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B971B79-8414-4F64-9267-6908E5A345BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B971B79-8414-4F64-9267-6908E5A345BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

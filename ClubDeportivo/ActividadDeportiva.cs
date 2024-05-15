@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace CapaNegocio
 {
+    [Serializable]
     public class ActividadDeportiva
     {
         string nombreActividad;

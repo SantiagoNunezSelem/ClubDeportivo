@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CapaNegocio
 {
+    [Serializable]
     public class PagoActividadDeportiva : Pago
     {
         private ActividadDeportiva actividadDeportiva;
