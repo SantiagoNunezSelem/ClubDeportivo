@@ -16,11 +16,6 @@ namespace CapaUsuario
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void botonEliminar_MouseClick(object sender, MouseEventArgs e)
         {
             string dniBuscar = InputBuscarDni.Text;

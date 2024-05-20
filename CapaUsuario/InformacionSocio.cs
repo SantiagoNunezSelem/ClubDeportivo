@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace CapaUsuario
 {
-    public partial class InformacionSocio : CapaUsuario.NavBar
+    public partial class InformacionSocio : Administradora
     {
         public InformacionSocio()
         {

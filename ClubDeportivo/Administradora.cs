@@ -57,7 +57,10 @@ namespace CapaNegocio
         public void eliminarSocio(string dni)
         {
             Socio socioEliminar = buscarSocio(dni);
-            socios.Remove(socioEliminar);
+            if(socioEliminar != null)
+            {
+                socios.Remove(socioEliminar);
+            }
         }
 
         public ActividadDeportiva buscarActividadDeportiva(string nombre)

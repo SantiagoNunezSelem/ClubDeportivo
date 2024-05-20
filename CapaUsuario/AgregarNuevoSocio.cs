@@ -11,9 +11,10 @@ using System.Windows.Forms;
 
 namespace CapaUsuario
 {
-    public partial class AgregarNuevoSocio : CapaUsuario.NavBar
+    public partial class AgregarNuevoSocio : Administradora
     {
         private Socio socio;
+
         public AgregarNuevoSocio()
         {
             InitializeComponent();
@@ -53,6 +54,7 @@ namespace CapaUsuario
         private void registrarUsuario_MouseClick(object sender, MouseEventArgs e)
         {
             string dni = inputDni.Text;
+            
             Socio buscarSocio = base.existeSocio(dni);
 
             if (buscarSocio == null)

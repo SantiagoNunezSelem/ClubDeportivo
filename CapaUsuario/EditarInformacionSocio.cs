@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace CapaUsuario
 {
-    public partial class EditarInformacionSocio : CapaUsuario.NavBar
+    public partial class EditarInformacionSocio : Administradora
     {
         private Socio socio;
      

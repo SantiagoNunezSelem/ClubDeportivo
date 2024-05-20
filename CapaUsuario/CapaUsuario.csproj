@@ -65,6 +65,12 @@
     <Compile Include="DarBajaSocio.Designer.cs">
       <DependentUpon>DarBajaSocio.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administradora.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administradora.Designer.cs">
+      <DependentUpon>Administradora.cs</DependentUpon>
+    </Compile>
     <Compile Include="InformacionActividadDeportiva.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,12 +108,6 @@
     <Compile Include="Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>
-    <Compile Include="NavBar.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="NavBar.Designer.cs">
-      <DependentUpon>NavBar.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AgregarNuevoSocio.resx">
@@ -127,9 +127,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="NavBar.resx">
-      <DependentUpon>NavBar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PagoActividadDeportivaForm.resx">
       <DependentUpon>PagoActividadDeportivaForm.cs</DependentUpon>
