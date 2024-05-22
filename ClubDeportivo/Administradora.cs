@@ -1,7 +1,9 @@
 using CapaDatos;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -104,6 +106,41 @@ namespace CapaNegocio
             {
                 return actDep.PrecioMes; //Precio sin descuento
             }
+        }
+
+        public void setConnectionDBPath(string path)
+        {
+            Datos.setConnectionDBPath(path);
+        }
+
+        public bool getSocios()
+        {
+            List<ArrayList> getSocios = new List<ArrayList>();
+            if (Datos.getSocios(getSocios)){ 
+            
+                foreach(ArrayList socio in getSocios)
+                {
+                    string dni = socio[1].ToString();
+                    string nombre = socio[2].ToString();
+                    string apellido = socio[3].ToString();
+                    string email = socio[4].ToString();
+                    string telefono = socio[5].ToString();
+                    DateTime fechaNacimiento = DateTime.Parse(socio[6].ToString());
+
+                    Socio createSocio = new Socio(dni,nombre,apellido,email,telefono,fechaNacimiento);
+                    
+                    //Agregarlo al arrayList de la Administradora
+                    this.socios.Add(createSocio);
+                }
+                return true;
+            }
+            else
+            {
+                //Error al realizar la consulta en la base de datos
+                return false;
+            }
+            
+            
         }
 
         public static Administradora ObtenerInstancia()
