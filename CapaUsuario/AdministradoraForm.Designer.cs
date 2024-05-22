@@ -1,6 +1,6 @@
 ﻿namespace CapaUsuario
 {
-    partial class Administradora
+    partial class AdministradoraForm
     {
         /// <summary>
         /// Required designer variable.

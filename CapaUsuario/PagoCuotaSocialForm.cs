@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace CapaUsuario
 {
-    public partial class PagoCuotaSocialForm : Administradora
+    public partial class PagoCuotaSocialForm : AdministradoraForm
     {
         public PagoCuotaSocialForm()
         {

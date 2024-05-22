@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace CapaUsuario
 {
-    public partial class AgregarNuevoSocio : Administradora
+    public partial class AgregarNuevoSocio : AdministradoraForm
     {
         private Socio socio;
 

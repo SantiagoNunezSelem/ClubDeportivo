@@ -11,10 +11,10 @@ using System.Windows.Forms;
 
 namespace CapaUsuario
 {
-    public partial class Administradora : Form
+    public partial class AdministradoraForm : Form
     {
         private CapaNegocio.Administradora adm = CapaNegocio.Administradora.ObtenerInstancia();
-        public Administradora()
+        public AdministradoraForm()
         {
             InitializeComponent();
         }
@@ -60,10 +60,6 @@ namespace CapaUsuario
         public void agregarPagoCuotaSocial(PagoCuotaSocial pagoCS)
         {
             adm.agregarPagoCuotaSocial(pagoCS);
-        }
-        public bool guardar()
-        {
-            return adm.guardar();
         }
     }
 }

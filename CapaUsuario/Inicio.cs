@@ -10,7 +10,7 @@ using CapaNegocio;
 
 namespace CapaUsuario
 {
-    public partial class Inicio : Administradora
+    public partial class Inicio : AdministradoraForm
     {
         public Inicio()
         {
@@ -66,14 +66,6 @@ namespace CapaUsuario
         {
             InformacionActividadDeportiva infoACtividadDeportiva = new InformacionActividadDeportiva();
             infoACtividadDeportiva.ShowDialog();
-        }
-
-        private void button2_Click(object sender, EventArgs e) {
-            if (base.guardar()) {
-                MessageBox.Show("Guardado con éxito", "ALERTA", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            } else { 
-                MessageBox.Show("NO GUARDADO", "ALERTA",MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
     }
 }

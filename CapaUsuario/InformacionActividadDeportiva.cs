@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace CapaUsuario
 {
-    public partial class InformacionActividadDeportiva : Administradora
+    public partial class InformacionActividadDeportiva : AdministradoraForm
     {
         public InformacionActividadDeportiva()
         {

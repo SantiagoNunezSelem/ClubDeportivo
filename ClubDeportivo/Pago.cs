@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace CapaNegocio
 {
-    [Serializable]
     public class Pago
     {
         protected Socio socio;

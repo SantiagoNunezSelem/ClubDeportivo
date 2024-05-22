@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace CapaUsuario
 {
-    public partial class PagoActividadDeportivaForm : Administradora
+    public partial class PagoActividadDeportivaForm : AdministradoraForm
     {
         private ActividadDeportiva actividadSeleccionada;
         public PagoActividadDeportivaForm()

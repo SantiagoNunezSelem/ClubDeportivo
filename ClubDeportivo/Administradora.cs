@@ -7,15 +7,13 @@ using System.Threading.Tasks;
 
 namespace CapaNegocio
 {
-    [Serializable]
-
     public class Administradora
     {
         private static Administradora instancia;
         private List<Socio> socios;
         private List<Pago> pagos;
         private List<ActividadDeportiva> actividadesDeportivas;
-        private Administradora()
+        public Administradora()
         {
             socios = new List<Socio>();
             pagos = new List<Pago>();
@@ -28,18 +26,6 @@ namespace CapaNegocio
             actividadesDeportivas.Add(natacion);
             actividadesDeportivas.Add(voley);
             actividadesDeportivas.Add(futbol);
-        }
-
-        public static Administradora ObtenerInstancia() {
-            Administradora instanciaRecuperada = (Administradora) Datos.Recuperar();
-
-            if(instanciaRecuperada != null)
-                instancia = instanciaRecuperada;
-            else if (instancia == null) {
-                instancia = new Administradora();
-            }
-
-            return instancia;
         }
 
         public Socio buscarSocio(string dni)
@@ -120,9 +106,13 @@ namespace CapaNegocio
             }
         }
 
-
-        public bool guardar() {
-            return Datos.Guardar(this);
+        public static Administradora ObtenerInstancia()
+        {
+            if (instancia == null)
+            {
+                instancia = new Administradora();
+            }
+            return instancia;
         }
     }
 }
