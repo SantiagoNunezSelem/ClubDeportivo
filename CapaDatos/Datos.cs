@@ -20,10 +20,8 @@ namespace CapaDatos
         private static DataSet ds;
         public static void setConnectionDBPath(string path)
         {
-            string databasePath = path + @"\Data\BDClubDeportivo.accdb";
-
-            strCon = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + databasePath;
-            
+            string databasePath = path + @"\Data\ClubDeportivoDB.mdb";
+            strCon = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + databasePath;
         }
 
         public static bool getSocios(List<ArrayList> socios)
