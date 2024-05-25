@@ -17,6 +17,12 @@ namespace CapaUsuario
         public AdministradoraForm()
         {
             InitializeComponent();
+            adm.setConnectionDBPath(Application.StartupPath);
+
+            if (!adm.getSocios())
+            {
+                MessageBox.Show("Error en base de datos", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         public void agregarSocio(AgregarNuevoSocio agregarSocio)
         {

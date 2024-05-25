@@ -1,7 +1,10 @@
 using CapaDatos;
+using Microsoft.SqlServer.Server;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -103,6 +106,50 @@ namespace CapaNegocio
             else
             {
                 return actDep.PrecioMes; //Precio sin descuento
+            }
+        }
+
+        public void setConnectionDBPath(string path)
+        {
+            Datos.setConnectionDBPath(path);
+        }
+
+        public bool getSocios()
+        {
+            List<ArrayList> getSocios = new List<ArrayList>();
+            if (Datos.getSocios(getSocios)){
+
+                foreach (ArrayList socio in getSocios)
+                {
+                    string dni = socio[1].ToString();
+                    string nombre = socio[2].ToString();
+                    string apellido = socio[3].ToString();
+                    string email = socio[4].ToString();
+                    string telefono = socio[5].ToString();
+                    DateTime fechaNacimiento = DateTime.Parse(socio[6].ToString());
+                    List<ArrayList> listaPagosCuotasSociales = (List<ArrayList>)socio[7];
+
+                    Socio createSocio = new Socio(dni, nombre, apellido, email, telefono, fechaNacimiento);
+
+                    //Agregar los pagosCuotasSociales al socio
+                    foreach(ArrayList pagoCS in listaPagosCuotasSociales)
+                    {
+                        decimal pagoFinal = decimal.Parse(pagoCS[1].ToString());
+                        DateTime fechaPago = DateTime.Parse(pagoCS[2].ToString());
+
+                        PagoCuotaSocial createPagoCuotaSocial = new PagoCuotaSocial(createSocio,pagoFinal,fechaPago);
+                        this.agregarPagoCuotaSocial(createPagoCuotaSocial);
+                    }
+
+                    //Agregar socio al arrayList de la Administradora
+                    this.agregarSocio(createSocio);
+                }
+                return true;
+            }
+            else
+            {
+                //Error al realizar la consulta en la base de datos
+                return false;
             }
         }
 
