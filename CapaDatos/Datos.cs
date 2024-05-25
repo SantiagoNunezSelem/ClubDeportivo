@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Collections;
 using System.Data;
@@ -28,7 +28,7 @@ namespace CapaDatos
         public static bool getSocios(List<ArrayList> socios)
         {
             ArrayList socio;
-            ArrayList pagosCuotasSociales;
+            List<ArrayList> pagosCuotasSociales;
 
             string query = "SELECT * FROM Socio";
             try
@@ -49,8 +49,9 @@ namespace CapaDatos
                     }
 
                     //Obtener datos de sus PagosCuotasSociales
-                    pagosCuotasSociales = new ArrayList();
+                    pagosCuotasSociales = new List<ArrayList>();
                     getCuotasSocialesSocio(socio[0],pagosCuotasSociales);
+                    socio.Add(pagosCuotasSociales); //Guardar los pagos en socio
 
                     socios.Add(socio);
                 }
@@ -69,30 +70,33 @@ namespace CapaDatos
             }
         }
 
-        public static bool getCuotasSocialesSocio(object idSocio,ArrayList pagosCuotasSociales)
+        public static bool getCuotasSocialesSocio(object idSocio, List<ArrayList> pagosCuotasSociales)
         {
             ArrayList pagoCuotaSocial;
 
-            string query = "SELECT * FROM PagoCuotaSocial pcs INNER JOIN Pago p ON p.idPago = pcs.idPago WHERE p.idSocio = " + idSocio;
+            string query = "SELECT Pago.*, PagoCuotaSocial.* " +
+                           "FROM Pago INNER JOIN PagoCuotaSocial " +
+                           "ON Pago.idPago = PagoCuotaSocial.idPago " +
+                           "WHERE Pago.idSocio = " + idSocio;
 
             try
             {
-                da = new OleDbDataAdapter(query, conn); //Ejecuta la query
-                DataSet ds2 = new DataSet();
-                da.Fill(ds2);  //Guardo la data obtenida
+                OleDbDataAdapter da2 = new OleDbDataAdapter(query, conn); //Ejecuta la query con la conexión existente
 
-                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                DataSet ds2 = new DataSet();
+                da2.Fill(ds2);  //Guardo la data obtenida
+
+                for (int i = 0; i < ds2.Tables[0].Rows.Count; i++)
                 {
                     pagoCuotaSocial = new ArrayList();
 
-                    IEnumerator enumerator = ds.Tables[0].Rows[i].ItemArray.GetEnumerator();
+                    IEnumerator enumerator = ds2.Tables[0].Rows[i].ItemArray.GetEnumerator();
                     while (enumerator.MoveNext())
                     {
                         pagoCuotaSocial.Add(enumerator.Current);
                     }
                     pagosCuotasSociales.Add(pagoCuotaSocial);
 
-                    Console.WriteLine(pagoCuotaSocial.Count);         //Mostrar datos para ver que tiene (parece que esta guardado dentro la info del usario, no del pago cuaota social)
                 }
                 return true;
             }
