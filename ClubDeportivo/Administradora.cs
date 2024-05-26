@@ -21,14 +21,11 @@ namespace CapaNegocio
             socios = new List<Socio>();
             pagos = new List<Pago>();
             actividadesDeportivas = new List<ActividadDeportiva>();
+        }
 
-            //Solo por ahora para poder tener actividades deportivas las creo aca
-            ActividadDeportiva natacion = new ActividadDeportiva("Natacion", "Pedro", "Lunes y Martes", 10, 20000);
-            ActividadDeportiva voley = new ActividadDeportiva("Voley", "Maria", "Miercoles y Viernes", 8, 16000);
-            ActividadDeportiva futbol = new ActividadDeportiva("Futbol", "Juan", "Domingos", 20, 18000);
-            actividadesDeportivas.Add(natacion);
-            actividadesDeportivas.Add(voley);
-            actividadesDeportivas.Add(futbol);
+        public void agregarActividadDeportiva(ActividadDeportiva ad)
+        {
+            actividadesDeportivas.Add(ad);
         }
 
         public Socio buscarSocio(string dni)
@@ -114,6 +111,34 @@ namespace CapaNegocio
             Datos.setConnectionDBPath(path);
         }
 
+        public bool getActividadesDeportivas()
+        {
+            List<ArrayList> getActividadesDep = new List<ArrayList>();
+            if(Datos.getActividadesDeportivas(getActividadesDep))
+            {
+
+                foreach(ArrayList ad in getActividadesDep)
+                {
+                    string nombre = ad[1].ToString();
+                    string nombreProfesor = ad[2].ToString();
+                    string horario = ad[3].ToString();
+                    int cantAluMax = int.Parse(ad[4].ToString());
+                    decimal precio = decimal.Parse(ad[5].ToString());
+
+                    ActividadDeportiva createAD = new ActividadDeportiva(nombre, nombreProfesor, horario, cantAluMax, precio);
+
+                    //Agregar actividades deportivas al arrayList de la Administradora
+                    this.agregarActividadDeportiva(createAD);
+                }
+                return true;
+            }
+            else
+            {
+                //Error al realizar la consulta en la base de datos
+                return false;
+            }
+        }
+
         public bool getSocios()
         {
             List<ArrayList> getSocios = new List<ArrayList>();
@@ -128,6 +153,7 @@ namespace CapaNegocio
                     string telefono = socio[5].ToString();
                     DateTime fechaNacimiento = DateTime.Parse(socio[6].ToString());
                     List<ArrayList> listaPagosCuotasSociales = (List<ArrayList>)socio[7];
+                    List<ArrayList> listaPagosActividadDeportiva = (List<ArrayList>)socio[8];
 
                     Socio createSocio = new Socio(dni, nombre, apellido, email, telefono, fechaNacimiento);
 
@@ -139,6 +165,19 @@ namespace CapaNegocio
 
                         PagoCuotaSocial createPagoCuotaSocial = new PagoCuotaSocial(createSocio,pagoFinal,fechaPago);
                         this.agregarPagoCuotaSocial(createPagoCuotaSocial);
+                    }
+
+                    //Agregar los pagosCuotasSociales al socio
+                    foreach (ArrayList pagoAD in listaPagosActividadDeportiva)
+                    {
+                        decimal pagoFinal = decimal.Parse(pagoAD[1].ToString());
+                        DateTime fechaPago = DateTime.Parse(pagoAD[2].ToString());
+                        string nombreAD = pagoAD[8].ToString();
+
+                        ActividadDeportiva actDep = this.buscarActividadDeportiva(nombreAD);
+
+                        PagoActividadDeportiva createPagoAD = new PagoActividadDeportiva(createSocio, pagoFinal, fechaPago, actDep);
+                        this.agregarPagoActividadDeportiva(createPagoAD);
                     }
 
                     //Agregar socio al arrayList de la Administradora

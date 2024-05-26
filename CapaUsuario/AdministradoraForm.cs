@@ -19,9 +19,14 @@ namespace CapaUsuario
             InitializeComponent();
             adm.setConnectionDBPath(Application.StartupPath);
 
+            if (!adm.getActividadesDeportivas())
+            {
+                MessageBox.Show("Error en base de datos: getActividadesDeportivas", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
             if (!adm.getSocios())
             {
-                MessageBox.Show("Error en base de datos", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error en base de datos: getSocios", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public void agregarSocio(AgregarNuevoSocio agregarSocio)
