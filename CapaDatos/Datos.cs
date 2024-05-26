@@ -63,6 +63,7 @@ namespace CapaDatos
             }
         }
 
+
         public static bool getSocios(List<ArrayList> socios)
         {
             ArrayList socio;
@@ -190,10 +191,5 @@ namespace CapaDatos
                 return false;
             }
         }
-
     }
 }
-
-/*
-      string query = "INSERT INTO ActividadDeportiva (nombreActividad,nombreProfesor,horario,cantAlumnosMax,precioMes) VALUES (1,1,1,1,1)";
-      * */

@@ -111,6 +111,7 @@ namespace CapaNegocio
             Datos.setConnectionDBPath(path);
         }
 
+
         public bool getActividadesDeportivas()
         {
             List<ArrayList> getActividadesDep = new List<ArrayList>();
