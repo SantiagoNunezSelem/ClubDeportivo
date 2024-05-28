@@ -3,6 +3,7 @@ using Microsoft.SqlServer.Server;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
@@ -38,6 +39,8 @@ namespace CapaNegocio
         public void agregarSocio(Socio socio) 
         {
             socios.Add(socio);
+            GuardarNuevoSocio(socio);
+            
         }
 
         public void eliminarSocio(string dni)
@@ -108,7 +111,21 @@ namespace CapaNegocio
 
         public void setConnectionDBPath(string path)
         {
-            Datos.setConnectionDBPath(path);
+            //Originalmente va a traer un directorio del tipo ->    C:\Users\NICOLE\source\repos\ClubDeportivo\CapaUsuario\bin\Debug
+            //esto se debe a que toma la direccion donde se esta ejecutando, en este caso, capa usuario.
+            //hay que acomodarlo para llegar a la capa de datos->   C:\Users\NICOLE\source\repos\ClubDeportivo\CapaDatos
+
+
+            string originalPath = path; //hago una copia de la direccion original para adaptarla
+
+            // Parent = te mueve a una carpeta padre, al usarla una vez nos vemos a /CapaUsuario y con la segunda a /ClubDeportivo
+            string projectRoot = Directory.GetParent(originalPath).Parent.Parent.FullName; //de esta manera estoy parado en ClubDeportivo
+
+            // Ahora, estando en ClubDeportivo busco una carpeta llamada "CapaDatos"
+            string newPath = Path.Combine(projectRoot, "CapaDatos"); //de esta manera estoy parado donde temenemos la BBDD.
+
+            Datos.setConnectionDBPath(newPath);
+
         }
 
 
@@ -201,5 +218,26 @@ namespace CapaNegocio
             }
             return instancia;
         }
+
+
+        public void GuardarNuevoSocio(Socio nuevoSocio) //guarda en la BDD
+        {
+            ArrayList datosSocio = new ArrayList();
+            datosSocio.Add(nuevoSocio.Dni);
+            datosSocio.Add(nuevoSocio.Nombre);
+            datosSocio.Add(nuevoSocio.Apellido);
+            datosSocio.Add(nuevoSocio.Email);
+            datosSocio.Add(nuevoSocio.Telefono);
+            datosSocio.Add(nuevoSocio.FechaNacimiento.ToShortDateString()); // Convertir la fecha a formato corto
+
+            // llama al método GuardarSocio de la clase Datos en la capa de datos, pasando estos datos para que se guarden en la base de datos.
+            Datos.GuardarSocio(datosSocio);
+
+            Console.WriteLine("Nuevo socio guardado correctamente en la base de datos.");
+
+        }
+        
+
+
     }
 }
