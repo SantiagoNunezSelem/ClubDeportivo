@@ -207,16 +207,14 @@ namespace CapaDatos
                     string Apellido = datos[2].ToString();
                     string Email = datos[3].ToString();
                     string Telefono = datos[4].ToString();
-                    DateTime FechaNacimiento = DateTime.ParseExact(datos[5].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    DateTime FechaNacimiento = DateTime.Parse(datos[5].ToString());
 
                     //string strCmd = "INSERT INTO Socio(dni, nombre, apellido, email, telefono, fechaNacimiento) +" +
                     //  "VALUES (" + Dni + "," + "'" + Nombre + "'" + "," + "'" + Apellido + "'" + "," + "'" + Email + "'" + "," + Telefono + "," + FechaNacimiento + ")";
 
                     string strCmd = "INSERT INTO Socio (dni, nombre, apellido, email, telefono, fechaNacimiento) " +
                                     "VALUES (@Dni, @Nombre, @Apellido, @Email, @Telefono, @FechaNacimiento)";
-                    conn.Open();
-                    Console.WriteLine("Conexión establecida correctamente.");
-                    conn.Close();
+
                     using (OleDbConnection conn = new OleDbConnection(strCon)) // Asumiendo que strCon es tu cadena de conexión
                     {
                         conn.Open(); // abre conexion
@@ -233,21 +231,13 @@ namespace CapaDatos
                             cmd.ExecuteNonQuery(); //se lleva a cabo el guardado (se ejecuta)
                         }
                     }
-
-
-                    conn.Close();
-                    cmd.Dispose();
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine(ex.Message);
                     string error = ex.Message;
                 }
             }
         }
-
-
-
-
-
     }
 }

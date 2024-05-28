@@ -40,7 +40,6 @@ namespace CapaNegocio
         {
             socios.Add(socio);
             GuardarNuevoSocio(socio);
-            
         }
 
         public void eliminarSocio(string dni)
@@ -199,7 +198,7 @@ namespace CapaNegocio
                     }
 
                     //Agregar socio al arrayList de la Administradora
-                    this.agregarSocio(createSocio);
+                    socios.Add(createSocio);
                 }
                 return true;
             }
@@ -236,8 +235,5 @@ namespace CapaNegocio
             Console.WriteLine("Nuevo socio guardado correctamente en la base de datos.");
 
         }
-        
-
-
     }
 }
