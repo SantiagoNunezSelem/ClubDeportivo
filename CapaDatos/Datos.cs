@@ -388,5 +388,91 @@ namespace CapaDatos
             }
 
         }
+
+        ////ELIMINAR SOCIO
+        // public static void eliminarSocio(string dni)
+        //{
+        //    string query = "DELETE FROM Socio WHERE dni = @Dni";
+        //    try
+        //    {
+        //        using (OleDbConnection conn = new OleDbConnection(strCon))
+        //        {
+        //            conn.Open();
+        //            using (OleDbCommand cmd = new OleDbCommand(query, conn))
+        //            {
+        //                cmd.Parameters.AddWithValue("@Dni", dni);
+        //                cmd.ExecuteNonQuery();
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine("Error al eliminar socio: " + ex.Message);
+        //    }
+        //  }
+
+        public static void eliminarSociosYDatos(string dni)
+        {
+            using (OleDbConnection conn = new OleDbConnection(strCon))
+            {
+                conn.Open();
+                OleDbTransaction transaction = conn.BeginTransaction();
+
+                try
+                {
+                    // Eliminar los pagos de cuota social asociados al socio
+                    string deleteCuotaSocialQuery = "DELETE FROM PagoCuotaSocial WHERE idPago IN (SELECT idPago FROM Pago WHERE idSocio = (SELECT idSocio FROM Socio WHERE dni = @Dni))";
+                    using (OleDbCommand cmdCuotaSocial = new OleDbCommand(deleteCuotaSocialQuery, conn, transaction))
+                    {
+                        cmdCuotaSocial.Parameters.AddWithValue("@Dni", dni);
+                        cmdCuotaSocial.ExecuteNonQuery();
+                    }
+
+                    // Eliminar los pagos de actividad deportiva asociados al socio
+                    string deleteActividadDeportivaQuery = "DELETE FROM PagoActivdadDeportiva WHERE idPago IN (SELECT idPago FROM Pago WHERE idSocio = (SELECT idSocio FROM Socio WHERE dni = @Dni))";
+                    using (OleDbCommand cmdActividadDeportiva = new OleDbCommand(deleteActividadDeportivaQuery, conn, transaction))
+                    {
+                        cmdActividadDeportiva.Parameters.AddWithValue("@Dni", dni);
+                        cmdActividadDeportiva.ExecuteNonQuery();
+                    }
+
+                    // Eliminar los pagos asociados al socio
+                    string deletePagoQuery = "DELETE FROM Pago WHERE idSocio = (SELECT idSocio FROM Socio WHERE dni = @Dni)";
+                    using (OleDbCommand cmdPago = new OleDbCommand(deletePagoQuery, conn, transaction))
+                    {
+                        cmdPago.Parameters.AddWithValue("@Dni", dni);
+                        cmdPago.ExecuteNonQuery();
+                    }
+
+                    // Eliminar al socio
+                    string deleteSocioQuery = "DELETE FROM Socio WHERE dni = @Dni";
+                    using (OleDbCommand cmdSocio = new OleDbCommand(deleteSocioQuery, conn, transaction))
+                    {
+                        cmdSocio.Parameters.AddWithValue("@Dni", dni);
+                        cmdSocio.ExecuteNonQuery();
+                    }
+
+                    // Commit de la transacción si todas las operaciones fueron exitosas
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error al eliminar socio y sus pagos: " + ex.Message);
+                    transaction.Rollback();
+                }
+            }
+        }
+
+
+
     }
+
+
 }
+
+        
+
+
+
+
+

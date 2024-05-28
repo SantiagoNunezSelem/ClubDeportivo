@@ -3,8 +3,10 @@ using Microsoft.SqlServer.Server;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.OleDb;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,14 +44,28 @@ namespace CapaNegocio
             socios.Add(socio);
         }
 
-        public void eliminarSocio(string dni)
+
+
+        //public void eliminarSocio(string dni)
+        //{
+        //    Socio socioEliminar = buscarSocio(dni);
+        //    if (socioEliminar != null)
+        //    {
+        //        socios.Remove(socioEliminar);
+        //        Datos.eliminarSocio(dni); // Llamada al método de eliminación en la capa de datos
+
+        //    }
+        //}
+
+        public void eliminarSocio(string dni)  //elimina el socio y los pagos asociados
         {
             Socio socioEliminar = buscarSocio(dni);
-            if(socioEliminar != null)
+            if (socioEliminar != null)
             {
                 socios.Remove(socioEliminar);
+                Datos.eliminarSociosYDatos(dni); // Llamada al método de eliminación en la capa de datos
             }
-        }
+         }
 
         public ActividadDeportiva buscarActividadDeportiva(string nombre)
         {
@@ -252,6 +268,11 @@ namespace CapaNegocio
 
             Datos.guardarPagoActividadDeportivaSocio(datosPagoActividadDeportiva);
         }
+
+        
+
+
+
 
     }
 }
