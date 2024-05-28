@@ -9,6 +9,7 @@ using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace CapaNegocio
 {
     public class Administradora
@@ -39,7 +40,6 @@ namespace CapaNegocio
         public void agregarSocio(Socio socio) 
         {
             socios.Add(socio);
-            GuardarNuevoSocio(socio);
         }
 
         public void eliminarSocio(string dni)
@@ -127,11 +127,10 @@ namespace CapaNegocio
 
         }
 
-
-        public bool getActividadesDeportivas()
+        public bool getActividadesDeportivas(ref string errorMessage)
         {
             List<ArrayList> getActividadesDep = new List<ArrayList>();
-            if(Datos.getActividadesDeportivas(getActividadesDep))
+            if(Datos.getActividadesDeportivas(getActividadesDep, ref errorMessage))
             {
 
                 foreach(ArrayList ad in getActividadesDep)
@@ -156,10 +155,10 @@ namespace CapaNegocio
             }
         }
 
-        public bool getSocios()
+        public bool getSocios(ref string errorMessage)
         {
             List<ArrayList> getSocios = new List<ArrayList>();
-            if (Datos.getSocios(getSocios)){
+            if (Datos.getSocios(getSocios, ref errorMessage)){
 
                 foreach (ArrayList socio in getSocios)
                 {
@@ -181,7 +180,8 @@ namespace CapaNegocio
                         DateTime fechaPago = DateTime.Parse(pagoCS[2].ToString());
 
                         PagoCuotaSocial createPagoCuotaSocial = new PagoCuotaSocial(createSocio,pagoFinal,fechaPago);
-                        this.agregarPagoCuotaSocial(createPagoCuotaSocial);
+
+                        agregarPagoCuotaSocial(createPagoCuotaSocial);
                     }
 
                     //Agregar los pagosCuotasSociales al socio
@@ -194,17 +194,19 @@ namespace CapaNegocio
                         ActividadDeportiva actDep = this.buscarActividadDeportiva(nombreAD);
 
                         PagoActividadDeportiva createPagoAD = new PagoActividadDeportiva(createSocio, pagoFinal, fechaPago, actDep);
+
+                        //Guardar la información en el sistema
                         this.agregarPagoActividadDeportiva(createPagoAD);
                     }
 
                     //Agregar socio al arrayList de la Administradora
-                    socios.Add(createSocio);
+                    this.agregarSocio(createSocio);
                 }
                 return true;
             }
             else
             {
-                //Error al realizar la consulta en la base de datos
+                //Error al realizar la consulta en la base de datos 
                 return false;
             }
         }
@@ -219,7 +221,7 @@ namespace CapaNegocio
         }
 
 
-        public void GuardarNuevoSocio(Socio nuevoSocio) //guarda en la BDD
+        public void guardarNuevoSocioDB(Socio nuevoSocio) 
         {
             ArrayList datosSocio = new ArrayList();
             datosSocio.Add(nuevoSocio.Dni);
@@ -229,11 +231,27 @@ namespace CapaNegocio
             datosSocio.Add(nuevoSocio.Telefono);
             datosSocio.Add(nuevoSocio.FechaNacimiento.ToShortDateString()); // Convertir la fecha a formato corto
 
-            // llama al método GuardarSocio de la clase Datos en la capa de datos, pasando estos datos para que se guarden en la base de datos.
-            Datos.GuardarSocio(datosSocio);
-
-            Console.WriteLine("Nuevo socio guardado correctamente en la base de datos.");
-
+            // Recordar que al crear el socio el mismo no tiene asociado ningun pago
+            Datos.guardarSocio(datosSocio);
         }
+
+        public void guardarPagoActividadDeportivaSocio(PagoActividadDeportiva pagoActividad)
+        {
+            string nombreActDep = pagoActividad.ActividadDeportivaInfo.Nombre; //Para poder encontrar el id actividad deportiva (para la relacion en la base de datos)
+            string idActDep = Datos.getIDActividadDeportiva(nombreActDep);
+
+            string dniSocio = pagoActividad.Socio.Dni; //Para poder encontrar el id socio (para la relacion en la base de datos)
+            string idSocio = Datos.getIDSocio(dniSocio);
+
+            ArrayList datosPagoActividadDeportiva = new ArrayList();
+
+            datosPagoActividadDeportiva.Add(pagoActividad.PagoFinal);
+            datosPagoActividadDeportiva.Add(pagoActividad.FechaPago.ToShortDateString());
+            datosPagoActividadDeportiva.Add(idActDep);
+            datosPagoActividadDeportiva.Add(idSocio);
+
+            Datos.guardarPagoActividadDeportivaSocio(datosPagoActividadDeportiva);
+        }
+
     }
 }

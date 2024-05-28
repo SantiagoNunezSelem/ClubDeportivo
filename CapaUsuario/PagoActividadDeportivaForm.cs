@@ -103,25 +103,5 @@ namespace CapaUsuario
                 inputHorarios.Text = "         -         ";
             }
         }
-
-        private void PagoActividadDeportivaForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void inputPrecioMes_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox4_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

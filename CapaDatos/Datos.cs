@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Data;
 using System.Data.OleDb;
+
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -11,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Globalization;
+using System.Runtime.CompilerServices;
 
 namespace CapaDatos
 {
@@ -21,13 +23,14 @@ namespace CapaDatos
         private static OleDbDataAdapter da;
         private static OleDbConnection conn;
         private static DataSet ds;
+
         public static void setConnectionDBPath(string path)
         {
             string databasePath = path + "\\ClubDeportivoDB.mdb";
             strCon = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source= " + databasePath;
         }
 
-        public static bool getActividadesDeportivas(List<ArrayList> actividadesDeportivas)
+        public static bool getActividadesDeportivas(List<ArrayList> actividadesDeportivas, ref string errorMessage)
         {
             ArrayList actDep;
             string query = "SELECT * FROM ActividadDeportiva";
@@ -54,8 +57,8 @@ namespace CapaDatos
             }
             catch (Exception ex)
             {
-                string error = ex.Message;
-                Console.WriteLine(error);
+                errorMessage = ex.Message;
+                Console.WriteLine(ex.Message);
                 return false;
             }
             finally
@@ -65,7 +68,7 @@ namespace CapaDatos
         }
 
 
-        public static bool getSocios(List<ArrayList> socios)
+        public static bool getSocios(List<ArrayList> socios,ref string errorMessage)
         {
             ArrayList socio;
             List<ArrayList> pagosCuotasSociales;
@@ -106,8 +109,8 @@ namespace CapaDatos
             }
             catch (Exception ex)
             {
-                string error = ex.Message;
-                Console.WriteLine(error);
+                errorMessage = ex.Message;
+                Console.WriteLine(errorMessage);
                 return false;
             }
             finally
@@ -193,10 +196,107 @@ namespace CapaDatos
             }
         }
 
+        public static string getIDActividadDeportiva(string nombreAD)
+        {
+            string idActDep = null;
 
+            string query = "SELECT idActDeportiva FROM ActividadDeportiva WHERE nombreActividad = @nombreAD";
+
+            try
+            {
+                using (OleDbConnection conn = new OleDbConnection(strCon))
+                {
+                    conn.Open();
+
+                    using (OleDbCommand cmd = new OleDbCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@nombreAD", nombreAD);
+
+                        using (OleDbDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                idActDep = reader["idActDeportiva"].ToString();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+
+            return idActDep;
+        }
+
+        public static string getIDSocio(string dniSocio)
+        {
+            string idSocio = null;
+
+            string query = "SELECT idSocio FROM Socio WHERE dni = @dniSocio";
+
+            try
+            {
+                using (OleDbConnection conn = new OleDbConnection(strCon))
+                {
+                    conn.Open();
+
+                    using (OleDbCommand cmd = new OleDbCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@dniSocio", dniSocio);
+
+                        using (OleDbDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                idSocio = reader["idSocio"].ToString();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+
+            return idSocio;
+        }
+
+        public static string getIdUltimaActividadDeportivaRegistrada()
+        {
+            string idPago = null;
+            try
+            {
+                string strCmd = "SELECT TOP 1 idPago FROM Pago ORDER BY idPago DESC";
+
+                using (OleDbConnection conn = new OleDbConnection(strCon))
+                {
+                    conn.Open(); // abre conexion
+
+                    using (OleDbCommand cmd = new OleDbCommand(strCmd, conn)) // le asigno al cmd la query y la conexión ya establecida
+                    {
+                        using (OleDbDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                idPago = reader["IdPago"].ToString();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                string error = ex.Message;
+            }
+            return idPago;
+        }
 
         //SOCIO
-        public static void GuardarSocio(ArrayList datos)
+        public static void guardarSocio(ArrayList datos)
         {
             if (datos != null && datos.Count == 6)// cada 6 elementos es un socio
             {
@@ -209,13 +309,10 @@ namespace CapaDatos
                     string Telefono = datos[4].ToString();
                     DateTime FechaNacimiento = DateTime.Parse(datos[5].ToString());
 
-                    //string strCmd = "INSERT INTO Socio(dni, nombre, apellido, email, telefono, fechaNacimiento) +" +
-                    //  "VALUES (" + Dni + "," + "'" + Nombre + "'" + "," + "'" + Apellido + "'" + "," + "'" + Email + "'" + "," + Telefono + "," + FechaNacimiento + ")";
-
                     string strCmd = "INSERT INTO Socio (dni, nombre, apellido, email, telefono, fechaNacimiento) " +
                                     "VALUES (@Dni, @Nombre, @Apellido, @Email, @Telefono, @FechaNacimiento)";
 
-                    using (OleDbConnection conn = new OleDbConnection(strCon)) // Asumiendo que strCon es tu cadena de conexión
+                    using (OleDbConnection conn = new OleDbConnection(strCon))
                     {
                         conn.Open(); // abre conexion
 
@@ -228,7 +325,7 @@ namespace CapaDatos
                             cmd.Parameters.Add("@Telefono", OleDbType.VarChar).Value = Telefono;
                             cmd.Parameters.Add("@FechaNacimiento", OleDbType.Date).Value = FechaNacimiento;
 
-                            cmd.ExecuteNonQuery(); //se lleva a cabo el guardado (se ejecuta)
+                            cmd.ExecuteNonQuery(); //se lleva a cabo el guardado
                         }
                     }
                 }
@@ -238,6 +335,58 @@ namespace CapaDatos
                     string error = ex.Message;
                 }
             }
+        }
+
+        public static void guardarPagoActividadDeportivaSocio(ArrayList datos)
+        {
+            //Se requirere guardar los datos en la tabla Pago y en la tabla PagoActividadDeportiva
+
+            if (datos != null && datos.Count == 4)
+            {
+                try
+                {
+                    string pagoFinal = datos[0].ToString();
+                    DateTime fechaPago = DateTime.Parse(datos[1].ToString());
+                    string idActDep = datos[2].ToString();
+                    string idSocio = datos[3].ToString();
+
+                    string strCmd = "INSERT INTO Pago (pagoFinal, fechaPago, idSocio) " +
+                                    "VALUES (@PagoFinal, @FechaPago, @IdSocio)";
+
+                    string strCmd2 = "INSERT INTO PagoActividadDeportiva (idActDeportiva, idPago) " +
+                                    "VALUES (@IdActDeportiva, @IdPago)";
+
+                    using (OleDbConnection conn = new OleDbConnection(strCon))
+                    {
+                        conn.Open(); // abre conexion
+
+                        using (OleDbCommand cmd = new OleDbCommand(strCmd, conn))
+                        {
+                            cmd.Parameters.Add("@PagoFinal", OleDbType.VarChar).Value = pagoFinal;
+                            cmd.Parameters.Add("@FechaPago", OleDbType.Date).Value = fechaPago;
+                            cmd.Parameters.Add("@IdSocio", OleDbType.VarChar).Value = idSocio;
+
+                            cmd.ExecuteNonQuery(); //se lleva a cabo el guardado
+                        }
+
+                        string idPago = getIdUltimaActividadDeportivaRegistrada();
+
+                        using (OleDbCommand cmd = new OleDbCommand(strCmd2, conn))
+                        {
+                            cmd.Parameters.Add("@IdActDeportiva", OleDbType.VarChar).Value = idActDep;
+                            cmd.Parameters.Add("@IdPago", OleDbType.VarChar).Value = idPago;
+
+                            cmd.ExecuteNonQuery(); //se lleva a cabo el guardado
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    string error = ex.Message;
+                }
+            }
+
         }
     }
 }
