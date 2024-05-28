@@ -1,4 +1,4 @@
-﻿    using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections;
 using System.Data;
@@ -10,20 +10,21 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Globalization;
 
 namespace CapaDatos
 {
     public class Datos
     {
         private static string strCon;
-        private static OleDbCommand cmd;
+        private static OleDbCommand cmd = new OleDbCommand();
         private static OleDbDataAdapter da;
         private static OleDbConnection conn;
         private static DataSet ds;
         public static void setConnectionDBPath(string path)
         {
-            string databasePath = path + @"\ClubDeportivoDB.mdb";
-            strCon = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + databasePath;
+            string databasePath = path + "\\ClubDeportivoDB.mdb";
+            strCon = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source= " + databasePath;
         }
 
         public static bool getActividadesDeportivas(List<ArrayList> actividadesDeportivas)
@@ -156,7 +157,7 @@ namespace CapaDatos
         public static bool getPagosActividadDeportiva(object idSocio, List<ArrayList> pagosActivDep)
         {
             ArrayList pagoActividadDeportiva;
-            
+
             string query = "SELECT Pago.*, PagoActividadDeportiva.*, ActividadDeportiva.* " +
                            "FROM (Pago INNER JOIN PagoActividadDeportiva " +
                            "ON Pago.idPago = PagoActividadDeportiva.idPago) " +
@@ -189,6 +190,53 @@ namespace CapaDatos
                 string error = ex.Message;
                 Console.WriteLine(error);
                 return false;
+            }
+        }
+
+
+
+        //SOCIO
+        public static void GuardarSocio(ArrayList datos)
+        {
+            if (datos != null && datos.Count == 6)// cada 6 elementos es un socio
+            {
+                try
+                {
+                    string Dni = datos[0].ToString();
+                    string Nombre = datos[1].ToString();
+                    string Apellido = datos[2].ToString();
+                    string Email = datos[3].ToString();
+                    string Telefono = datos[4].ToString();
+                    DateTime FechaNacimiento = DateTime.Parse(datos[5].ToString());
+
+                    //string strCmd = "INSERT INTO Socio(dni, nombre, apellido, email, telefono, fechaNacimiento) +" +
+                    //  "VALUES (" + Dni + "," + "'" + Nombre + "'" + "," + "'" + Apellido + "'" + "," + "'" + Email + "'" + "," + Telefono + "," + FechaNacimiento + ")";
+
+                    string strCmd = "INSERT INTO Socio (dni, nombre, apellido, email, telefono, fechaNacimiento) " +
+                                    "VALUES (@Dni, @Nombre, @Apellido, @Email, @Telefono, @FechaNacimiento)";
+
+                    using (OleDbConnection conn = new OleDbConnection(strCon)) // Asumiendo que strCon es tu cadena de conexión
+                    {
+                        conn.Open(); // abre conexion
+
+                        using (OleDbCommand cmd = new OleDbCommand(strCmd, conn)) // le asigno al cmd la query y la conexión ya establecida
+                        {
+                            cmd.Parameters.Add("@Dni", OleDbType.VarChar).Value = Dni;
+                            cmd.Parameters.Add("@Nombre", OleDbType.VarChar).Value = Nombre;
+                            cmd.Parameters.Add("@Apellido", OleDbType.VarChar).Value = Apellido;
+                            cmd.Parameters.Add("@Email", OleDbType.VarChar).Value = Email;
+                            cmd.Parameters.Add("@Telefono", OleDbType.VarChar).Value = Telefono;
+                            cmd.Parameters.Add("@FechaNacimiento", OleDbType.Date).Value = FechaNacimiento;
+
+                            cmd.ExecuteNonQuery(); //se lleva a cabo el guardado (se ejecuta)
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    string error = ex.Message;
+                }
             }
         }
     }
