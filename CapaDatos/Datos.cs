@@ -25,7 +25,7 @@ namespace CapaDatos
 
         public static void setConnectionDBPath(string path)
         {
-            string databasePath = path + "\\ClubDeportivoB.mdb";
+            string databasePath = path + "\\ClubDeportivo.mdb";
             strCon = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source= " + databasePath;
         }
 
