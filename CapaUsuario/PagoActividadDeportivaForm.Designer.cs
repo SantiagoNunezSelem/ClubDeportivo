@@ -122,7 +122,6 @@
             this.inputPrecioMes.Size = new System.Drawing.Size(49, 17);
             this.inputPrecioMes.TabIndex = 73;
             this.inputPrecioMes.Text = "         -";
-            this.inputPrecioMes.Click += new System.EventHandler(this.inputPrecioMes_Click);
             // 
             // label5
             // 
@@ -133,7 +132,6 @@
             this.label5.Size = new System.Drawing.Size(107, 17);
             this.label5.TabIndex = 72;
             this.label5.Text = "Precio por Mes:";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // guardarPagoActividadDeportiva
             // 
@@ -249,7 +247,6 @@
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox4.TabIndex = 71;
             this.pictureBox4.TabStop = false;
-            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
             // 
             // pictureBox3
             // 
@@ -386,7 +383,6 @@
             this.Controls.Add(this.inputDniBuscar);
             this.Controls.Add(this.label1);
             this.Name = "PagoActividadDeportivaForm";
-            this.Load += new System.EventHandler(this.PagoActividadDeportivaForm_Load);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.inputDniBuscar, 0);
             this.Controls.SetChildIndex(this.pictureBox2, 0);
