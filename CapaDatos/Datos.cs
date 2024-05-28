@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Data;
 using System.Data.OleDb;
+
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -21,13 +22,14 @@ namespace CapaDatos
         private static OleDbDataAdapter da;
         private static OleDbConnection conn;
         private static DataSet ds;
+
         public static void setConnectionDBPath(string path)
         {
-            string databasePath = path + "\\ClubDeportivoDB.mdb";
+            string databasePath = path + "\\ClubDeportivoB.mdb";
             strCon = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source= " + databasePath;
         }
 
-        public static bool getActividadesDeportivas(List<ArrayList> actividadesDeportivas)
+        public static bool getActividadesDeportivas(List<ArrayList> actividadesDeportivas, ref string errorMessage)
         {
             ArrayList actDep;
             string query = "SELECT * FROM ActividadDeportiva";
@@ -54,8 +56,8 @@ namespace CapaDatos
             }
             catch (Exception ex)
             {
-                string error = ex.Message;
-                Console.WriteLine(error);
+                errorMessage = ex.Message;
+                Console.WriteLine(ex.Message);
                 return false;
             }
             finally
@@ -65,7 +67,7 @@ namespace CapaDatos
         }
 
 
-        public static bool getSocios(List<ArrayList> socios)
+        public static bool getSocios(List<ArrayList> socios,ref string errorMessage)
         {
             ArrayList socio;
             List<ArrayList> pagosCuotasSociales;
@@ -106,8 +108,8 @@ namespace CapaDatos
             }
             catch (Exception ex)
             {
-                string error = ex.Message;
-                Console.WriteLine(error);
+                errorMessage = ex.Message;
+                Console.WriteLine(errorMessage);
                 return false;
             }
             finally

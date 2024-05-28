@@ -9,6 +9,7 @@ using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace CapaNegocio
 {
     public class Administradora
@@ -128,10 +129,10 @@ namespace CapaNegocio
         }
 
 
-        public bool getActividadesDeportivas()
+        public bool getActividadesDeportivas(ref string errorMessage)
         {
             List<ArrayList> getActividadesDep = new List<ArrayList>();
-            if(Datos.getActividadesDeportivas(getActividadesDep))
+            if(Datos.getActividadesDeportivas(getActividadesDep, ref errorMessage))
             {
 
                 foreach(ArrayList ad in getActividadesDep)
@@ -156,10 +157,10 @@ namespace CapaNegocio
             }
         }
 
-        public bool getSocios()
+        public bool getSocios(ref string errorMessage)
         {
             List<ArrayList> getSocios = new List<ArrayList>();
-            if (Datos.getSocios(getSocios)){
+            if (Datos.getSocios(getSocios, ref errorMessage)){
 
                 foreach (ArrayList socio in getSocios)
                 {
@@ -204,7 +205,7 @@ namespace CapaNegocio
             }
             else
             {
-                //Error al realizar la consulta en la base de datos
+                //Error al realizar la consulta en la base de datos 
                 return false;
             }
         }
@@ -231,9 +232,6 @@ namespace CapaNegocio
 
             // llama al método GuardarSocio de la clase Datos en la capa de datos, pasando estos datos para que se guarden en la base de datos.
             Datos.GuardarSocio(datosSocio);
-
-            Console.WriteLine("Nuevo socio guardado correctamente en la base de datos.");
-
         }
     }
 }
