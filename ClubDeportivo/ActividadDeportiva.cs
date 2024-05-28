@@ -43,6 +43,12 @@ namespace CapaNegocio
             set { this.nombreActividad = value; }
         }
 
+        public string NombreProfesor
+        {
+            get { return this.nombreProfesor; }
+            set { this.nombreProfesor = value; }
+        }
+
         public decimal PrecioMes
         {
             get { return precioMes; }

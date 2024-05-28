@@ -38,6 +38,7 @@ namespace CapaUsuario
             if (socio != null)
             {
                 adm.agregarSocio(socio);
+                adm.guardarNuevoSocioDB(socio);
             }
         }
         public void eliminarSocio(string dni)
@@ -64,6 +65,7 @@ namespace CapaUsuario
         public void agregarPagoActividadDeportiva(PagoActividadDeportiva pagoActividad)
         {
             adm.agregarPagoActividadDeportiva(pagoActividad);
+            adm.guardarPagoActividadDeportivaSocio(pagoActividad);
         }
 
         public decimal getPrecioMesCuotaSocial()
