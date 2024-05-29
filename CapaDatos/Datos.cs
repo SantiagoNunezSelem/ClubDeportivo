@@ -264,7 +264,7 @@ namespace CapaDatos
             return idSocio;
         }
 
-        public static string getIdUltimaActividadDeportivaRegistrada()
+        public static string getIdUltimoPagoRegistrado()
         {
             string idPago = null;
             try
@@ -341,7 +341,7 @@ namespace CapaDatos
         {
             //Se requirere guardar los datos en la tabla Pago y en la tabla PagoActividadDeportiva
 
-            if (datos != null && datos.Count == 4)
+            if (datos != null && datos.Count == 5)
             {
                 try
                 {
@@ -349,12 +349,13 @@ namespace CapaDatos
                     DateTime fechaPago = DateTime.Parse(datos[1].ToString());
                     string idActDep = datos[2].ToString();
                     string idSocio = datos[3].ToString();
+                    int idPago = int.Parse(datos[4].ToString());
 
-                    string strCmd = "INSERT INTO Pago (pagoFinal, fechaPago, idSocio) " +
-                                    "VALUES (@PagoFinal, @FechaPago, @IdSocio)";
+                    string strCmd = "INSERT INTO Pago (idPago, pagoFinal, fechaPago, idSocio) " +
+                                    "VALUES (@idPago, @PagoFinal, @FechaPago, @IdSocio) ";
 
                     string strCmd2 = "INSERT INTO PagoActividadDeportiva (idActDeportiva, idPago) " +
-                                    "VALUES (@IdActDeportiva, @IdPago)";
+                                     "VALUES (@IdActDeportiva, @IdPago) ";
 
                     using (OleDbConnection conn = new OleDbConnection(strCon))
                     {
@@ -362,14 +363,20 @@ namespace CapaDatos
 
                         using (OleDbCommand cmd = new OleDbCommand(strCmd, conn))
                         {
+                            cmd.Parameters.Add("idPago", OleDbType.VarChar).Value = idPago;
                             cmd.Parameters.Add("@PagoFinal", OleDbType.VarChar).Value = pagoFinal;
                             cmd.Parameters.Add("@FechaPago", OleDbType.Date).Value = fechaPago;
                             cmd.Parameters.Add("@IdSocio", OleDbType.VarChar).Value = idSocio;
 
                             cmd.ExecuteNonQuery(); //se lleva a cabo el guardado
                         }
+                    }
 
-                        string idPago = getIdUltimaActividadDeportivaRegistrada();
+                    //string idPago = getIdUltimoPagoRegistrado();
+
+                    using (OleDbConnection conn = new OleDbConnection(strCon)) 
+                    {
+                        conn.Open(); // abre conexion
 
                         using (OleDbCommand cmd = new OleDbCommand(strCmd2, conn))
                         {
@@ -387,6 +394,124 @@ namespace CapaDatos
                 }
             }
 
+        }
+
+        public static void guardarPagoCuotaSocial(ArrayList datos)
+        {
+            if (datos != null && datos.Count == 7)
+            {
+                try
+                {
+                    string pagoFinal = datos[0].ToString();
+                    DateTime fechaPago = DateTime.Parse(datos[1].ToString());
+                    string idSocio = datos[2].ToString();
+                    string precioMesDato = datos[3].ToString();
+                    string maxActividadesGratuitas = datos[4].ToString();
+                    string cantActividadesDeCuotaSocial = datos[5].ToString();
+                    int idPago = int.Parse(datos[6].ToString());
+
+                    string strCmd = "INSERT INTO Pago (idPago, pagoFinal, fechaPago, idSocio) " +
+                                    "VALUES (@idPago, @PagoFinal, @FechaPago, @IdSocio)";
+
+                    string strCmd2 = "INSERT INTO PagoCuotaSocial (PrecioMensualData, MaxActividadesGratuitas, cantActividadesDeCuotaSocial, idPago) " +
+                                    "VALUES (@PrecioMensualData, @MaxActividadesGratuitas, @cantActividadesDeCuotaSocial, @idPago)";
+
+                    using (OleDbConnection conn = new OleDbConnection(strCon))
+                    {
+                        conn.Open(); // abre conexion
+
+                        using (OleDbCommand cmd = new OleDbCommand(strCmd, conn))
+                        {
+                            cmd.Parameters.Add("idPago", OleDbType.VarChar).Value = idPago;
+                            cmd.Parameters.Add("@PagoFinal", OleDbType.VarChar).Value = pagoFinal;
+                            cmd.Parameters.Add("@FechaPago", OleDbType.Date).Value = fechaPago;
+                            cmd.Parameters.Add("@IdSocio", OleDbType.VarChar).Value = idSocio;
+
+                            cmd.ExecuteNonQuery(); //se lleva a cabo el guardado
+                        }
+
+                    }
+
+                    //string idPago = getIdUltimoPagoRegistrado();
+
+                    using (OleDbConnection conn = new OleDbConnection(strCon))
+                    {
+                        conn.Open(); // abre conexion
+                        using (OleDbCommand cmd = new OleDbCommand(strCmd2, conn))
+                        {
+                            cmd.Parameters.Add("@PrecioMensualData", OleDbType.VarChar).Value = precioMesDato;
+                            cmd.Parameters.Add("@MaxActividadesGratuitas", OleDbType.VarChar).Value = maxActividadesGratuitas;
+                            cmd.Parameters.Add("@cantActividadesDeCuotaSocial", OleDbType.VarChar).Value = cantActividadesDeCuotaSocial;
+                            cmd.Parameters.Add("@idPago", OleDbType.VarChar).Value = idPago;
+
+                            cmd.ExecuteNonQuery(); //se lleva a cabo el guardado
+
+                        }
+                    }        
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    string error = ex.Message;
+                }
+
+            }
+        }
+
+        public static void actualizarCantActAsociadasPagoCuotaSocialDB(int idPago, int nuevaCantidadActividades)
+        {
+            int idPagoCuotaSocial = -1;
+
+            string querySelect = "SELECT PagoCuotaSocial.id " +
+                                 "FROM Pago " +
+                                 "INNER JOIN PagoCuotaSocial ON PagoCuotaSocial.idPago = Pago.idPago " +
+                                 "WHERE Pago.idPago = @IdPago";
+
+            string queryUpdate = "UPDATE PagoCuotaSocial " +
+                                 "SET cantActividadesDeCuotaSocial = @CantActividadesDeCuotaSocial " +
+                                 "WHERE idPagoCuotaSocial = @IdPagoCuotaSocial ";
+
+            try
+            {
+                using (OleDbConnection conn = new OleDbConnection(strCon))
+                {
+                    conn.Open();
+
+                    // Ejecutar SELECT
+                    using (OleDbCommand cmdSelect = new OleDbCommand(querySelect, conn))
+                    {
+                        cmdSelect.Parameters.AddWithValue("@IdPago", idPago);
+
+                        using (OleDbDataReader reader = cmdSelect.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                idPagoCuotaSocial = Convert.ToInt32(reader["idPagoCuotaSocial"]);
+                            }
+                        }
+                    }
+
+                    // Si se encontró el idPagoCuotaSocial, ejecutar UPDATE
+                    if (idPagoCuotaSocial != -1)
+                    {
+                        using (OleDbCommand cmdUpdate = new OleDbCommand(queryUpdate, conn))
+                        {
+                            cmdUpdate.Parameters.AddWithValue("@CantActividadesDeCuotaSocial", nuevaCantidadActividades);
+                            cmdUpdate.Parameters.AddWithValue("@IdPagoCuotaSocial", idPagoCuotaSocial);
+
+                            cmdUpdate.ExecuteNonQuery();
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No se encontró el registro de PagoCuotaSocial para actualizar.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
         }
     }
 }

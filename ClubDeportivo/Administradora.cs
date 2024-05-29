@@ -176,10 +176,11 @@ namespace CapaNegocio
                     //Agregar los pagosCuotasSociales al socio
                     foreach(ArrayList pagoCS in listaPagosCuotasSociales)
                     {
+                        int idPago = int.Parse(pagoCS[0].ToString());
                         decimal pagoFinal = decimal.Parse(pagoCS[1].ToString());
                         DateTime fechaPago = DateTime.Parse(pagoCS[2].ToString());
 
-                        PagoCuotaSocial createPagoCuotaSocial = new PagoCuotaSocial(createSocio,pagoFinal,fechaPago);
+                        PagoCuotaSocial createPagoCuotaSocial = new PagoCuotaSocial(idPago, createSocio,pagoFinal,fechaPago);
 
                         agregarPagoCuotaSocial(createPagoCuotaSocial);
                     }
@@ -187,13 +188,14 @@ namespace CapaNegocio
                     //Agregar los pagosCuotasSociales al socio
                     foreach (ArrayList pagoAD in listaPagosActividadDeportiva)
                     {
+                        int idPago = int.Parse(pagoAD[0].ToString());
                         decimal pagoFinal = decimal.Parse(pagoAD[1].ToString());
                         DateTime fechaPago = DateTime.Parse(pagoAD[2].ToString());
                         string nombreAD = pagoAD[8].ToString();
 
                         ActividadDeportiva actDep = this.buscarActividadDeportiva(nombreAD);
 
-                        PagoActividadDeportiva createPagoAD = new PagoActividadDeportiva(createSocio, pagoFinal, fechaPago, actDep);
+                        PagoActividadDeportiva createPagoAD = new PagoActividadDeportiva(idPago, createSocio, pagoFinal, fechaPago, actDep);
 
                         //Guardar la información en el sistema
                         this.agregarPagoActividadDeportiva(createPagoAD);
@@ -235,7 +237,7 @@ namespace CapaNegocio
             Datos.guardarSocio(datosSocio);
         }
 
-        public void guardarPagoActividadDeportivaSocio(PagoActividadDeportiva pagoActividad)
+        public void guardarPagoActividadDeportivaSocioDB(PagoActividadDeportiva pagoActividad)
         {
             string nombreActDep = pagoActividad.ActividadDeportivaInfo.Nombre; //Para poder encontrar el id actividad deportiva (para la relacion en la base de datos)
             string idActDep = Datos.getIDActividadDeportiva(nombreActDep);
@@ -249,9 +251,26 @@ namespace CapaNegocio
             datosPagoActividadDeportiva.Add(pagoActividad.FechaPago.ToShortDateString());
             datosPagoActividadDeportiva.Add(idActDep);
             datosPagoActividadDeportiva.Add(idSocio);
+            datosPagoActividadDeportiva.Add(pagoActividad.IdPago);
 
             Datos.guardarPagoActividadDeportivaSocio(datosPagoActividadDeportiva);
         }
 
+        public void guardarPagoCuotaSocialDB(PagoCuotaSocial pagoCS)
+        {
+            string dniSocio = pagoCS.Socio.Dni; //Para poder encontrar el id socio (para la relacion en la base de datos)
+            string idSocio = Datos.getIDSocio(dniSocio);
+
+            ArrayList datosPagoCuotaSocial = new ArrayList();
+            datosPagoCuotaSocial.Add(pagoCS.PagoFinal);
+            datosPagoCuotaSocial.Add(pagoCS.FechaPago.ToShortDateString());
+            datosPagoCuotaSocial.Add(idSocio);
+            datosPagoCuotaSocial.Add(PagoCuotaSocial.PrecioMensual);
+            datosPagoCuotaSocial.Add(5); //Cantidad maxima de actividad deportivas descuento asociadas a cuotaSocial
+            datosPagoCuotaSocial.Add(0);
+            datosPagoCuotaSocial.Add(pagoCS.IdPago);
+
+            Datos.guardarPagoCuotaSocial(datosPagoCuotaSocial);
+        }
     }
 }

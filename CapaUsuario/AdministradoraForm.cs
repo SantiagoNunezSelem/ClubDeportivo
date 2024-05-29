@@ -62,10 +62,10 @@ namespace CapaUsuario
             return adm.getPrecioActividadDeportiva(socio, actDep);
         }
 
-        public void agregarPagoActividadDeportiva(PagoActividadDeportiva pagoActividad)
+        public void agregarPagoActividadDeportiva(PagoActividadDeportiva pagoActividad) 
         {
             adm.agregarPagoActividadDeportiva(pagoActividad);
-            adm.guardarPagoActividadDeportivaSocio(pagoActividad);
+            adm.guardarPagoActividadDeportivaSocioDB(pagoActividad);
         }
 
         public decimal getPrecioMesCuotaSocial()
@@ -76,6 +76,7 @@ namespace CapaUsuario
         public void agregarPagoCuotaSocial(PagoCuotaSocial pagoCS)
         {
             adm.agregarPagoCuotaSocial(pagoCS);
+            adm.guardarPagoCuotaSocialDB(pagoCS);
         }
     }
 }

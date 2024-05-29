@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaDatos;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -138,6 +139,14 @@ namespace CapaNegocio
                 }
             }
             return false;
+        }
+
+        //Hace falta diferenciar entre la carga de datos de la DB y la del sistema porque ahora no puedo diferenciarlas
+        public void actualizarCantActAsociadasPagoCuotaSocialDB(PagoCuotaSocial pagoCS)
+        {
+            int nuevaCantActAsociadas = int.Parse(pagoCS.getCantActividadesDeCuotaSocial().ToString());
+
+            Datos.actualizarCantActAsociadasPagoCuotaSocialDB(pagoCS.IdPago, nuevaCantActAsociadas);
         }
 
 
