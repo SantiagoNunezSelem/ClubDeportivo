@@ -74,9 +74,19 @@ namespace CapaUsuario
 
                 if (cantMeses > 0)
                 {
+                    DateTime fechaPago; //Es la fecha desde la cual inicia el pago de la cuota social (se puede pagar por adelantado)
+                    if (socio.tieneCuotaSocialActiva())
+                    {
+                        //Buscar cual es la ultima cuota social activa y obtener la fecha. Luego sumarle 1 mes a dicha fecha
+                        fechaPago = (socio.getUltimaFechaCuotaSocialSocio()).AddMonths(1);
+                    }
+                    else
+                    {
+                        fechaPago = DateTime.Now;
+                    }
+
                     decimal precioMes = getPrecioMesCuotaSocial();
-                    DateTime fechaPago = DateTime.Now;
-                    
+
                     //Se crea un objeto PagoCuotaSocial por cada mes que haya pagado
                     for(int i=0; i < cantMeses; i++)
                     {

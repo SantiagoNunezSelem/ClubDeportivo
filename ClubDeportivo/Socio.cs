@@ -82,6 +82,16 @@ namespace CapaNegocio
             return false;
         }
 
+        public DateTime getUltimaFechaCuotaSocialSocio()
+        {
+            if (pagosCuotaSocial.Count > 0)
+            {
+                PagoCuotaSocial ultimoPagoCuotaSocial = pagosCuotaSocial[pagosCuotaSocial.Count - 1]; //Miro la ultima fecha de pago y la retorno
+                return ultimoPagoCuotaSocial.FechaPago;
+            }
+            return DateTime.Now;
+        }
+
         public void agregarActividadAsociadaCuotaSocial()
         {
             //Debo agregarla a la cuota social activa de este mes
@@ -90,6 +100,7 @@ namespace CapaNegocio
             if (pagoCS != null)
             {
                 pagoCS.agregarActividadAsociada();
+                this.actualizarCantActAsociadasPagoCuotaSocialDB(pagoCS);
             }
         }
 
@@ -118,6 +129,11 @@ namespace CapaNegocio
             pagosCuotaSocial.Add(pagoCS);
         }
 
+        public void guardarPagoActividadDeportivaDeDB(PagoActividadDeportiva pagoAD)
+        {
+            pagosActividadDeportiva.Add(pagoAD);
+        }
+
         public List<PagoCuotaSocial> getPagosCuotaSocial()
         {
             return pagosCuotaSocial;
@@ -144,7 +160,8 @@ namespace CapaNegocio
         //Hace falta diferenciar entre la carga de datos de la DB y la del sistema porque ahora no puedo diferenciarlas
         public void actualizarCantActAsociadasPagoCuotaSocialDB(PagoCuotaSocial pagoCS)
         {
-            int nuevaCantActAsociadas = int.Parse(pagoCS.getCantActividadesDeCuotaSocial().ToString());
+            //Entra al metodo con el valor ya actualizado
+            int nuevaCantActAsociadas = pagoCS.getCantActividadesDeCuotaSocial();
 
             Datos.actualizarCantActAsociadasPagoCuotaSocialDB(pagoCS.IdPago, nuevaCantActAsociadas);
         }
