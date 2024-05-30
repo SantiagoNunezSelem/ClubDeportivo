@@ -21,12 +21,12 @@ namespace CapaUsuario
 
             string errorMessage = null;    //si hay un error lo guarda
 
-            if (!adm.getActividadesDeportivas(ref errorMessage))
+            if (!adm.getActividadesDeportivasDB(ref errorMessage))
             {
                 MessageBox.Show("Error en base de datos -> metodo getActividadesDeportivas \n" + errorMessage, "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            if (!adm.getSocios(ref errorMessage))
+            if (!adm.getSociosDB(ref errorMessage))
             {
                 MessageBox.Show("Error en base de datos -> metodo getSocios \n" + errorMessage, "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Error);
 

@@ -67,8 +67,8 @@ namespace CapaNegocio
             //Registrar el pago de la actividad a la lista de pagos del socio
             socioDeActividad.agregarPagoActividadDeportiva(pagoActividad);
 
-            //Agregar el Socio a la actividad deportiva
-            actividadDep.agregarAlumno(socioDeActividad);
+            //Agregar el Socio a la actividad deportiva (-1 vacante)
+            actividadDep.agregarAlumno();
         }
 
         public decimal getPrecioMesCuotaSocial()
@@ -108,12 +108,20 @@ namespace CapaNegocio
             }
         }
 
+        public static Administradora ObtenerInstancia()
+        {
+            if (instancia == null)
+            {
+                instancia = new Administradora();
+            }
+            return instancia;
+        }
+
         public void setConnectionDBPath(string path)
         {
             //Originalmente va a traer un directorio del tipo ->    C:\Users\NICOLE\source\repos\ClubDeportivo\CapaUsuario\bin\Debug
             //esto se debe a que toma la direccion donde se esta ejecutando, en este caso, capa usuario.
             //hay que acomodarlo para llegar a la capa de datos->   C:\Users\NICOLE\source\repos\ClubDeportivo\CapaDatos
-
 
             string originalPath = path; //hago una copia de la direccion original para adaptarla
 
@@ -124,10 +132,9 @@ namespace CapaNegocio
             string newPath = Path.Combine(projectRoot, "CapaDatos"); //de esta manera estoy parado donde temenemos la BBDD.
 
             Datos.setConnectionDBPath(newPath);
-
         }
 
-        public bool getActividadesDeportivas(ref string errorMessage)
+        public bool getActividadesDeportivasDB(ref string errorMessage)
         {
             List<ArrayList> getActividadesDep = new List<ArrayList>();
             if(Datos.getActividadesDeportivas(getActividadesDep, ref errorMessage))
@@ -140,8 +147,9 @@ namespace CapaNegocio
                     string horario = ad[3].ToString();
                     int cantAluMax = int.Parse(ad[4].ToString());
                     decimal precio = decimal.Parse(ad[5].ToString());
+                    int cantAluInscriptos = int.Parse(ad[6].ToString());
 
-                    ActividadDeportiva createAD = new ActividadDeportiva(nombre, nombreProfesor, horario, cantAluMax, precio);
+                    ActividadDeportiva createAD = new ActividadDeportiva(nombre, nombreProfesor, horario, cantAluMax, cantAluInscriptos, precio);
 
                     //Agregar actividades deportivas al arrayList de la Administradora
                     this.agregarActividadDeportiva(createAD);
@@ -155,7 +163,20 @@ namespace CapaNegocio
             }
         }
 
-        public bool getSocios(ref string errorMessage)
+        public void agregarPagoActividadDeportivaGetDB(PagoActividadDeportiva pagoActividad)
+        {
+            //Este metodo permite agregar toda la información de un pago actividad deportiva obtenida de la base de datos
+            //No se utiliza agregarPagoActividadDeportiva ya que no se debe ejecutar algunos metodos al estar obteniendo la data de la DB
+            pagos.Add(pagoActividad); 
+
+            Socio socioDeActividad = pagoActividad.Socio;
+            ActividadDeportiva actividadDep = pagoActividad.ActividadDeportivaInfo;
+
+            //Guardar el pago de la actividad a la lista de pagos del socio
+            socioDeActividad.guardarPagoActividadDeportivaDeDB(pagoActividad);
+        }
+
+        public bool getSociosDB(ref string errorMessage)
         {
             List<ArrayList> getSocios = new List<ArrayList>();
             if (Datos.getSocios(getSocios, ref errorMessage)){
@@ -182,7 +203,7 @@ namespace CapaNegocio
 
                         PagoCuotaSocial createPagoCuotaSocial = new PagoCuotaSocial(idPago, createSocio,pagoFinal,fechaPago);
 
-                        agregarPagoCuotaSocial(createPagoCuotaSocial);
+                        this.agregarPagoCuotaSocial(createPagoCuotaSocial); //Puedo utilizar el mismo metodo para guardar data del sistema
                     }
 
                     //Agregar los pagosCuotasSociales al socio
@@ -198,7 +219,7 @@ namespace CapaNegocio
                         PagoActividadDeportiva createPagoAD = new PagoActividadDeportiva(idPago, createSocio, pagoFinal, fechaPago, actDep);
 
                         //Guardar la información en el sistema
-                        this.agregarPagoActividadDeportiva(createPagoAD);
+                        this.agregarPagoActividadDeportivaGetDB(createPagoAD);
                     }
 
                     //Agregar socio al arrayList de la Administradora
@@ -212,16 +233,6 @@ namespace CapaNegocio
                 return false;
             }
         }
-
-        public static Administradora ObtenerInstancia()
-        {
-            if (instancia == null)
-            {
-                instancia = new Administradora();
-            }
-            return instancia;
-        }
-
 
         public void guardarNuevoSocioDB(Socio nuevoSocio) 
         {

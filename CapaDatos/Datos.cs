@@ -462,7 +462,7 @@ namespace CapaDatos
         {
             int idPagoCuotaSocial = -1;
 
-            string querySelect = "SELECT PagoCuotaSocial.id " +
+            string querySelect = "SELECT PagoCuotaSocial.idPagoCuotaSocial " +
                                  "FROM Pago " +
                                  "INNER JOIN PagoCuotaSocial ON PagoCuotaSocial.idPago = Pago.idPago " +
                                  "WHERE Pago.idPago = @IdPago";
