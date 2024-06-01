@@ -67,6 +67,33 @@ namespace CapaDatos
             }
         }
 
+        public static void actualizarCantAlumnosInscriptosActividadDeportivaDB(string nombreAD, int nuevaCantAlumnosInscriptos)
+        {
+            string queryUpdate = "UPDATE ActividadDeportiva " +
+                                 "SET cantAlumnosInscriptos = @CantAlumnosInscriptos " +
+                                 "WHERE ActividadDeportiva.nombreActividad = @nombreAD ";
+
+            try
+            {
+                using (OleDbConnection conn = new OleDbConnection(strCon))
+                {
+                    conn.Open();
+                    
+                    using (OleDbCommand cmdUpdate = new OleDbCommand(queryUpdate, conn))
+                    {
+                        cmdUpdate.Parameters.AddWithValue("@CantAlumnosInscriptos", nuevaCantAlumnosInscriptos);
+                        cmdUpdate.Parameters.AddWithValue("@nombreAD", nombreAD);
+
+                        cmdUpdate.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+        }
+
 
         public static bool getSocios(List<ArrayList> socios,ref string errorMessage)
         {

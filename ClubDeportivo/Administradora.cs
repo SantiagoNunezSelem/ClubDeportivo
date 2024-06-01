@@ -176,6 +176,12 @@ namespace CapaNegocio
             socioDeActividad.guardarPagoActividadDeportivaDeDB(pagoActividad);
         }
 
+        public void actualizarCantAlumnosInscriptosActividadDeportivaDB(ActividadDeportiva pagoAD)
+        {
+            //La cantidad de alumnos inscriptos ya debe estar actualizada
+            Datos.actualizarCantAlumnosInscriptosActividadDeportivaDB(pagoAD.Nombre, pagoAD.CantAlumnosInscriptos);
+        }
+
         public bool getSociosDB(ref string errorMessage)
         {
             List<ArrayList> getSocios = new List<ArrayList>();

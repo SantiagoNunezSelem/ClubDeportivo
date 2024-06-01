@@ -66,6 +66,7 @@ namespace CapaUsuario
         {
             adm.agregarPagoActividadDeportiva(pagoActividad);
             adm.guardarPagoActividadDeportivaSocioDB(pagoActividad);
+            adm.actualizarCantAlumnosInscriptosActividadDeportivaDB(pagoActividad.ActividadDeportivaInfo);
         }
 
         public decimal getPrecioMesCuotaSocial()
