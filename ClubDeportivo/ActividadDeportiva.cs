@@ -14,7 +14,7 @@ namespace CapaNegocio
         string horario;
         int cantAlumnosMax;
         decimal precioMes;
-        private List<Socio> alumnosInscriptos;
+        private int cantAlumnosInscriptos;
 
         public ActividadDeportiva(string nombreActividad, string nombreProfesor, string horario, int cantAlumnosMax, decimal precioMes)
         {
@@ -23,17 +23,27 @@ namespace CapaNegocio
             this.horario = horario;
             this.cantAlumnosMax = cantAlumnosMax;
             this.precioMes = precioMes;
-            alumnosInscriptos = new List<Socio>();
+            this.cantAlumnosInscriptos = 0;
+        }
+
+        public ActividadDeportiva(string nombreActividad, string nombreProfesor, string horario, int cantAlumnosMax,int cantAluInscriptos, decimal precioMes)
+        {
+            this.nombreActividad = nombreActividad;
+            this.nombreProfesor = nombreProfesor;
+            this.horario = horario;
+            this.cantAlumnosMax = cantAlumnosMax;
+            this.precioMes = precioMes;
+            cantAlumnosInscriptos = cantAluInscriptos;
         }
 
         public int getVacantes()
         {
-            return (cantAlumnosMax - alumnosInscriptos.Count);
+            return (cantAlumnosMax - cantAlumnosInscriptos);
         }
 
-        public void agregarAlumno(Socio socio)
+        public void agregarAlumno()
         {
-            this.alumnosInscriptos.Add(socio);
+            this.cantAlumnosInscriptos++;
         }
 
 
@@ -59,6 +69,11 @@ namespace CapaNegocio
         {
             get { return horario; }
             set { this.horario = value; }
+        }
+        public int CantAlumnosInscriptos
+        {
+            get { return cantAlumnosInscriptos; }
+            set { this.cantAlumnosInscriptos = value; }
         }
     }
 }

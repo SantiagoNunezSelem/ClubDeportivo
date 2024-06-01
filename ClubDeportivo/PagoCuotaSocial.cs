@@ -19,6 +19,13 @@ namespace CapaNegocio
             this.cantActividadesDeCuotaSocial = 0;
         }
 
+        //Este constructor es utilizado para recuperar los datos de la base de datos y asignarle el idPago que estaba almacenado
+        public PagoCuotaSocial(int idPago, Socio socio, decimal pagoFinal, DateTime fechaPago)
+            : base(idPago, socio, pagoFinal, fechaPago)
+        {
+            this.cantActividadesDeCuotaSocial = 0;
+        }
+
         public void agregarActividadAsociada()
         {
             this.cantActividadesDeCuotaSocial++;

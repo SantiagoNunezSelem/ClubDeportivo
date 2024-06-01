@@ -21,12 +21,12 @@ namespace CapaUsuario
 
             string errorMessage = null;    //si hay un error lo guarda
 
-            if (!adm.getActividadesDeportivas(ref errorMessage))
+            if (!adm.getActividadesDeportivasDB(ref errorMessage))
             {
                 MessageBox.Show("Error en base de datos -> metodo getActividadesDeportivas \n" + errorMessage, "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            if (!adm.getSocios(ref errorMessage))
+            if (!adm.getSociosDB(ref errorMessage))
             {
                 MessageBox.Show("Error en base de datos -> metodo getSocios \n" + errorMessage, "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
@@ -62,10 +62,11 @@ namespace CapaUsuario
             return adm.getPrecioActividadDeportiva(socio, actDep);
         }
 
-        public void agregarPagoActividadDeportiva(PagoActividadDeportiva pagoActividad)
+        public void agregarPagoActividadDeportiva(PagoActividadDeportiva pagoActividad) 
         {
             adm.agregarPagoActividadDeportiva(pagoActividad);
-            adm.guardarPagoActividadDeportivaSocio(pagoActividad);
+            adm.guardarPagoActividadDeportivaSocioDB(pagoActividad);
+            adm.actualizarCantAlumnosInscriptosActividadDeportivaDB(pagoActividad.ActividadDeportivaInfo);
         }
 
         public decimal getPrecioMesCuotaSocial()
@@ -76,6 +77,7 @@ namespace CapaUsuario
         public void agregarPagoCuotaSocial(PagoCuotaSocial pagoCS)
         {
             adm.agregarPagoCuotaSocial(pagoCS);
+            adm.guardarPagoCuotaSocialDB(pagoCS);
         }
     }
 }

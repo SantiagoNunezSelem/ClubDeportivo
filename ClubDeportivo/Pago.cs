@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaDatos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,9 @@ namespace CapaNegocio
 {
     public class Pago
     {
+        static int counterID = int.Parse(Datos.getIdUltimoPagoRegistrado());
+
+        protected int idPago;
         protected Socio socio;
         protected decimal pagoFinal;
         protected DateTime fechaPago;
@@ -17,6 +21,22 @@ namespace CapaNegocio
             this.socio = socio;
             this.pagoFinal = pagoFinal;
             this.fechaPago = fechaPago;
+            this.idPago = getIDPagoUnico();
+        }
+
+        //Este constructor es utilizado para recuperar los datos de la base de datos y asignarle el idPago que estaba almacenado
+        public Pago(int idPago, Socio socio, decimal pagoFinal, DateTime fechaPago)
+        {
+            this.socio = socio;
+            this.pagoFinal = pagoFinal;
+            this.fechaPago = fechaPago;
+            this.idPago = idPago;
+        }
+
+        public int getIDPagoUnico()
+        {
+            counterID++;
+            return counterID;
         }
 
         public Socio Socio
@@ -35,6 +55,11 @@ namespace CapaNegocio
         {
             get { return pagoFinal; }
             set { pagoFinal = value; }
+        }
+
+        public int IdPago
+        {
+            get { return idPago; }
         }
 
     }
