@@ -240,16 +240,6 @@ namespace CapaNegocio
             }
         }
 
-        public static Administradora ObtenerInstancia()
-        {
-            if (instancia == null)
-            {
-                instancia = new Administradora();
-            }
-            return instancia;
-        }
-
-
         public void guardarNuevoSocioDB(Socio nuevoSocio) 
         {
             ArrayList datosSocio = new ArrayList();
