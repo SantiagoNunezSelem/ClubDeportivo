@@ -70,10 +70,10 @@ namespace CapaNegocio
             get { return horario; }
             set { this.horario = value; }
         }
-
-        public int AlumnosInscriptos
+        public int CantAlumnosInscriptos
         {
             get { return cantAlumnosInscriptos; }
+            set { this.cantAlumnosInscriptos = value; }
         }
     }
 }
