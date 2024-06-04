@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaNegocio;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,5 +16,27 @@ namespace CapaUsuario
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
         }
+
+        private void selectActividadDeportiva_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string nombreActividadDeportiva = selectActividadDeportiva.Text;
+            ActividadDeportiva actividadSeleccionada = base.buscarActividadDeportiva(nombreActividadDeportiva);
+
+            if (actividadSeleccionada != null)
+            {
+                labelPrecioPorMes.Text = "$" + actividadSeleccionada.PrecioMes.ToString(); //Precio del mes sin ningun descuento de Cuota Social
+                labelVacantes.Text = actividadSeleccionada.getVacantes().ToString();
+                labelAluInscriptos.Text = actividadSeleccionada.AlumnosInscriptos.ToString();
+                labelHorario.Text = actividadSeleccionada.Horario;
+            }
+            else
+            {
+                labelPrecioPorMes.Text = "         -         ";
+                labelVacantes.Text = "         -         ";
+                labelAluInscriptos.Text = "         -         ";
+                labelHorario.Text = "         -         ";
+            }
+        }
+    
     }
 }
