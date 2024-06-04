@@ -26,7 +26,7 @@ namespace CapaUsuario
             {
                 labelPrecioPorMes.Text = "$" + actividadSeleccionada.PrecioMes.ToString(); //Precio del mes sin ningun descuento de Cuota Social
                 labelVacantes.Text = actividadSeleccionada.getVacantes().ToString();
-                labelAluInscriptos.Text = actividadSeleccionada.AlumnosInscriptos.ToString();
+                labelAluInscriptos.Text = actividadSeleccionada.CantAlumnosInscriptos.ToString();
                 labelHorario.Text = actividadSeleccionada.Horario;
             }
             else
