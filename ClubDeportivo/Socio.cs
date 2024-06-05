@@ -167,6 +167,8 @@ namespace CapaNegocio
         }
 
 
+
+
         public string Dni
         {
             get { return dni; }

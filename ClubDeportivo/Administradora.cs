@@ -42,12 +42,13 @@ namespace CapaNegocio
             socios.Add(socio);
         }
 
-        public void eliminarSocio(string dni)
+        public void eliminarSocio(string dni) //elimina el socio y los pagos asociados
         {
             Socio socioEliminar = buscarSocio(dni);
             if(socioEliminar != null)
             {
                 socios.Remove(socioEliminar);
+               Datos.eliminarSociosYDatos(dni); // Llamada al método de eliminación en la capa de datos
             }
         }
 
@@ -212,7 +213,7 @@ namespace CapaNegocio
                         this.agregarPagoCuotaSocial(createPagoCuotaSocial); //Puedo utilizar el mismo metodo para guardar data del sistema
                     }
 
-                    //Agregar los pagosCuotasSociales al socio
+                    //Agregar los pagosActividadDeportiva al socio
                     foreach (ArrayList pagoAD in listaPagosActividadDeportiva)
                     {
                         int idPago = int.Parse(pagoAD[0].ToString());

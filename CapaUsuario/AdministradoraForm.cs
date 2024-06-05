@@ -14,13 +14,24 @@ namespace CapaUsuario
     public partial class AdministradoraForm : Form
     {
         private CapaNegocio.Administradora adm = CapaNegocio.Administradora.ObtenerInstancia();
+
+        private static bool primerIngreso = true; //es estatica para mantener su valor en las distintas instancias 
+
         public AdministradoraForm()
         {
             InitializeComponent();
             adm.setConnectionDBPath(Application.StartupPath);
 
-            string errorMessage = null;    //si hay un error lo guarda
+            if (primerIngreso == true)
+                getInformacionBD();
+        }
 
+        private void getInformacionBD()
+
+        {
+            primerIngreso = false;
+
+            string errorMessage = null;    //si hay un error lo guarda
             if (!adm.getActividadesDeportivasDB(ref errorMessage))
             {
                 MessageBox.Show("Error en base de datos -> metodo getActividadesDeportivas \n" + errorMessage, "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -32,6 +43,8 @@ namespace CapaUsuario
 
             }
         }
+
+
         public void agregarSocio(AgregarNuevoSocio agregarSocio)
         {
             Socio socio = agregarSocio.getSocio();
@@ -52,6 +65,8 @@ namespace CapaUsuario
             return socio;
         }
 
+
+
         public ActividadDeportiva buscarActividadDeportiva(string nombre)
         {
             return adm.buscarActividadDeportiva(nombre);
@@ -62,7 +77,7 @@ namespace CapaUsuario
             return adm.getPrecioActividadDeportiva(socio, actDep);
         }
 
-        public void agregarPagoActividadDeportiva(PagoActividadDeportiva pagoActividad) 
+        public void agregarPagoActividadDeportiva(PagoActividadDeportiva pagoActividad)
         {
             adm.agregarPagoActividadDeportiva(pagoActividad);
             adm.guardarPagoActividadDeportivaSocioDB(pagoActividad);
