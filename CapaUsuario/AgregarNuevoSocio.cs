@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -63,10 +64,26 @@ namespace CapaUsuario
                 string apellido = inputApellido.Text;
                 string email = inputEmail.Text;
                 string telefono = inputTelefono.Text;
-                DateTime fechaNacimiento = DateTime.Parse(inputFechaNacimiento.Text);
-                this.socio = new Socio(dni, nombre, apellido, email, telefono, fechaNacimiento);
-                
-                Close();
+                string inputFecha = inputFechaNacimiento.Text;
+                if(nombre != "" && apellido != "" && email != "")
+                {
+                    DateTime fechaNacimiento;
+                    if (DateTime.TryParseExact(inputFecha, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out fechaNacimiento))
+                    {
+                        // La fecha se pudo convertir correctamente
+                        this.socio = new Socio(dni, nombre, apellido, email, telefono, fechaNacimiento);
+
+                        Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Fecha de nacimiento invalida", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Ingrese la informacion del socio", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
