@@ -39,7 +39,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.inputFechaNacimiento = new System.Windows.Forms.MaskedTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.inputApellido = new System.Windows.Forms.MaskedTextBox();
@@ -50,6 +49,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.InputBuscarDni = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.inputFechaNacimiento = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -195,31 +195,6 @@
             this.pictureBox4.TabIndex = 37;
             this.pictureBox4.TabStop = false;
             // 
-            // inputFechaNacimiento
-            // 
-            this.inputFechaNacimiento.AccessibleDescription = "";
-            this.inputFechaNacimiento.AccessibleName = "";
-            this.inputFechaNacimiento.AllowPromptAsInput = false;
-            this.inputFechaNacimiento.BackColor = System.Drawing.SystemColors.Control;
-            this.inputFechaNacimiento.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.inputFechaNacimiento.CausesValidation = false;
-            this.inputFechaNacimiento.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.inputFechaNacimiento.ForeColor = System.Drawing.Color.Black;
-            this.inputFechaNacimiento.Location = new System.Drawing.Point(128, 350);
-            this.inputFechaNacimiento.Mask = "00/00/0000";
-            this.inputFechaNacimiento.Name = "inputFechaNacimiento";
-            this.inputFechaNacimiento.RejectInputOnFirstFailure = true;
-            this.inputFechaNacimiento.ResetOnPrompt = false;
-            this.inputFechaNacimiento.ResetOnSpace = false;
-            this.inputFechaNacimiento.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.inputFechaNacimiento.ShortcutsEnabled = false;
-            this.inputFechaNacimiento.Size = new System.Drawing.Size(100, 16);
-            this.inputFechaNacimiento.SkipLiterals = false;
-            this.inputFechaNacimiento.TabIndex = 36;
-            this.inputFechaNacimiento.Tag = "";
-            this.inputFechaNacimiento.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals;
-            this.inputFechaNacimiento.ValidatingType = typeof(System.DateTime);
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -362,10 +337,19 @@
             this.label1.TabIndex = 26;
             this.label1.Text = "Editar Informacion de un Socio";
             // 
+            // inputFechaNacimiento
+            // 
+            this.inputFechaNacimiento.AutoSize = true;
+            this.inputFechaNacimiento.Location = new System.Drawing.Point(128, 348);
+            this.inputFechaNacimiento.Name = "inputFechaNacimiento";
+            this.inputFechaNacimiento.Size = new System.Drawing.Size(0, 13);
+            this.inputFechaNacimiento.TabIndex = 48;
+            // 
             // EditarInformacionSocio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.inputFechaNacimiento);
             this.Controls.Add(this.registrarUsuario);
             this.Controls.Add(this.buscarDni);
             this.Controls.Add(this.label7);
@@ -377,7 +361,6 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.inputFechaNacimiento);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.inputApellido);
@@ -388,30 +371,8 @@
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.InputBuscarDni);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "EditarInformacionSocio";
-            this.Controls.SetChildIndex(this.label1, 0);
-            this.Controls.SetChildIndex(this.InputBuscarDni, 0);
-            this.Controls.SetChildIndex(this.pictureBox2, 0);
-            this.Controls.SetChildIndex(this.label2, 0);
-            this.Controls.SetChildIndex(this.inputNombre, 0);
-            this.Controls.SetChildIndex(this.pictureBox1, 0);
-            this.Controls.SetChildIndex(this.label3, 0);
-            this.Controls.SetChildIndex(this.inputApellido, 0);
-            this.Controls.SetChildIndex(this.pictureBox3, 0);
-            this.Controls.SetChildIndex(this.label4, 0);
-            this.Controls.SetChildIndex(this.inputFechaNacimiento, 0);
-            this.Controls.SetChildIndex(this.pictureBox4, 0);
-            this.Controls.SetChildIndex(this.label5, 0);
-            this.Controls.SetChildIndex(this.label6, 0);
-            this.Controls.SetChildIndex(this.inputTelefono, 0);
-            this.Controls.SetChildIndex(this.pictureBox6, 0);
-            this.Controls.SetChildIndex(this.label8, 0);
-            this.Controls.SetChildIndex(this.inputEmail, 0);
-            this.Controls.SetChildIndex(this.pictureBox5, 0);
-            this.Controls.SetChildIndex(this.label7, 0);
-            this.Controls.SetChildIndex(this.buscarDni, 0);
-            this.Controls.SetChildIndex(this.registrarUsuario, 0);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
@@ -436,7 +397,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.MaskedTextBox inputFechaNacimiento;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.MaskedTextBox inputApellido;
@@ -447,5 +407,6 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.MaskedTextBox InputBuscarDni;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label inputFechaNacimiento;
     }
 }
