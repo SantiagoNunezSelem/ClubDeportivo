@@ -5,26 +5,31 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.Remoting.Messaging;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
 using System.Threading.Tasks;
 
 
 namespace CapaNegocio
 {
-    public class Administradora
-    {
+    public class Administradora {
         private static Administradora instancia;
         private List<Socio> socios;
         private List<Pago> pagos;
         private List<ActividadDeportiva> actividadesDeportivas;
-        public Administradora()
-        {
+        public Administradora() {
             socios = new List<Socio>();
             pagos = new List<Pago>();
             actividadesDeportivas = new List<ActividadDeportiva>();
         }
 
+        public static bool validateUser(string id, string dni) {
+            String _id = Datos.getIDSocio(dni);
+
+            return _id == id;
+        }
         public void agregarActividadDeportiva(ActividadDeportiva ad)
         {
             actividadesDeportivas.Add(ad);
@@ -117,6 +122,17 @@ namespace CapaNegocio
             return instancia;
         }
 
+        public static void staticSetConnectionDBPath(string path) {
+            string originalPath = path; //hago una copia de la direccion original para adaptarla
+
+            string projectRoot = Directory.GetParent(originalPath).Parent.FullName; //de esta manera estoy parado en ClubDeportivo
+
+            // Ahora, estando en ClubDeportivo busco una carpeta llamada "CapaDatos"
+            string newPath = Path.Combine(projectRoot, "CapaDatos"); //de esta manera estoy parado donde temenemos la BBDD.
+
+            Datos.setConnectionDBPath(newPath);
+        }
+
         public void setConnectionDBPath(string path)
         {
             //Originalmente va a traer un directorio del tipo ->    C:\Users\NICOLE\source\repos\ClubDeportivo\CapaUsuario\bin\Debug
@@ -161,6 +177,18 @@ namespace CapaNegocio
                 //Error al realizar la consulta en la base de datos
                 return false;
             }
+        }
+
+        public static List<object> obtenerActividadesInscriptasPara(string idSocio) {
+            return Datos.obtenerActividadesInscriptasPara(idSocio);
+        }
+
+        public static List<string> obtenerIDdeActividadesDisponiblesPara(string idSocio) {
+            return Datos.obtenerActividadesNoinscriptasPara(idSocio);
+        }
+
+        public static void inscripcionEnActividad(string idSocio, string actividadId) {
+            Datos.inscripcionEnActividad(idSocio, actividadId);
         }
 
         public void agregarPagoActividadDeportivaGetDB(PagoActividadDeportiva pagoActividad)

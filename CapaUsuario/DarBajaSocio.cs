@@ -27,8 +27,12 @@ namespace CapaUsuario
             }
             else
             {
-                MessageBox.Show("Persona no registrada", "Info", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Persona no registrada LOKO", "Info", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void InputBuscarDni_MaskInputRejected(object sender, MaskInputRejectedEventArgs e) {
+
         }
     }
 }

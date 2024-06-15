@@ -16,8 +16,7 @@ using System.Runtime.CompilerServices;
 
 namespace CapaDatos
 {
-    public class Datos
-    {
+    public class Datos {
         private static string strCon;
         private static OleDbCommand cmd = new OleDbCommand();
         private static OleDbDataAdapter da;
@@ -27,7 +26,28 @@ namespace CapaDatos
         public static void setConnectionDBPath(string path)
         {
             string databasePath = path + "\\ClubDeportivoDB.mdb";
-            strCon = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source= " + databasePath;
+
+            string access64Provider = "Microsoft.ACE.OLEDB.12.0";
+            // string access32Provider = "Microsoft.Jet.OLEDB.4.0";
+
+            strCon = "Provider="+ access64Provider + ";Data Source= " + databasePath;
+        }
+        public static List<object> obtenerActividadesInscriptasPara(string idSocio) {
+            // Método para obtener las actividades en las que se encuentra inscripto un usuario (solo las actividades, no sus pagos)
+            return null;
+        }
+        public static void inscripcionEnActividad(string idSocio, string actividadId) {
+            // método para que un usuario pueda registrarse en una actividad.
+        }
+
+        // Método para obtener las actividades a las que el socio con idSocio no registra un pago a la fecha actual
+        public static List<string> obtenerActividadesNoinscriptasPara(string idSocio) {
+            List<string> list = new List<string>();
+            list.Add("1");
+            list.Add("2");
+            list.Add("3");
+
+            return list;
         }
 
         public static bool getActividadesDeportivas(List<ArrayList> actividadesDeportivas, ref string errorMessage)
@@ -257,6 +277,7 @@ namespace CapaDatos
             return idActDep;
         }
 
+        // Para loguear socio
         public static string getIDSocio(string dniSocio)
         {
             string idSocio = null;
@@ -282,13 +303,13 @@ namespace CapaDatos
                         }
                     }
                 }
+                return idSocio;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error: " + ex.Message);
+                return strCon + " - exception: " + ex;
             }
 
-            return idSocio;
         }
 
         public static string getIdUltimoPagoRegistrado()
@@ -322,7 +343,7 @@ namespace CapaDatos
             return idPago;
         }
 
-        //SOCIO
+        // Para registrar un nuevo socio
         public static void guardarSocio(ArrayList datos)
         {
             if (datos != null && datos.Count == 6)// cada 6 elementos es un socio
@@ -364,14 +385,13 @@ namespace CapaDatos
             }
         }
 
+        // Inscribirse en una actividad
         public static void guardarPagoActividadDeportivaSocio(ArrayList datos)
         {
             //Se requirere guardar los datos en la tabla Pago y en la tabla PagoActividadDeportiva
 
-            if (datos != null && datos.Count == 5)
-            {
-                try
-                {
+            if (datos != null && datos.Count == 5) {
+                try {
                     string pagoFinal = datos[0].ToString();
                     DateTime fechaPago = DateTime.Parse(datos[1].ToString());
                     string idActDep = datos[2].ToString();
@@ -414,8 +434,7 @@ namespace CapaDatos
                         }
                     }
                 }
-                catch (Exception ex)
-                {
+                catch (Exception ex) {
                     Console.WriteLine(ex.Message);
                     string error = ex.Message;
                 }

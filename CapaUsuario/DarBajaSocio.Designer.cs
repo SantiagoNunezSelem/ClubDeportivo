@@ -31,22 +31,30 @@
             this.botonEliminar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
+            // InputBuscarDni
+            // 
+            this.InputBuscarDni.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.InputBuscarDni.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.InputBuscarDni_MaskInputRejected);
+            // 
             // botonEliminar
             // 
-            this.botonEliminar.Location = new System.Drawing.Point(441, 288);
+            this.botonEliminar.Location = new System.Drawing.Point(588, 354);
+            this.botonEliminar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.botonEliminar.Name = "botonEliminar";
-            this.botonEliminar.Size = new System.Drawing.Size(137, 23);
+            this.botonEliminar.Size = new System.Drawing.Size(183, 28);
             this.botonEliminar.TabIndex = 35;
             this.botonEliminar.Text = "Eliminar";
             this.botonEliminar.UseVisualStyleBackColor = true;
             this.botonEliminar.MouseClick += new System.Windows.Forms.MouseEventHandler(this.botonEliminar_MouseClick);
             // 
-            // Form1
+            // DarBajaSocio
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.ClientSize = new System.Drawing.Size(1067, 554);
             this.Controls.Add(this.botonEliminar);
-            this.Name = "Form1";
+            this.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.Name = "DarBajaSocio";
+            this.Controls.SetChildIndex(this.InputBuscarDni, 0);
             this.Controls.SetChildIndex(this.botonEliminar, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
