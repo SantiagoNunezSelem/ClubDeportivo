@@ -152,6 +152,7 @@ namespace CapaNegocio
 
         public bool getActividadesDeportivasDB(ref string errorMessage)
         {
+            
             List<ArrayList> getActividadesDep = new List<ArrayList>();
             if(Datos.getActividadesDeportivas(getActividadesDep, ref errorMessage))
             {
@@ -259,6 +260,7 @@ namespace CapaNegocio
                     //Agregar socio al arrayList de la Administradora
                     this.agregarSocio(createSocio);
                 }
+                ArrayList data = Datos.getInfoSocio("11111111");
                 return true;
             }
             else
