@@ -180,16 +180,8 @@ namespace CapaNegocio
             }
         }
 
-        public static List<object> obtenerActividadesInscriptasPara(string idSocio) {
-            return Datos.obtenerActividadesInscriptasPara(idSocio);
-        }
-
-        public static List<string> obtenerIDdeActividadesDisponiblesPara(string idSocio) {
-            return Datos.obtenerActividadesNoinscriptasPara(idSocio);
-        }
-
-        public static void inscripcionEnActividad(string idSocio, string actividadId) {
-            Datos.inscripcionEnActividad(idSocio, actividadId);
+        public static List<object> obtenerActividadesSocioInscriptoEsteMes(string idSocio) {
+            return Datos.obtenerActividadesSocioInscriptoEsteMes(idSocio);
         }
 
         public void agregarPagoActividadDeportivaGetDB(PagoActividadDeportiva pagoActividad)
@@ -260,7 +252,6 @@ namespace CapaNegocio
                     //Agregar socio al arrayList de la Administradora
                     this.agregarSocio(createSocio);
                 }
-                ArrayList data = Datos.getInfoSocio("11111111");
                 return true;
             }
             else
