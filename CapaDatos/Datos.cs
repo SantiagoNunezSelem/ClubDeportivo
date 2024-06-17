@@ -309,7 +309,46 @@ namespace CapaDatos
             {
                 return strCon + " - exception: " + ex;
             }
+        }
 
+        public static ArrayList getInfoSocio(string dniSocio)
+        {
+            ArrayList datosSocio = new ArrayList();
+
+            string query = "SELECT * FROM Socio WHERE dni = @dniSocio";
+
+            try
+            {
+                using (OleDbConnection conn = new OleDbConnection(strCon))
+                {
+                    conn.Open();
+
+                    using (OleDbCommand cmd = new OleDbCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@dniSocio", dniSocio);
+
+                        using (OleDbDataReader reader = cmd.ExecuteReader())
+                        {
+                            
+                            if (reader.Read())
+                            {
+                                datosSocio[0] = reader["idSocio"].ToString();
+                                datosSocio[1] = reader["dni"].ToString();
+                                datosSocio[2] = reader["nombre"].ToString();
+                                datosSocio[3] = reader["apellido"].ToString();
+                                datosSocio[4] = reader["email"].ToString();
+                                datosSocio[5] = reader["telefono"].ToString();
+                                datosSocio[6] = reader["fechaNacimiento"].ToString();
+                            }
+                        }
+                    }
+                }
+                return datosSocio;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         public static string getIdUltimoPagoRegistrado()
