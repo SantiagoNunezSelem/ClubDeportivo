@@ -33,13 +33,18 @@ namespace WebApplication7 {
             // Obtener el valor seleccionado
             string idActividad = ddlDeportes.SelectedValue;
             string nombreActividad = ddlDeportes.SelectedItem.Text;
-            
-            string idSocio = (Session["id"] as string);
 
-            Administradora.inscripcionEnActividad(idSocio, idActividad);
+            if (idActividad == "") {
+                success.Text = "Por favor, seleccione una actividad deportiva";
+                return;
+            }
 
-            ddlDeportes.Items.Remove(new ListItem(nombreActividad, idActividad));
-            success.Text = "Felicidades, ahora se encuentra inscripto en la actividad seleccionada. Recuerde pagar la cuota correspondiente.";
+            Page.ClientScript.RegisterStartupScript(
+                this.GetType(), "OpenWindow", "window.open('https://link.mercadopago.com.ar/clubdeportivo','_newtab');", 
+                true
+            );
+
+            success.Text = "Si el pago fue realizado con éxito, un administrador lo registrará. Recuerde guardar el comprobante.";
             ddlDeportes.SelectedIndex = 0;
         }
     }

@@ -36,28 +36,10 @@ namespace WebApplication7 {
 
         protected void inputNameChange() {
         }
-        /*
-          <!-- <form onsubmit="onLogin">
-                    <div class="textbox">
-                        <input type="text" placeholder="Usuario" required>
-                    </div>
-                    <div class="textbox">
-                        <input type="password" placeholder="Contraseña" required>
-                    </div>
-                    <asp:Button 
-                        ID="ButSelec1" 
-                        runat="server" 
-                        onclick="ButSelec1_Click"  
-                        class="btn" 
-                        Text="Iniciar Sesión" 
-                    />
-                </form> -->
-         */
 
         protected void onLogin(object sender, EventArgs e) {
             string id = TextBoxID.Text;
             string dni = TextBoxDNI.Text;
-            Response.Write("domain--" + AppDomain.CurrentDomain.BaseDirectory);
 
             Administradora.staticSetConnectionDBPath(AppDomain.CurrentDomain.BaseDirectory);
             bool isUserValid = Administradora.validateUser(id, dni);
@@ -67,7 +49,7 @@ namespace WebApplication7 {
                 Session["id"] = id;
 
                 LabelAp.Text = "Usuario logueado con éxito. Serás redirigido";
-                Response.Redirect("Dashboard.aspx");
+                Response.Redirect("Panel.aspx");
             }
             else
                 LabelAp.Text = "Usuario no encontrado. Revise los datos ingresados";

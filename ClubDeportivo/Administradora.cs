@@ -216,8 +216,7 @@ namespace CapaNegocio
             List<ArrayList> getSocios = new List<ArrayList>();
             if (Datos.getSocios(getSocios, ref errorMessage)){
 
-                foreach (ArrayList socio in getSocios)
-                {
+                foreach (ArrayList socio in getSocios) {
                     string dni = socio[1].ToString();
                     string nombre = socio[2].ToString();
                     string apellido = socio[3].ToString();

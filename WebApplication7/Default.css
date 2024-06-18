@@ -51,38 +51,15 @@ main {
     background: #007bff;
     border: none;
     border-radius: 5px;
-    color: #fff;
+    color: #0056b3;
     font-size: 18px;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background 1s;
 }
 
-    .btn:hover {
-        background: #0056b3;
-    }
+.btn:hover { background: red; }
 
 .info-box {
     border-top: solid 1px black;
     padding-top: 5%;
 }
-
-.info-box > ul {
-    display: flex; 
-    list-style: none;
-    justify-content: space-evenly;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-}
-
-    .info-box > ul > li {
-        /*background: #007bff;
-        color: #fff;*/
-        border: solid 1px black;
-        padding: 10px;
-        width: 30%;
-        margin-bottom: 10px;
-        border-radius: 5px;
-        text-align: center;
-        font-size: 18px;
-    }
