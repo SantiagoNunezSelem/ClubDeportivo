@@ -27,17 +27,10 @@ namespace CapaDatos
         {
             string databasePath = path + "\\ClubDeportivoDB.mdb";
 
-            string access64Provider = "Microsoft.ACE.OLEDB.12.0";
-            // string access32Provider = "Microsoft.Jet.OLEDB.4.0";
+            //string access64Provider = "Microsoft.ACE.OLEDB.12.0";
+            string access32Provider = "Microsoft.Jet.OLEDB.4.0";
 
-            strCon = "Provider="+ access64Provider + ";Data Source= " + databasePath;
-        }
-        public static List<object> obtenerActividadesInscriptasPara(string idSocio) {
-            // Método para obtener las actividades en las que se encuentra inscripto un usuario (solo las actividades, no sus pagos)
-            return null;
-        }
-        public static void inscripcionEnActividad(string idSocio, string actividadId) {
-            // método para que un usuario pueda registrarse en una actividad.
+            strCon = "Provider="+ access32Provider + ";Data Source= " + databasePath;
         }
 
         // Método para obtener las actividades a las que el socio con idSocio no registra un pago a la fecha actual
@@ -309,7 +302,46 @@ namespace CapaDatos
             {
                 return strCon + " - exception: " + ex;
             }
+        }
 
+        public static ArrayList getInfoSocio(string dniSocio)
+        {
+            ArrayList datosSocio = new ArrayList();
+
+            string query = "SELECT * FROM Socio WHERE dni = @dniSocio";
+
+            try
+            {
+                using (OleDbConnection conn = new OleDbConnection(strCon))
+                {
+                    conn.Open();
+
+                    using (OleDbCommand cmd = new OleDbCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@dniSocio", dniSocio);
+
+                        using (OleDbDataReader reader = cmd.ExecuteReader())
+                        {
+                            
+                            if (reader.Read())
+                            {
+                                datosSocio[0] = reader["idSocio"].ToString();
+                                datosSocio[1] = reader["dni"].ToString();
+                                datosSocio[2] = reader["nombre"].ToString();
+                                datosSocio[3] = reader["apellido"].ToString();
+                                datosSocio[4] = reader["email"].ToString();
+                                datosSocio[5] = reader["telefono"].ToString();
+                                datosSocio[6] = reader["fechaNacimiento"].ToString();
+                            }
+                        }
+                    }
+                }
+                return datosSocio;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         public static string getIdUltimoPagoRegistrado()
@@ -557,6 +589,65 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
+            }
+        }
+
+        public static List<object> obtenerActividadesSocioInscriptoEsteMes(string idSocio)
+        {
+            // Método para obtener las actividades en las que se encuentra inscripto un usuario (solo las actividades, no sus pagos)
+            string fechaHoy = DateTime.Now.ToString("dd/MM/yyyy");
+            string fechaMesAtras = DateTime.Now.AddMonths(-1).ToString("dd/MM/yyyy");
+
+            List<object> dataActividadesDeportivas = new List<object>();
+
+            string query = "SELECT Pago.idPago, Pago.idSocio, PagoActividadDeportiva.idPago, PagoActividadDeportiva.idActDeportiva, ActividadDeportiva.* " +
+                           "FROM (Pago INNER JOIN PagoActividadDeportiva " +
+                           "ON Pago.idPago = PagoActividadDeportiva.idPago) " +
+                           "INNER JOIN ActividadDeportiva ON PagoActividadDeportiva.idActDeportiva = ActividadDeportiva.idActDeportiva " +
+                           "WHERE  PAGO.fechaPago BETWEEN @FechaMesAtras AND @FechaHoy AND Pago.idSocio = @IdSocio ";
+
+            try
+            {
+                using (OleDbConnection conn = new OleDbConnection(strCon))
+                {
+                    conn.Open();
+
+                    using (OleDbCommand cmd = new OleDbCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@FechaMesAtras", fechaMesAtras);
+                        cmd.Parameters.AddWithValue("@FechaHoy", fechaHoy);
+                        cmd.Parameters.AddWithValue("@IdSocio", idSocio);
+
+                        using (OleDbDataAdapter adapter = new OleDbDataAdapter(cmd))
+                        {
+                            DataTable dataTable = new DataTable();
+                            adapter.Fill(dataTable);
+
+                            ArrayList act;
+                            // Aquí puedes trabajar con el DataTable como lo harías con un DataSet
+                            foreach (DataRow row in dataTable.Rows)
+                            {
+                                // Acceder a los datos de cada fila
+                                act = new ArrayList();
+                                act.Add(row["nombreActividad"]);
+                                act.Add(row["nombreProfesor"]);
+                                act.Add(row["horario"]);
+                                act.Add(row["cantAlumnosMax"]);
+                                act.Add(row["precioMes"]);
+                                act.Add(row["cantAlumnosInscriptos"]);
+
+                                dataActividadesDeportivas.Add(act);
+                            }
+                        }
+                    }
+                }
+                return dataActividadesDeportivas;
+            }
+            catch (Exception ex)
+            {
+                string error = ex.Message;
+                Console.WriteLine(error);
+                return null;
             }
         }
     }
