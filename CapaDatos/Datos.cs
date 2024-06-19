@@ -27,10 +27,10 @@ namespace CapaDatos
         {
             string databasePath = path + "\\ClubDeportivoDB.mdb";
 
-            //string access64Provider = "Microsoft.ACE.OLEDB.12.0";
-            string access32Provider = "Microsoft.Jet.OLEDB.4.0";
+            string access64Provider = "Microsoft.ACE.OLEDB.12.0";
+            // string access32Provider = "Microsoft.Jet.OLEDB.4.0";
 
-            strCon = "Provider="+ access32Provider + ";Data Source= " + databasePath;
+            strCon = "Provider=" + access64Provider + ";Data Source= " + databasePath;
         }
 
         // Método para obtener las actividades a las que el socio con idSocio no registra un pago a la fecha actual
@@ -38,7 +38,7 @@ namespace CapaDatos
             List<string> list = new List<string>();
             list.Add("1");
             list.Add("2");
-            list.Add("3");
+            // list.Add("3");
 
             return list;
         }
@@ -338,8 +338,7 @@ namespace CapaDatos
                 }
                 return datosSocio;
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 return null;
             }
         }
@@ -592,24 +591,21 @@ namespace CapaDatos
             }
         }
 
-        public static List<object> obtenerActividadesSocioInscriptoEsteMes(string idSocio)
-        {
+        public static List<ArrayList> obtenerActividadesSocioInscriptoEsteMes(string idSocio) {
             // Método para obtener las actividades en las que se encuentra inscripto un usuario (solo las actividades, no sus pagos)
             string fechaHoy = DateTime.Now.ToString("dd/MM/yyyy");
             string fechaMesAtras = DateTime.Now.AddMonths(-1).ToString("dd/MM/yyyy");
 
-            List<object> dataActividadesDeportivas = new List<object>();
+            List<ArrayList> dataActividadesDeportivas = new List<ArrayList>();
 
             string query = "SELECT Pago.idPago, Pago.idSocio, PagoActividadDeportiva.idPago, PagoActividadDeportiva.idActDeportiva, ActividadDeportiva.* " +
                            "FROM (Pago INNER JOIN PagoActividadDeportiva " +
                            "ON Pago.idPago = PagoActividadDeportiva.idPago) " +
                            "INNER JOIN ActividadDeportiva ON PagoActividadDeportiva.idActDeportiva = ActividadDeportiva.idActDeportiva " +
-                           "WHERE  PAGO.fechaPago BETWEEN @FechaMesAtras AND @FechaHoy AND Pago.idSocio = @IdSocio ";
+                           "WHERE PAGO.fechaPago BETWEEN @FechaMesAtras AND @FechaHoy AND Pago.idSocio = @IdSocio ";
 
-            try
-            {
-                using (OleDbConnection conn = new OleDbConnection(strCon))
-                {
+            try {
+                using (OleDbConnection conn = new OleDbConnection(strCon)) {
                     conn.Open();
 
                     using (OleDbCommand cmd = new OleDbCommand(query, conn))
@@ -618,15 +614,13 @@ namespace CapaDatos
                         cmd.Parameters.AddWithValue("@FechaHoy", fechaHoy);
                         cmd.Parameters.AddWithValue("@IdSocio", idSocio);
 
-                        using (OleDbDataAdapter adapter = new OleDbDataAdapter(cmd))
-                        {
+                        using (OleDbDataAdapter adapter = new OleDbDataAdapter(cmd)) {
                             DataTable dataTable = new DataTable();
                             adapter.Fill(dataTable);
 
                             ArrayList act;
                             // Aquí puedes trabajar con el DataTable como lo harías con un DataSet
-                            foreach (DataRow row in dataTable.Rows)
-                            {
+                            foreach (DataRow row in dataTable.Rows) {
                                 // Acceder a los datos de cada fila
                                 act = new ArrayList();
                                 act.Add(row["nombreActividad"]);
@@ -641,10 +635,10 @@ namespace CapaDatos
                         }
                     }
                 }
+
                 return dataActividadesDeportivas;
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 string error = ex.Message;
                 Console.WriteLine(error);
                 return null;

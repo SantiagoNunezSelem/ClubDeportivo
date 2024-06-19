@@ -8,24 +8,48 @@ using System.Reflection.Emit;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using static WebApplication7.About;
 
 namespace WebApplication7 {
     public partial class Contact: Page {
+        Administradora adm;
+
         protected void Page_Load(object sender, EventArgs e) {
+            this.adm = (Session["adm"] as Administradora);
+
+            if (adm == null)
+                Response.Redirect("Default.aspx");
+
             if (!IsPostBack) {
                 string idSocio = (Session["id"] as string);
+                string errorMessage = null;
+                string dni = Session["dni"] as string;
 
-                List<string> actividadesDisponibles = Administradora.obtenerIDdeActividadesDisponiblesPara(idSocio);
+                adm.getSociosDB(ref errorMessage);
+
+                Socio socio = adm.buscarSocio(dni);
+
+                List<PagoActividadDeportiva> pagosAct = socio.getPagosActividadDeportiva();
+                List<ActividadDeportiva> actsActivas = new List<ActividadDeportiva>();
+
+                List<ActividadDeportiva> allActs = adm.getActividadesDeportivas();
+
+                pagosAct.ForEach(p => {
+                    ActividadDeportiva tmpAct = p.ActividadDeportivaInfo;
+
+                    if (socio.tieneActividadDeportivaActiva(tmpAct)) {
+                        allActs.Remove(tmpAct);
+                    }
+                });
+
                 ddlDeportes.Items.Add(new ListItem("Seleccione un deporte", ""));
 
-                for (int i = 0; i < actividadesDisponibles.Count; i++) {
-                    if (actividadesDisponibles[i] == "1")
-                        ddlDeportes.Items.Add(new ListItem("Natación", "1"));
-                    else if(actividadesDisponibles[i] == "2")
-                        ddlDeportes.Items.Add(new ListItem("Voley", "2"));
-                    else if(actividadesDisponibles[i] == "3")
-                        ddlDeportes.Items.Add(new ListItem("Fútbol", "3"));
-                }
+                allActs.ForEach(act => {
+                    string label = act.Nombre + " " + act.PrecioMes;
+                    ListItem dropdownItem = new ListItem(label, act.Nombre);
+
+                    ddlDeportes.Items.Add(dropdownItem);
+                });
             }
         }
 
@@ -39,12 +63,19 @@ namespace WebApplication7 {
                 return;
             }
 
+            ActividadDeportiva actSelected = adm.buscarActividadDeportiva(idActividad);
+            Socio socio = adm.buscarSocio(Session["dni"] as string);
+
+            PagoActividadDeportiva p = new PagoActividadDeportiva(socio, actSelected.PrecioMes, DateTime.Now, actSelected);
+
             Page.ClientScript.RegisterStartupScript(
                 this.GetType(), "OpenWindow", "window.open('https://link.mercadopago.com.ar/clubdeportivo','_newtab');", 
                 true
             );
+            
+            adm.agregarPagoActividadDeportiva(p);
 
-            success.Text = "Si el pago fue realizado con éxito, un administrador lo registrará. Recuerde guardar el comprobante.";
+            success.Text = "El pago fue registrado con éxito. Recuerde que el monto debe ser el correcto, de lo contrario no podrá ingresar a la actividad.";
             ddlDeportes.SelectedIndex = 0;
         }
     }

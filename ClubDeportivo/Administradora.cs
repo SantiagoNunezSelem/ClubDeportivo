@@ -25,10 +25,14 @@ namespace CapaNegocio
             actividadesDeportivas = new List<ActividadDeportiva>();
         }
 
-        public static bool validateUser(string id, string dni) {
+        public bool validateUser(string id, string dni) {
             String _id = Datos.getIDSocio(dni);
 
             return _id == id;
+        }
+
+        public List<ActividadDeportiva> getActividadesDeportivas() {
+            return actividadesDeportivas;
         }
         public void agregarActividadDeportiva(ActividadDeportiva ad)
         {
@@ -122,7 +126,7 @@ namespace CapaNegocio
             return instancia;
         }
 
-        public static void staticSetConnectionDBPath(string path) {
+        public void setConnectionDBPathWeb(string path) {
             string originalPath = path; //hago una copia de la direccion original para adaptarla
 
             string projectRoot = Directory.GetParent(originalPath).Parent.FullName; //de esta manera estoy parado en ClubDeportivo
@@ -132,6 +136,7 @@ namespace CapaNegocio
 
             Datos.setConnectionDBPath(newPath);
         }
+
 
         public void setConnectionDBPath(string path)
         {
@@ -180,7 +185,8 @@ namespace CapaNegocio
             }
         }
 
-        public static List<object> obtenerActividadesSocioInscriptoEsteMes(string idSocio) {
+        public static List<ArrayList> obtenerActividadesSocioInscriptoEsteMes(string idSocio) {
+
             return Datos.obtenerActividadesSocioInscriptoEsteMes(idSocio);
         }
 

@@ -14,22 +14,19 @@ namespace CapaUsuario
     public partial class AdministradoraForm : Form
     {
         private CapaNegocio.Administradora adm = CapaNegocio.Administradora.ObtenerInstancia();
-        public AdministradoraForm()
-        {
+        public AdministradoraForm() {
             InitializeComponent();
             adm.setConnectionDBPath(Application.StartupPath);
 
             string errorMessage = null;    //si hay un error lo guarda
 
-            if (!adm.getActividadesDeportivasDB(ref errorMessage))
-            {
+            if (!adm.getActividadesDeportivasDB(ref errorMessage)) {
                 MessageBox.Show("Error en base de datos -> metodo getActividadesDeportivas \n" + errorMessage, "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             if (!adm.getSociosDB(ref errorMessage))
             {
                 MessageBox.Show("Error en base de datos -> metodo getSocios \n" + errorMessage, "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
             }
         }
         public void agregarSocio(AgregarNuevoSocio agregarSocio)
